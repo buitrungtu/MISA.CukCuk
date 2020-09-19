@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "customer.html",
+      "launchUrl": "/page/category/customer.html",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -20,7 +20,7 @@
     "MISA.CukCuk": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "customer.html",
+      "launchUrl": "/page/category/customer.html",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
@@ -29,7 +29,7 @@
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/customer.html",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/page/category/customer.html",
       "publishAllPorts": true,
       "useSSL": true
     }

@@ -1,0 +1,43 @@
+﻿.dialog-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.4;
+    background-color: #000;
+    display: none;
+}
+
+.dialog {
+    display: none;
+    position: absolute;
+    top: calc(50% - 200px);
+    left: calc(50% - 300px);
+    width: 600px;
+    height: 400px;
+    border: 10px solid #0973b9;
+    border-radius: 10px;
+}
+
+    .dialog .dialog-title {
+        height: 25px;
+        background-color: #0973b9;
+        color: #fff;
+        display: flex;
+    }
+
+    .dialog .dialog-body {
+        background-color: #fff;
+        height: calc(100% - 75px);
+        padding: 5px;
+        font-size: 13px;
+    }
+
+    .dialog .dialog-footer {
+        height: 40px;
+        width: 100%;
+        background-color: #fff;
+        display: flex;
+        justify-content: flex-end;
+    }

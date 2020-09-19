@@ -1,0 +1,59 @@
+﻿
+.grid .paging {
+    height: 30px;
+    width: 100%;
+    border: 1px solid #ccc;
+    display: flex;
+    position: relative;
+}
+.paging .paging-left {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    display: flex;
+}
+
+.paging .paging-right {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+
+.paging-left .paging-icon {
+    width: 25px;
+    height: 25px;
+    background-image: url('../../content/images/grid/page-last.png');
+    background-repeat: no-repeat;
+    background-position: 2px 2px;
+    display: block;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.paging-left #txtPageNumber, #txbNumber {
+    width: 40px;
+    height: 20px;
+    margin: -3px 10px;
+}
+
+.paging-left .paging-left-center {
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    padding: 0px 10px;
+    display: flex;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.paging-left .paging-refresh {
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    height: 20px;
+    padding: 0px 10px;
+}
+
+.paging-left .paging-text {
+    display: block;
+    margin: 5px;
+    line-height: 10px;
+}

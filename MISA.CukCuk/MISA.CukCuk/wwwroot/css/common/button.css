@@ -1,0 +1,41 @@
+﻿.toolbar button {
+    height: 100%;
+    display: flex;
+    border: none;
+    cursor: pointer;
+    border-radius: unset;
+    line-height: 23px;
+}
+
+    .toolbar button:hover {
+        background-color: #1b8bd4;
+        color: #fff;
+    }
+
+.dialog .dialog-title .title-button-close {
+    position: absolute;
+    right: 0;
+    border: 1px solid #ccc;
+    width: 16px;
+    height: 16px;
+    background-image: url('../../content/images/cancel.png');
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    background-position: center;
+    cursor: pointer;
+}
+
+button {
+    height: 30px;
+    width: auto;
+    padding: 4px;
+    margin-right: 10px;
+}
+#btnSave {
+    background-color: #eb9834;
+    width: 75px;
+}
+
+button#btnCancel {
+    width: 75px;
+}

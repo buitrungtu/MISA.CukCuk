@@ -13,7 +13,12 @@
   <ItemGroup>
     <Folder Include="wwwroot\page\report\" />
     <Folder Include="wwwroot\js\" />
-    <Folder Include="wwwroot\content\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\content\Images\ahamove\icon\ic_GH.svg" />
+    <None Include="wwwroot\content\Images\ic_support.svg" />
+    <None Include="wwwroot\content\Images\SMS_Menu.svg" />
   </ItemGroup>
 
 

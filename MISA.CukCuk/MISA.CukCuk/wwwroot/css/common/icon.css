@@ -1,0 +1,68 @@
+﻿.toolbar button .icon {
+    background-image: url('../../content/images/IconSprite.png');
+    background-repeat: no-repeat;
+    background-position: 0 -48px;
+    width: 16px;
+    height: 16px;
+    display: block;
+    margin: 3px 3px;
+    line-height: 27px;
+}
+i.icon.icon-add {
+    background-position: 0 -48px;
+}
+
+i.icon.icon-edit {
+    background-position: 0 -672px !important;
+}
+
+i.icon.icon-delete {
+    background-position: -3px -2000px !important;
+}
+
+i.icon.icon-duplicate {
+    background-position: -1px -1888px !important;
+}
+
+i.icon.icon-load {
+    background-position: 0 -2584px !important;
+}
+
+i.icon.icon-import {
+    background-position: -1px -1552px !important;
+}
+
+i.icon.icon-export {
+    background-image: url('../../content/images/excel_97_24.png') !important;
+    background-position: center !important;
+}
+
+i.icon.icon-merge {
+    background-image: url('../../content/images/ic_GopKhachHang.png') !important;
+    background-position: center !important;
+}
+
+i.icon.icon-help {
+    background-position: 0 -1600px !important;
+}
+
+.icon-first {
+    background-image: url('../../content/images/grid/page-first.png') !important;
+}
+
+.icon-prev {
+    background-image: url('../../content/images/grid/page-prev.png') !important;
+}
+
+.icon-next {
+    background-image: url('../../content/images/grid/page-next.png') !important;
+}
+
+.icon-last {
+    background-image: url('../../content/images/grid/page-last.png') !important;
+}
+
+.icon-refresh {
+    background-image: url('../../content/images/grid/refresh.png') !important;
+    margin-right: 0px !important;
+}

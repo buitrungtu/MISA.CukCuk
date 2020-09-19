@@ -2,9 +2,21 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>CukCuk</title>
+    <!--import CSS-->
     <link href="/css/common/main.css" rel="stylesheet" />
     <link href="/css/layout/menu.css" rel="stylesheet" />
+    <link href="/css/layout/header.css" rel="stylesheet" />
+    <link href="/css/common/button.css" rel="stylesheet" />
+    <link href="/css/common/content.css" rel="stylesheet" />
+    <link href="/css/common/grid.css" rel="stylesheet" />
+    <link href="/css/common/grid-content.css" rel="stylesheet" />
+    <link href="/css/common/grid-paging.css" rel="stylesheet" />
+    <link href="/css/common/grid-toolbar.css" rel="stylesheet" />
+    <link href="/css/common/icon.css" rel="stylesheet" />
+    <link href="/css/common/dialog.css" rel="stylesheet" />
+
+    <!--end import CSS-->
 </head>
 <body>
     <!--menu-->
@@ -108,8 +120,9 @@
     </div>
     <!--menu end-->
     <!--start Content-->
+
     <div class="content">
-        <div class="content-header">
+        <div class="header">
             <div class="header-left">
                 <select id="restaurant">
                     <option>--Chuỗi nhà hàng--</option>
@@ -128,10 +141,10 @@
                     </select>
                 </div>
                 <div class="notification">
-                    <div class="notification-icon"></div>
+                    <div class="notification-icon"><i class="icon-globe"></i></div>
                     <div class="notification-number"><span>2</span></div>
                 </div>
-                <div class="message">
+                <div class="Support">
 
                 </div>
                 <div class="UserSection">
@@ -139,23 +152,23 @@
                     <div class="User-name">Bùi Trung Tú</div>
                     <div class="User-detail"></div>
                 </div>
-                <div class="User-selection">
+                <!--<div class="User-selection">
                     <ol>
                         <li><a href="#">Đổi mật khẩu</a></li>
                         <li><a href="#">Đăng xuất</a></li>
                     </ol>
-                </div>
+                </div>-->
             </div>
         </div>
+        
         <div class="content-body">
 
             <div class="page-title">
                 <div class="triangle"></div>
                 <h1>Danh mục <span> Khách hàng </span></h1>
-                <input id="txtSearch" placeholder="Tìm kiếm" value="" />
             </div>
 
-            <div class="grid-content">
+            <div class="grid">
                 <div class="toolbar">
                     <button id="btnAdd"><i class="icon icon-add"></i>Thêm</button>
                     <button id="btnDuplicate"><i class="icon icon-duplicate"></i>Nhân bản</button>
@@ -168,7 +181,7 @@
                     <button id="btnMerge"><i class="icon icon-merge"></i>Gộp khách hàng</button>
                     <button id="btnHelp"><i class="icon icon-help"></i>Giúp</button>
                 </div>
-                <div class="grid">
+                <div class="grid-content">
                     <table>
                         <thead>
                             <tr>
@@ -180,6 +193,76 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <tr>
+                                <td>KH001</td>
+                                <td>Vũ Khắc Việt</td>
+                                <td>vietkhac90@gmail.com</td>
+                                <td>0966246357</td>
+                                <td>Thủ Đức, Hồ Chí Minh</td>
+                            </tr>
+                            <tr>
+                                <td>KH002</td>
+                                <td>Nguyễn Văn Mạnh</td>
+                                <td>manhnv@gmail.com</td>
+                                <td>0999123789</td>
+                                <td>Cầu Giấy, Hà Nội</td>
+                            </tr>
+                            <tr>
+                                <td>KH003</td>
+                                <td>Nguyễn Thị Thu Hà</td>
+                                <td>hakhan1999@gmail.com</td>
+                                <td>0329968561</td>
+                                <td>Đan Phượng, Hà Nội</td>
+                            </tr>
+                            <tr>
+                                <td>KH004</td>
+                                <td>Bùi Ngọc Toàn</td>
+                                <td>toanngoc99@gmail.com</td>
+                                <td>0945362125</td>
+                                <td>Hoài Đức, Hà Nội</td>
+                            </tr>
+                            <tr>
+                                <td>KH005</td>
+                                <td>Phan Tấn Trung</td>
+                                <td>baroibeo@gmail.com</td>
+                                <td>0966285369</td>
+                                <td>Quận 3, Hồ Chí Minh</td>
+                            </tr>
+                            <tr>
+                                <td>KH006</td>
+                                <td>Vũ Khắc Ngọc</td>
+                                <td>saobang1987@gmail.com</td>
+                                <td>0973665911</td>
+                                <td>Minh Khai, Hà Nội</td>
+                            </tr>
+                            <tr>
+                                <td>KH007</td>
+                                <td>Đặng Việt Hùng</td>
+                                <td>hungteacher@gmail.com</td>
+                                <td>0966289651</td>
+                                <td>Quận 6, Hồ Chí Minh</td>
+                            </tr>
+                            <tr>
+                                <td>KH008</td>
+                                <td>Đoàn Mạnh Quang</td>
+                                <td>dmquang1998@gmail.com</td>
+                                <td>0963654248</td>
+                                <td>Bắc Từ Liêm, Hà Nội</td>
+                            </tr>
+                            <tr>
+                                <td>KH009</td>
+                                <td>Đàm Thế Phong</td>
+                                <td>windposition@gmail.com</td>
+                                <td>0978693125</td>
+                                <td>Bắc Từ Liêm, Hà Nội</td>
+                            </tr>
+                            <tr>
+                                <td>KH010</td>
+                                <td>Trần Văn Hà</td>
+                                <td>hatran1999@gmail.com</td>
+                                <td>0113652314</td>
+                                <td>Dark lak, Tây Nguyên</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -206,6 +289,8 @@
             </div>
         </div>
     </div>
+
+    <!--popup dialog-->
     <div class="dialog-modal"></div>
     <div class="dialog">
         <div class="dialog-title">
@@ -281,6 +366,8 @@
             <button id="btnCancel">Hủy</button>
         </div>
     </div>
+    <!--end pupup dialog-->
+
     <!--end Content-->
 </body>
 </html>
