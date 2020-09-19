@@ -26,8 +26,6 @@ textarea {
     width: 80%;
 }
 
-
-
 .row {
     display: flex;
     width: 100%;
@@ -41,10 +39,11 @@ textarea {
     }
 
 .information-field input, select, textarea {
-    border: 1px solid #ccc;
+    border: 1px solid #0973b9;
     float: left;
     width: calc(100% - 125px);
     padding-left: 3px;
+    outline: none;
 }
 
 .information-field select, input {
