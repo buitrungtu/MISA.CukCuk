@@ -53,58 +53,7 @@
         background-color: #1b8bd4;
     }
 
-    .menu-item .menu-item-icon {
-        width: 40px;
-        height: 100%;
-        background-image: url('../../content/images/iconMenu.png');
-        background-position: 8px 9px;
-        background-repeat: no-repeat;
-    }
-
+    
     .menu-item .menu-item-text {
         line-height: 45px;
     }
-
-.icon-board {
-    background-position: 8px 9px !important;
-}
-
-.icon-report {
-    background-position: 8px -182px !important;
-}
-
-.icon-buy {
-    background-position: 8px -365px !important;
-}
-
-.icon-store {
-    background-position: 8px -29px !important;
-}
-
-.icon-money {
-    background-position: 8px -68px !important;
-}
-
-.icon-deposits {
-    background-position: 8px -68px !important;
-}
-
-.icon-cost {
-    background-position: 8px -68px !important;
-}
-
-.icon-sale {
-    background-position: 8px -108px !important;
-}
-
-.icon-menu {
-    background-position: 8px -485px !important;
-}
-
-.icon-category {
-    background-position: 8px -144px !important;
-}
-
-.icon-setting {
-    background-position: 8px -222px !important;
-}

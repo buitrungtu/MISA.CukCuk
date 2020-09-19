@@ -1,4 +1,60 @@
-﻿.toolbar button .icon {
+﻿/*icon menu*/
+.menu-item .menu-item-icon {
+    width: 40px;
+    height: 100%;
+    background-image: url('../../content/images/iconMenu.png');
+    background-position: 8px 9px;
+    background-repeat: no-repeat;
+}
+
+.menu-item .icon-board {
+    background-position: 8px 9px !important;
+}
+
+.menu-item .icon-report {
+    background-position: 8px -182px !important;
+}
+
+.menu-item .icon-buy {
+    background-position: 8px -365px !important;
+}
+
+.menu-item .icon-store {
+    background-position: 8px -29px !important;
+}
+
+.menu-item .icon-money {
+    background-position: 8px -68px !important;
+}
+
+.menu-item .icon-deposits {
+    background-position: 8px -68px !important;
+}
+
+.menu-item .icon-cost {
+    background-position: 8px -68px !important;
+}
+
+.menu-item .icon-sale {
+    background-position: 8px -108px !important;
+}
+
+.menu-item .icon-menu {
+    background-position: 8px -485px !important;
+}
+
+.menu-item .icon-category {
+    background-position: 8px -144px !important;
+}
+
+.menu-item .icon-setting {
+    background-position: 8px -222px !important;
+}
+
+/*end icon menu*/
+
+/*icon toolbar*/
+.toolbar button .icon {
     background-image: url('../../content/images/IconSprite.png');
     background-repeat: no-repeat;
     background-position: 0 -48px;
@@ -45,24 +101,27 @@ i.icon.icon-merge {
 i.icon.icon-help {
     background-position: 0 -1600px !important;
 }
+/* end icon toolbar*/
 
-.icon-first {
+/*icon paging*/
+.paging .icon-first {
     background-image: url('../../content/images/grid/page-first.png') !important;
 }
 
-.icon-prev {
+.paging .icon-prev {
     background-image: url('../../content/images/grid/page-prev.png') !important;
 }
 
-.icon-next {
+.paging .icon-next {
     background-image: url('../../content/images/grid/page-next.png') !important;
 }
 
-.icon-last {
+.paging .icon-last {
     background-image: url('../../content/images/grid/page-last.png') !important;
 }
 
-.icon-refresh {
+.paging .icon-refresh {
     background-image: url('../../content/images/grid/refresh.png') !important;
     margin-right: 0px !important;
 }
+/*end icon paging*/
