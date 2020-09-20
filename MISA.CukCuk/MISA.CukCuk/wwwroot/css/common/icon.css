@@ -2,60 +2,50 @@
 .menu-item .menu-item-icon {
     width: 40px;
     height: 100%;
-    background-image: url('../../content/images/iconMenu.png');
+    background-image: url('/content/images/iconMenu.png');
     background-position: 8px 9px;
     background-repeat: no-repeat;
 }
-
-.menu-item .icon-board {
-    background-position: 8px 9px !important;
+.menu-item .icon-board {background-position: 7px 9px !important;}
+.menu-item .icon-report {background-position: 8px -182px !important;}
+.menu-item .icon-buy {background-position: 8px -365px !important;}
+.menu-item .icon-store {background-position: 8px -29px !important;}
+.menu-item .icon-money {background-position: 8px -68px !important;}
+.menu-item .icon-category {background-position: 8px -144px !important;}
+.menu-item .icon-setting {background-position: 8px -222px !important;}
+.menu-item .icon-sale {background-position: 8px -108px !important;}
+.menu-item .icon-deposit {
+    background-image: url('/content/images/icon-deposit.png') !important;
+    background-position: 12px 12px !important;
 }
-
-.menu-item .icon-report {
-    background-position: 8px -182px !important;
-}
-
-.menu-item .icon-buy {
-    background-position: 8px -365px !important;
-}
-
-.menu-item .icon-store {
-    background-position: 8px -29px !important;
-}
-
-.menu-item .icon-money {
-    background-position: 8px -68px !important;
-}
-
-.menu-item .icon-deposits {
-    background-position: 8px -68px !important;
-}
-
 .menu-item .icon-cost {
-    background-position: 8px -68px !important;
+    background-image: url('/content/images/icon-cost.png') !important;
+    background-position: 10px 10px !important;
 }
-
-.menu-item .icon-sale {
-    background-position: 8px -108px !important;
-}
-
 .menu-item .icon-menu {
-    background-position: 8px -485px !important;
+    background-image: url('/content/images/vector-smart-object.png') !important;
+    background-position: 12px 10px !important;
 }
-
-.menu-item .icon-category {
-    background-position: 8px -144px !important;
+.menu-item .icon-menu-help {
+    background-image: url('/content/images/iconHelp.png') !important;
+    background-position: 10px 10px !important;
 }
-
-.menu-item .icon-setting {
-    background-position: 8px -222px !important;
+.menu-item .icon-subscribe {
+    background-image: url('/content/images/icon-subscriber.png') !important;
+    background-position: 10px 10px !important;
 }
-
+.menu-item .icon-uninvoiced {
+    background-image: url('/content/images/cancel-invoice.png') !important;
+    background-position: 10px 10px !important;
+}
+.menu-item .icon-logo5food {
+    background-image: url('/content/images/5food.png') !important;
+    background-position: 10px 10px !important;
+}
 /*end icon menu*/
-
 /*icon toolbar*/
 .toolbar button .icon {
-    background-image: url('../../content/images/IconSprite.png');
+    background-image: url('/content/images/IconSprite.png');
     background-repeat: no-repeat;
     background-position: 0 -48px;
     width: 16px;
@@ -64,64 +54,31 @@
     margin: 3px 3px;
     line-height: 27px;
 }
-i.icon.icon-add {
-    background-position: 0 -48px;
+.toolbar .icon-add {background-position: 0 -48px;}
+.toolbar .icon-edit {background-position: 0 -672px !important;}
+.toolbar .icon-delete {background-position: -3px -2000px !important;}
+.toolbar .icon-duplicate {background-position: -1px -1888px !important;}
+.toolbar .icon-load {background-position: 0 -2584px !important;}
+.toolbar .icon-import {background-position: -1px -1552px !important;}
+.toolbar .icon-help {background-position: 0 -1600px !important;}
+.toolbar .icon-export {
+    background-image: url('/content/images/excel_97_24.png') !important;
+    background-position: center !important;
 }
-
-i.icon.icon-edit {
-    background-position: 0 -672px !important;
-}
-
-i.icon.icon-delete {
-    background-position: -3px -2000px !important;
-}
-
-i.icon.icon-duplicate {
-    background-position: -1px -1888px !important;
-}
-
-i.icon.icon-load {
-    background-position: 0 -2584px !important;
-}
-
-i.icon.icon-import {
-    background-position: -1px -1552px !important;
-}
-
-i.icon.icon-export {
-    background-image: url('../../content/images/excel_97_24.png') !important;
+.toolbar .icon-merge {
+    background-image: url('/content/images/ic_GopKhachHang.png') !important;
     background-position: center !important;
 }
 
-i.icon.icon-merge {
-    background-image: url('../../content/images/ic_GopKhachHang.png') !important;
-    background-position: center !important;
-}
-
-i.icon.icon-help {
-    background-position: 0 -1600px !important;
-}
 /* end icon toolbar*/
 
 /*icon paging*/
-.paging .icon-first {
-    background-image: url('../../content/images/grid/page-first.png') !important;
-}
-
-.paging .icon-prev {
-    background-image: url('../../content/images/grid/page-prev.png') !important;
-}
-
-.paging .icon-next {
-    background-image: url('../../content/images/grid/page-next.png') !important;
-}
-
-.paging .icon-last {
-    background-image: url('../../content/images/grid/page-last.png') !important;
-}
-
+.paging .icon-first {background-image: url('/content/images/grid/page-first.png') !important;}
+.paging .icon-prev {background-image: url('/content/images/grid/page-prev.png') !important;}
+.paging .icon-next {background-image: url('/content/images/grid/page-next.png') !important;}
+.paging .icon-last {background-image: url('/content/images/grid/page-last.png') !important;}
 .paging .icon-refresh {
-    background-image: url('../../content/images/grid/refresh.png') !important;
+    background-image: url('/content/images/grid/refresh.png') !important;
     margin-right: 0px !important;
 }
 /*end icon paging*/

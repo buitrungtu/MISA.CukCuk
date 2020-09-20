@@ -11,6 +11,7 @@
     border-radius: unset;
     line-height: 23px;
     outline:none;
+    padding-right:8px;
 }
 
     .toolbar button:hover {

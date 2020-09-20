@@ -4,7 +4,6 @@
     border-top: 1px solid #ccc;
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }
 
 .paging .paging-left {
@@ -16,6 +15,7 @@
 
 .paging .paging-right {
     margin-right: 10px;
+    align-self:center;
 }
 
 .paging-left .paging-icon {
