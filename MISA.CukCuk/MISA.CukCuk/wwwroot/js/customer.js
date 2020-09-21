@@ -16,6 +16,8 @@ class CustomerJS {
         $('#btnAdd').click(this.btnAddOnClick.bind(this));
         $('#btnEdit').click(this.btnEditOnClick.bind(this));
         $('#btnSave').click(this.btnSaveOnClick.bind(this));
+        $('#txtCustomerCode').blur(this.checkRequired);
+        $('.required').blur(this.checkRequired);
     }
     loadData() {
         $('.grid-content tbody').empty();
@@ -29,6 +31,17 @@ class CustomerJS {
                             </tr>`);
             $('.grid-content tbody').append(trHTML);
         })
+    }
+    checkRequired() {
+        var value = this.value;
+        if (!value) {
+            $(this).addClass('required-error');
+            $(this).attr("placeholder", "Bạn phải nhập thông tin này.");
+            return true;
+        } else {
+            $(this).removeClass('required-error');
+            return false;
+        }
     }
     ShowUserSelection() {
         $('.User-selection').toggleClass('Show-selectiton');
@@ -44,14 +57,14 @@ class CustomerJS {
         $('.dialog select').val(1);
         $('.dialog-modal').show();
         $('.dialog').show();
+        $('#txtCustomerCode').focus();
     }
     hideDialogDetail() {
         $('.dialog-modal').hide();
         $('.dialog').hide();
     }
     rowOnClick(sender) {
-        //this.classList.add("row-selected");   
-        //$('#btnDuplicate,#btnEdit,#btnDelete').removeClass('btn-Disable');
+        //this.classList.add("row-selected");  or
         $(this).addClass("row-selected");
         $(this).siblings().removeClass("row-selected"); //.siblings() tìm tất cả anh em ruột của nó (ngoại trừ chính nó)
     }
@@ -60,8 +73,22 @@ class CustomerJS {
     }
     btnSaveOnClick() {
         var customer = new CustomerJS();
+        // validate dữ liệu
+        var inputRequireds = $('.required');
+        var isValid = true;
+        $.each(inputRequireds, function (i, item) {
+            var valid = $('input').trigger("blur");
+            if (isValid && valid.hasClass("required-error")){
+                isValid = false;
+            }
+            if (isValid == false) {
+                return;
+            }
+        })
         customer.CustomerCode = $('#txtCustomerCode').val();
         customer.CustomerName = $('#txtCustomerName').val();
+        customer.MemberCode = $('#txtMemberCode').val();
+        customer.MemberType = $('#MemberRank').val();
         customer.Email = $('#txtEmail').val();
         customer.Mobile = $('#txtMobile').val();
         customer.Address = $('#txtAddress').val();
@@ -70,7 +97,7 @@ class CustomerJS {
         customer.CompanyName = $('#txtCompanyName').val();
         customer.TaxCode = $('#txtTaxCode').val();
         customer.CustomerNote = $('#txtNote').val();
-
+        debugger;
         data.push(customer);
         this.btnCloseOnClick();
         this.loadData();
@@ -80,6 +107,8 @@ var data = [
     {
         CustomerCode: "KH001",
         CustomerName: "Vũ Khắc Việt",
+        MemberCode: "MB0175",
+        MemberType: "5",
         CustomerType: "3",
         Mobile: "0966246357",
         Birdday: "1/2/1990",
@@ -92,6 +121,8 @@ var data = [
     {
         CustomerCode: "KH002",
         CustomerName: "Nguyễn Văn Mạnh",
+        MemberCode: "MB0121",
+        MemberType: "1",
         CustomerType: "3",
         Mobile: "0999123789",
         Birdday: "30/2/1990",
@@ -104,6 +135,8 @@ var data = [
     {
         CustomerCode: "KH003",
         CustomerName: "Nguyễn Thị Thu Hà",
+        MemberCode: "MB6955",
+        MemberType: "3",
         CustomerType: "1",
         Mobile: "0329968561",
         Birdday: "7/2/1999",
@@ -116,6 +149,8 @@ var data = [
     {
         CustomerCode: "KH004",
         CustomerName: "Bùi Ngọc Toàn",
+        MemberCode: "MB6955",
+        MemberType: "3",
         CustomerType: "2",
         Mobile: "0945362125",
         Birdday: "12/2/1999",
@@ -128,6 +163,8 @@ var data = [
     {
         CustomerCode: "KH005",
         CustomerName: "Phan Tấn Trung",
+        MemberCode: "MB6955",
+        MemberType: "3",
         CustomerType: "3",
         Mobile: "0966285369",
         Birdday: "1/2/1990",
@@ -140,6 +177,8 @@ var data = [
     {
         CustomerCode: "KH006",
         CustomerName: "Vũ Khắc Ngọc",
+        MemberCode: "MB6955",
+        MemberType: "3",
         CustomerType: "2",
         Mobile: "0973665911",
         Birdday: "1/6/1988",
@@ -152,6 +191,8 @@ var data = [
     {
         CustomerCode: "KH007",
         CustomerName: "Đặng Việt Hùng",
+        MemberCode: "MB6955",
+        MemberType: "3",
         CustomerType: "3",
         Mobile: "0966289651",
         Birdday: "30/5/1989",
@@ -164,6 +205,8 @@ var data = [
     {
         CustomerCode: "KH008",
         CustomerName: "Đoàn Mạnh Quang",
+        MemberCode: "MB6955",
+        MemberType: "3",
         CustomerType: "2",
         Mobile: "0963654248",
         Birdday: "1/1/1998",
@@ -176,6 +219,8 @@ var data = [
     {
         CustomerCode: "KH009",
         CustomerName: "Trần Văn Hà",
+        MemberCode: "MB6955",
+        MemberType: "3",
         CustomerType: "1",
         Mobile: "0113652314",
         Birdday: "9/8/1998",
@@ -188,6 +233,8 @@ var data = [
     {
         CustomerCode: "KH010",
         CustomerName: "Đàm Thế Phong",
+        MemberCode: "MB6955",
+        MemberType: "3",
         CustomerType: "3",
         Mobile: "0978693125",
         Birdday: "10/12/1976",

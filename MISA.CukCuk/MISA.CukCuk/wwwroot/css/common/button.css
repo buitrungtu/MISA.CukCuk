@@ -32,12 +32,25 @@
     cursor: pointer;
 }
 
-
-#btnSave {
-    background-color: #eb9834;
-    width: 75px;
+.dialog-footer .btn-right {
+    display: flex;
+    margin-right: 5px;
+}
+.dialog-footer .btn-left {
+    margin-left: 10px;
+}
+.dialog-footer button {
+    display: flex;
+    line-height: 22px;
+    align-items: center;
+    height: 30px;
+    padding: 0px 10px;
+    background-color:transparent;
+    border:1px solid #ccc;
 }
 
-button#btnCancel {
-    width: 75px;
-}
+    .dialog-footer button:hover {
+        background-color: #1b8bd4 !important;
+        color: #fff;
+        cursor:pointer;
+    }

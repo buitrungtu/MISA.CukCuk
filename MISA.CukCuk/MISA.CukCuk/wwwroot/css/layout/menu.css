@@ -50,8 +50,9 @@
 
     .menu-item:hover {
         cursor: pointer;
-        background-color: #1b8bd4;
+        background-color: #f19322;
     }
+
 
     
     .menu-item .menu-item-text {

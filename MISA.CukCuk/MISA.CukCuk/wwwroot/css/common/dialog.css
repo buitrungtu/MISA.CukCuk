@@ -12,10 +12,10 @@
 .dialog {
     display: none;
     position: absolute;
-    top: calc(50% - 200px);
-    left: calc(50% - 300px);
-    width: 600px;
-    height: 400px;
+    top: calc(50% - 225px);
+    left: calc(50% - 350px);
+    width: 700px;
+    height: 450px;
     border: 10px solid #0973b9;
     border-radius: 10px;
 }
@@ -29,16 +29,72 @@
 
     .dialog .dialog-body {
         background-color: #fff;
-        height: calc(100% - 80px);
+        height: calc(100% - 75px);
         padding: 5px;
-        font-size: 13px;
     }
 
-    .dialog .dialog-footer {
-        height: 40px;
-        width: 100%;
-        background-color: #fff;
-        display: flex;
-        justify-content: flex-end;
-        padding-bottom:5px;
+.dialog-body .col-2 {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin: 10px 5px;
+}
+
+.dialog-body .col {
+    display: grid;
+    grid-template-columns: 100% 0%;
+    margin: 10px 5px;
+}
+
+.information-field {
+    display: flex;
+    width: 100%;
+}
+
+    .information-field label {
+        width: 150px;
+        display: block;
     }
+
+    .information-field input, textarea {
+        width: calc(100% - 165px);
+        padding: 0px 4px;
+        border: 1px solid #ccc;
+    }
+
+    .information-field input {
+        height: 20px;
+    }
+
+        .information-field input:focus, textarea:focus {
+            border: 1px solid #0973b9;
+        }
+select,input,textarea,button{
+    outline: none;
+}
+    .information-field select {
+        width: calc(100% - 155px);
+        height: 25px;
+        border: 1px solid #ccc;
+    }
+
+    .information-field textarea {
+        height: 100px;
+    }
+
+label span {
+    padding: 0px 1px;
+    color: red;
+}
+
+.dialog .dialog-footer {
+    height: 40px;
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.required-error, .required-error:focus {
+    border: 1px solid #ff0000 !important;
+}

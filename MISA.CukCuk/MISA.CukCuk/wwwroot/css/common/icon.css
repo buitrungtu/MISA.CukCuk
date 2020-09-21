@@ -44,7 +44,7 @@
 }
 /*end icon menu*/
 /*icon toolbar*/
-.toolbar button .icon {
+button .icon {
     background-image: url('/content/images/IconSprite.png');
     background-repeat: no-repeat;
     background-position: 0 -48px;
@@ -54,18 +54,18 @@
     margin: 3px 3px;
     line-height: 27px;
 }
-.toolbar .icon-add {background-position: 0 -48px;}
-.toolbar .icon-edit {background-position: 0 -672px !important;}
-.toolbar .icon-delete {background-position: -3px -2000px !important;}
-.toolbar .icon-duplicate {background-position: -1px -1888px !important;}
-.toolbar .icon-load {background-position: 0 -2584px !important;}
-.toolbar .icon-import {background-position: -1px -1552px !important;}
-.toolbar .icon-help {background-position: 0 -1600px !important;}
-.toolbar .icon-export {
+.icon-add {background-position: 0 -48px;}
+.icon-edit {background-position: 0 -672px !important;}
+.icon-delete {background-position: -3px -2000px !important;}
+.icon-duplicate {background-position: -1px -1888px !important;}
+.icon-load {background-position: 0 -2584px !important;}
+.icon-import {background-position: -1px -1552px !important;}
+.icon-help {background-position: 0 -1600px !important;}
+.icon-export {
     background-image: url('/content/images/excel_97_24.png') !important;
     background-position: center !important;
 }
-.toolbar .icon-merge {
+.icon-merge {
     background-image: url('/content/images/ic_GopKhachHang.png') !important;
     background-position: center !important;
 }
@@ -82,3 +82,14 @@
     margin-right: 0px !important;
 }
 /*end icon paging*/
+
+/* icon dialog */
+.icon-save {
+    background-position: 0 -768px !important;
+}
+.icon-save-add {
+    background-position: 0 -737px !important;
+}
+.icon-cancel {
+    background-position: 0 -1952px !important;
+}

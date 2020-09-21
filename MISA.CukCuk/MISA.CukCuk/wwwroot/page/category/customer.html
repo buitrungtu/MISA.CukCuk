@@ -206,17 +206,31 @@
             <div class="title-button-close"></div>
         </div>
         <div class="dialog-body">
-            <div class="row">
+            <div class="col-2">
                 <div class="information-field">
                     <label>Mã khách hàng<span>(*)</span> </label>
-                    <input id="txtCustomerCode" />
+                    <input type="text" class="required" id="txtCustomerCode" />
                 </div>
                 <div class="information-field">
                     <label>Tên khách hàng<span>(*)</span> </label>
-                    <input id="txtCustomerName" />
+                    <input type="text" class="required" id="txtCustomerName"/>
                 </div>
             </div>
-            <div class="row">
+            <div class="col-2">
+                <div class="information-field">
+                    <label>Mã thẻ thành viên</label>
+                    <input id="txtMemberCode" />
+                </div>
+                <div class="information-field">
+                    <label>Hạng thẻ</label> 
+                    <select id="MemberRank">
+                        <option value="1">Thường</option>
+                        <option value="2">Thân quen</option>
+                        <option value="3">VIP</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-2">
                 <div class="information-field">
                     <label>Nhóm khách hàng </label>
                     <select id="CustomerType">
@@ -226,41 +240,41 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
+            <div class="col-2">
                 <div class="information-field">
                     <label>ĐT di động<span>(*)</span> </label>
-                    <input id="txtMobile" class="short-info" />
+                    <input type="tel"  id="txtMobile" class="required" required />
                 </div>
             </div>
-            <div class="row">
+            <div class="col-2">
                 <div class="information-field">
                     <label>Ngày sinh </label>
-                    <input id="txtBirdday" class="short-info" />
+                    <input id="txtBirdday"  />
                 </div>
             </div>
-            <div class="row">
+            <div class="col">
                 <div class="information-field">
                     <label>Tên công ty </label>
                     <input id="txtCompanyName" />
                 </div>
             </div>
-            <div class="row">
+            <div class="col-2">
                 <div class="information-field">
                     <label>Mã số thuế </label>
                     <input id="txtTaxCode" />
                 </div>
                 <div class="information-field">
                     <label>Email </label>
-                    <input id="txtEmail" />
+                    <input type="email" id="txtEmail" />
                 </div>
             </div>
-            <div class="row">
+            <div class="col">
                 <div class="information-field">
                     <label>Địa chỉ </label>
                     <input id="txtAddress" />
                 </div>
             </div>
-            <div class="row">
+            <div class="col">
                 <div class="information-field">
                     <label>Ghi chú </label>
                     <textarea id="txtNote"></textarea>
@@ -268,8 +282,14 @@
             </div>
         </div>
         <div class="dialog-footer">
-            <button id="btnSave">Lưu</button>
-            <button id="btnCancel">Hủy</button>
+            <div class="btn-left">
+                <button id="btnHelp"><i  class="icon icon-help"></i>Giúp</button>
+            </div>
+            <div class="btn-right">
+                <button id="btnSave"><i class="icon icon-save"></i>Cất</button>
+                <button id="btnSaveAndAdd"><i class="icon icon-save-add"></i>Cất & Thêm</button>
+                <button id="btnCancel"><i class="icon icon-cancel"></i>Hủy bỏ</button>
+            </div>
         </div>
     </div>
     <!--end pupup dialog-->
