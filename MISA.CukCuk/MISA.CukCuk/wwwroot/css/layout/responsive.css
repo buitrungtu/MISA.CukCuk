@@ -1,0 +1,9 @@
+﻿@media screen and (max-width: 1120px) {
+    #btnMerge, #btnImport, #btnExport, #btnHelp, .split {
+        display: none;
+    }
+    .paging-right {
+        display: none;
+    }
+}
+

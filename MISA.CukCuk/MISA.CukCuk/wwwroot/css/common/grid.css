@@ -10,3 +10,126 @@
     .grid::-webkit-scrollbar-thumb {
         background-color: #000;
     }
+
+/*grid toolbar*/
+    .grid .toolbar {
+        height: 30px;
+        width: 100%;
+        display: flex;
+        background-color: rgb(239,239,239);
+    }
+
+.grid-content .toolbar {
+    height: 30px;
+    width: 100%;
+    display: flex;
+    background-color: rgb(239,239,239);
+}
+
+.toolbar .split {
+    margin: 4px 10px 0px 0px;
+    border: 0.5px solid #ccc;
+    height: 20px;
+}
+
+/* end grid toolbar*/
+
+
+/*grid content*/
+    .grid .grid-content {
+        height: calc(100% - 60px);
+        width: 100%;
+        overflow: auto;
+    }
+
+        .grid .grid-content::-webkit-scrollbar {
+            width: 5px;
+            background-color: rgb(239,239,239);
+        }
+
+.grid-content table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table td, th {
+    padding: 4px;
+    border: 1px solid #dddddd;
+    cursor: pointer;
+}
+
+table thead {
+    background-color: rgb(239,239,239);
+}
+
+table tr:hover :not(th) {
+    background-color: #b8e3ff;
+    cursor: pointer;
+}
+
+.row-selected {
+    background-color: #8fb8d266;
+}
+
+/*end grid content*/ 
+
+/*grid paging*/
+.grid .paging {
+    height: 30px;
+    width: 100%;
+    border-top: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+}
+
+.paging .paging-left {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.paging .paging-right {
+    margin-right: 10px;
+    align-self: center;
+}
+
+.paging-left .paging-icon {
+    width: 25px;
+    height: 25px;
+    background-image: url('../../content/images/grid/page-last.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.paging-left #txtPageNumber, #txbNumber {
+    width: 40px;
+    height: 20px;
+    margin: -3px 10px;
+}
+
+.paging-left .paging-left-center {
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    padding: 0px 10px;
+    display: flex;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.paging-left .paging-refresh {
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    padding: 0px 10px;
+}
+
+.paging-left .paging-text {
+    display: block;
+    margin: 5px;
+    line-height: 10px;
+}
+
+/*end grid paging*/

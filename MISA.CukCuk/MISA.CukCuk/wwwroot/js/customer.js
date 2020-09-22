@@ -4,6 +4,7 @@
 
 class CustomerJS {
     constructor() {
+        this.FormType = null;
         this.initEvents();
         this.loadData();
     }
@@ -16,21 +17,32 @@ class CustomerJS {
         $('#btnAdd').click(this.btnAddOnClick.bind(this));
         $('#btnEdit').click(this.btnEditOnClick.bind(this));
         $('#btnSave').click(this.btnSaveOnClick.bind(this));
+        $('#btnDelete').click(this.btnDeleteOnClick.bind(this));
         $('#txtCustomerCode').blur(this.checkRequired);
         $('.required').blur(this.checkRequired);
     }
     loadData() {
-        $('.grid-content tbody').empty();
-        $.each(data, function (i, item) {
-            var trHTML = $(`<tr>
-                                <td>`+ item.CustomerCode + `</td>
-                                <td>`+ item.CustomerName + `</td>
-                                <td>`+ item.Email + `</td>
-                                <td>`+ item.Mobile + `</td>
-                                <td>`+ item.Address + `</td>
+        $.ajax({
+            url: "/api/customer",
+            method: "GET",
+            contentType: "application/json",
+            dataType: "json"
+        }).done(function (res) {
+            $('.grid-content tbody').empty();
+            $.each(res, function (i, item) {
+                var trHTML = $(`<tr>
+                                <td>`+ item.customerCode + `</td>
+                                <td>`+ item.customerName + `</td>
+                                <td>`+ item.email + `</td>
+                                <td>`+ item.mobile + `</td>
+                                <td>`+ item.address + `</td>
                             </tr>`);
-            $('.grid-content tbody').append(trHTML);
+                $('.grid-content tbody').append(trHTML);
+            })
+        }).fail(function () {
+            alert("Gặp lỗi khi load dữ liệu!");
         })
+        
     }
     checkRequired() {
         var value = this.value;
@@ -69,10 +81,42 @@ class CustomerJS {
         $(this).siblings().removeClass("row-selected"); //.siblings() tìm tất cả anh em ruột của nó (ngoại trừ chính nó)
     }
     btnEditOnClick() {
-        alert("Đã click vào nút Edit");
+        var self = this;
+        var customerSelected = $('.row-selected');
+        if (customerSelected.length > 0) {
+            var customerCode = customerSelected.children()[0].textContent;
+            this.showDialogDetail();
+            $.ajax({
+                url: "/api/customer/" + customerCode,
+                method: "GET",
+                contentType: "application/json",
+                dataType: "json"
+            }).done(function (customer) {
+                if (customer == null) {
+                    alert("Không có dữ liệu của khách hàng này");
+                } else {
+                    $("#txtCustomerCode").val(customer["customerCode"]);
+                    $("#txtCustomerName").val(customer["customerName"]);
+                    $("#txtMemberCode").val(customer["memberCode"]);
+                    $("#MemberRank").val(customer["memberRank"]);
+                    $("#CustomerType").val(customer["customerType"]);
+                    $("#txtMobile").val(customer["mobile"]);
+                    $("#txtBirdday").val(customer["birdday"]);
+                    $("#txtCompanyName").val(customer["companyName"]);
+                    $("#txtTaxCode").val(customer["taxCode"]);
+                    $("#txtEmail").val(customer["email"]);
+                    $("#txtAddress").val(customer["address"]);
+                    $("#txtNote").val(customer["customerNote"]);
+                    self.FormType = "Edit";
+                }
+            }).fail(function () {
+                alert("Có lỗi khi lấy thông tin khách hàng này");
+            })
+        } else {
+            alert("Bạn phải chọn 1 khách hàng để thực hiện chức năng này");
+        }
     }
     btnSaveOnClick() {
-        var customer = new CustomerJS();
         // validate dữ liệu
         var inputRequireds = $('.required');
         var isValid = true;
@@ -81,14 +125,21 @@ class CustomerJS {
             if (isValid && valid.hasClass("required-error")){
                 isValid = false;
             }
-            if (isValid == false) {
-                return;
-            }
         })
+        if (isValid == false) {
+            return;
+        }
+        var self = this;
+        var Method = "POST";
+        if (self.FormType == "Edit") {
+            Method = "PUT";
+        }
+        var customer = {};
         customer.CustomerCode = $('#txtCustomerCode').val();
         customer.CustomerName = $('#txtCustomerName').val();
         customer.MemberCode = $('#txtMemberCode').val();
-        customer.MemberType = $('#MemberRank').val();
+        customer.MemberRank = $('#MemberRank').val();
+        customer.CustomerType = $('#CustomerType').val();
         customer.Email = $('#txtEmail').val();
         customer.Mobile = $('#txtMobile').val();
         customer.Address = $('#txtAddress').val();
@@ -96,152 +147,41 @@ class CustomerJS {
         customer.Birdday = $('#txtBirdday').val();
         customer.CompanyName = $('#txtCompanyName').val();
         customer.TaxCode = $('#txtTaxCode').val();
-        customer.CustomerNote = $('#txtNote').val();
+        customer.Note = $('#txtNote').val();
         debugger;
-        data.push(customer);
-        this.btnCloseOnClick();
-        this.loadData();
+        $.ajax({
+            url: "/api/customer",
+            method: Method,
+            data: JSON.stringify(customer),
+            contentType: "application/json",
+            dataType: "json"
+        }).done(function (res) {
+            if (res) {
+                self.btnCloseOnClick();
+                self.loadData();
+            }
+        }).fail(function () {
+            alert("Có lỗi, hãy thử lại!");
+        })
+    }
+    btnDeleteOnClick() {
+        var self = this;
+        var customerSelected = $('.row-selected');
+        if (customerSelected.length > 0) {
+            var customerCode = customerSelected.children()[0].textContent;
+            $.ajax({
+                url: "/api/customer/" + customerCode,
+                method: "DELETE"
+            }).done(function (res) {
+                if (res == true) {
+                    self.loadData();
+                } else {
+                    alert("Không tìm thấy khách hàng này");
+                }
+            }).fail(function () {
+                alert("Xóa thất bại");
+            })
+        }
     }
 }
-var data = [
-    {
-        CustomerCode: "KH001",
-        CustomerName: "Vũ Khắc Việt",
-        MemberCode: "MB0175",
-        MemberType: "5",
-        CustomerType: "3",
-        Mobile: "0966246357",
-        Birdday: "1/2/1990",
-        CompanyName: "HowKteam",
-        TaxCode:"09123",
-        Email: "vietkhac90@gmail.com",
-        Address: "Thủ Đức, Hồ Chí Minh",
-        Note: ""
-    },
-    {
-        CustomerCode: "KH002",
-        CustomerName: "Nguyễn Văn Mạnh",
-        MemberCode: "MB0121",
-        MemberType: "1",
-        CustomerType: "3",
-        Mobile: "0999123789",
-        Birdday: "30/2/1990",
-        CompanyName: "Công Ty MISA",
-        TaxCode: "0999",
-        Email: "manhnv@gmail.com",
-        Address: "Cầu Giấy, Hà Nội",
-        Note: ""
-    },
-    {
-        CustomerCode: "KH003",
-        CustomerName: "Nguyễn Thị Thu Hà",
-        MemberCode: "MB6955",
-        MemberType: "3",
-        CustomerType: "1",
-        Mobile: "0329968561",
-        Birdday: "7/2/1999",
-        CompanyName: "Sinh Viên Tình Nguyện MTA",
-        TaxCode: "",
-        Email: "hakhan1999@gmail.com",
-        Address: "Đan Phượng, Hà Nội",
-        Note: ""
-    },
-    {
-        CustomerCode: "KH004",
-        CustomerName: "Bùi Ngọc Toàn",
-        MemberCode: "MB6955",
-        MemberType: "3",
-        CustomerType: "2",
-        Mobile: "0945362125",
-        Birdday: "12/2/1999",
-        CompanyName: "MTA Univercity",
-        TaxCode: "",
-        Email: "toanngoc99@gmail.com",
-        Address: "Hoài Đức, Hà Nội",
-        Note: ""
-    },
-    {
-        CustomerCode: "KH005",
-        CustomerName: "Phan Tấn Trung",
-        MemberCode: "MB6955",
-        MemberType: "3",
-        CustomerType: "3",
-        Mobile: "0966285369",
-        Birdday: "1/2/1990",
-        CompanyName: "SBTC Academy",
-        TaxCode: "",
-        Email: "baroibeo@gmail.com",
-        Address: "Quận 3, Hồ Chí Minh",
-        Note: ""
-    },
-    {
-        CustomerCode: "KH006",
-        CustomerName: "Vũ Khắc Ngọc",
-        MemberCode: "MB6955",
-        MemberType: "3",
-        CustomerType: "2",
-        Mobile: "0973665911",
-        Birdday: "1/6/1988",
-        CompanyName: "HocMai",
-        TaxCode: "09129",
-        Email: "saobang1987@gmail.com",
-        Address: "Minh Khai, Hà Nội",
-        Note: ""
-    },
-    {
-        CustomerCode: "KH007",
-        CustomerName: "Đặng Việt Hùng",
-        MemberCode: "MB6955",
-        MemberType: "3",
-        CustomerType: "3",
-        Mobile: "0966289651",
-        Birdday: "30/5/1989",
-        CompanyName: "Hoc24h",
-        TaxCode: "09199",
-        Email: "hungteacher@gmail.com",
-        Address: "Thanh Xuân, Hà Nội",
-        Note: ""
-    },
-    {
-        CustomerCode: "KH008",
-        CustomerName: "Đoàn Mạnh Quang",
-        MemberCode: "MB6955",
-        MemberType: "3",
-        CustomerType: "2",
-        Mobile: "0963654248",
-        Birdday: "1/1/1998",
-        CompanyName: "JAV",
-        TaxCode: "",
-        Email: "dmquang1998@gmail.com",
-        Address: "Bắc Từ Liêm, Hà Nội",
-        Note: ""
-    },
-    {
-        CustomerCode: "KH009",
-        CustomerName: "Trần Văn Hà",
-        MemberCode: "MB6955",
-        MemberType: "3",
-        CustomerType: "1",
-        Mobile: "0113652314",
-        Birdday: "9/8/1998",
-        CompanyName: "Le Quy Don",
-        TaxCode: "",
-        Email: "hatran1999@gmail.com",
-        Address: "Dark lak, Tây Nguyên",
-        Note: ""
-    },
-    {
-        CustomerCode: "KH010",
-        CustomerName: "Đàm Thế Phong",
-        MemberCode: "MB6955",
-        MemberType: "3",
-        CustomerType: "3",
-        Mobile: "0978693125",
-        Birdday: "10/12/1976",
-        CompanyName: "Nguyễn Thị Minh Khai High School",
-        TaxCode: "00101",
-        Email: "windposition@gmail.com",
-        Address: "Bắc Từ Liêm, Hà Nội",
-        Note: ""
-    },
-]
+
