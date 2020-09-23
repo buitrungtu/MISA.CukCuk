@@ -21,7 +21,7 @@ namespace MISA.CukCuk.Model
                 CompanyName = "Công ty cổ phần MISA",
                 TaxCode = "",
                 Email = "manhnv@gmail.com",
-                Address = "Cầu Giấy, Hà Nội",
+                Address = "Duy Tân, Cầu Giấy, Hà Nội",
                 Note = ""
             },
             new Customer()
@@ -31,12 +31,12 @@ namespace MISA.CukCuk.Model
                 MemberCode = "MB002",
                 MemberRank = "1",
                 CustomerType = "1",
-                Mobile = "097120334",
+                Mobile = "0971203341",
                 Birdday = "1/1/1986",
                 CompanyName = "Công ty cổ phần Vinamilk",
                 TaxCode = "",
                 Email = "thanglv@gmail.com",
-                Address = "Cầu Giấy, Hà Nội",
+                Address = "Hoàng Quốc Việt, Cầu Giấy, Hà Nội",
                 Note = ""
             },
             new Customer()
@@ -46,12 +46,12 @@ namespace MISA.CukCuk.Model
                 MemberCode = "MB003",
                 MemberRank = "1",
                 CustomerType = "3",
-                Mobile = "09122130334",
+                Mobile = "0912213033",
                 Birdday = "1/1/1999",
-                CompanyName = "Công ty cổ phần MTA",
+                CompanyName = "Công ty cổ phần HomeWork",
                 TaxCode = "",
                 Email = "hakhan7299@gmail.com",
-                Address = "Đan Phượng, Hà Nội",
+                Address = "Tân Lập, Đan Phượng, Hà Nội",
                 Note = ""
             },
             new Customer()
@@ -65,8 +65,8 @@ namespace MISA.CukCuk.Model
                 Birdday = "1/1/2006",
                 CompanyName = "Công ty cổ phần BAROI",
                 TaxCode = "",
-                Email = "chubedan@gmail.com",
-                Address = "Bắc Từ Liêm, Hà Nội",
+                Email = "chubethongminh@gmail.com",
+                Address = "Minh Khai, Bắc Từ Liêm, Hà Nội",
                 Note = ""
             },
             new Customer()
@@ -78,10 +78,10 @@ namespace MISA.CukCuk.Model
                 CustomerType = "1",
                 Mobile = "0977342544",
                 Birdday = "1/1/1990",
-                CompanyName = "Công ty Phật Sơn",
+                CompanyName = "Tập đoàn Viettel",
                 TaxCode = "",
                 Email = "honghiquan@gmail.com",
-                Address = "Kon Tumb, Dark Lak",
+                Address = "Phú Yên, An Lão, Hải Phòng",
                 Note = ""
             },
             new Customer()
@@ -93,10 +93,10 @@ namespace MISA.CukCuk.Model
                 CustomerType = "3",
                 Mobile = "0971230334",
                 Birdday = "1/1/1959",
-                CompanyName = "Công ty Phật Sơn",
+                CompanyName = "Công ty HomeWork",
                 TaxCode = "",
                 Email = "hoangkyanh@gmail.com",
-                Address = "Bắc Từ Liêm, Hà Nội",
+                Address = "Thượng Cát, Bắc Từ Liêm, Hà Nội",
                 Note = ""
             },
             new Customer()
@@ -108,10 +108,10 @@ namespace MISA.CukCuk.Model
                 CustomerType = "1",
                 Mobile = "0977343695",
                 Birdday = "1/1/1972",
-                CompanyName = "Công ty Thifbest",
+                CompanyName = "Công ty Vibex",
                 TaxCode = "",
                 Email = "ironmonkey@gmail.com",
-                Address = "Nam Từ Liêm, Hà Nội",
+                Address = "Mỹ Đình, Nam Từ Liêm, Hà Nội",
                 Note = ""
             },
             new Customer()
@@ -126,7 +126,7 @@ namespace MISA.CukCuk.Model
                 CompanyName = "Công ty cổ phần MISA",
                 TaxCode = "",
                 Email = "nguyensim@gmail.com",
-                Address = "Nam Từ Liêm, Hà Nội",
+                Address = "Mỹ Đình, Nam Từ Liêm, Hà Nội",
                 Note = ""
             },
             new Customer()
@@ -141,7 +141,7 @@ namespace MISA.CukCuk.Model
                 CompanyName = "Công ty BKAV",
                 TaxCode = "",
                 Email = "wandotky@gmail.com",
-                Address = "Hoài Đức, Hà Nội",
+                Address = "Hoài Đức A, Hoài Đức, Hà Nội",
                 Note = ""
             },
             new Customer()
@@ -153,10 +153,10 @@ namespace MISA.CukCuk.Model
                 CustomerType = "1",
                 Mobile = "0977346321",
                 Birdday = "1/1/1990",
-                CompanyName = "Công ty Toàn Chân",
+                CompanyName = "Tập đoàn FPT",
                 TaxCode = "",
                 Email = "chibinh@gmail.com",
-                Address = "Phố Hoa, Đà Nẵng",
+                Address = "Tây Tựu, Bắc Từ Liêm, Hà Nội",
                 Note = ""
             }
         };

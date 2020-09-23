@@ -20,22 +20,29 @@ class CustomerJS {
         $('#btnDelete').click(this.btnDeleteOnClick.bind(this));
         $('#txtCustomerCode').blur(this.checkRequired);
         $('.required').blur(this.checkRequired);
+
+        // dịch con trỏ khi bấm tab
+        $('#btnHelpDialog').blur(this.targetToStart);
     }
     loadData() {
+        var self = this;
         $.ajax({
             url: "/api/customer",
             method: "GET",
             contentType: "application/json",
-            dataType: "json"
+            dataType: "json",
+            async: false
         }).done(function (res) {
             $('.grid-content tbody').empty();
             $.each(res, function (i, item) {
                 var trHTML = $(`<tr>
                                 <td>`+ item.customerCode + `</td>
                                 <td>`+ item.customerName + `</td>
+                                <td class="text-center">`+ item.birdday + `</td>
                                 <td>`+ item.email + `</td>
-                                <td>`+ item.mobile + `</td>
-                                <td>`+ item.address + `</td>
+                                <td class="text-center">`+ item.mobile + `</td>
+                                <td class="text-center" title="`+ item.address + `">` + self.shortAddress(item.address) + `</td>
+                                <td title="`+ item.companyName + `">`+ self.shortCompanyName(item.companyName) + `</td>
                             </tr>`);
                 $('.grid-content tbody').append(trHTML);
             })
@@ -65,6 +72,8 @@ class CustomerJS {
         this.hideDialogDetail();
     }
     showDialogDetail() {
+        $('#txtCustomerCode,#txtCustomerName,#txtMobile').removeClass("required-error");
+        $('#txtCustomerCode,#txtCustomerName,#txtMobile').removeAttr("placeholder");
         $('.dialog input,textarea').val(null);
         $('.dialog select').val(1);
         $('.dialog-modal').show();
@@ -181,7 +190,22 @@ class CustomerJS {
             }).fail(function () {
                 alert("Xóa thất bại");
             })
+        } else {
+            alert("Bạn phải chọn đối tượng muốn xóa!");
         }
+    }
+    targetToStart() {
+        $("#txtCustomerCode").focus();
+    }
+    shortAddress(str) {
+        var temp = str.split(",");
+        return "... " + temp[temp.length-1];
+    }
+    shortCompanyName(str) {
+        if (str.length > 20) {
+            return str.slice(0, 20) + " ...";
+        }
+        return str;
     }
 }
 

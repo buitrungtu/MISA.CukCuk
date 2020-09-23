@@ -3,20 +3,21 @@
     padding: 4px;
     margin-right: 10px;
 }
+
 .toolbar button {
     height: 100%;
+    border: 1px solid transparent;
     display: flex;
-    border: none;
     cursor: pointer;
     border-radius: unset;
     line-height: 23px;
-    outline:none;
-    padding-right:8px;
+    outline: none;
+    padding-right: 8px;
 }
 
     .toolbar button:hover {
-        background-color: #1b8bd4;
-        color: #fff;
+        border-color: #1b8bd4;
+        background-color: #ffffff;
     }
 
 .dialog .dialog-title .title-button-close {
@@ -25,7 +26,7 @@
     border: 1px solid #ccc;
     width: 16px;
     height: 16px;
-    background-image: url('../../content/images/cancel.png');
+    background-image: url('/content/images/cancel.png');
     background-repeat: no-repeat;
     border-radius: 50%;
     background-position: center;
@@ -36,21 +37,27 @@
     display: flex;
     margin-right: 5px;
 }
+
 .dialog-footer .btn-left {
     margin-left: 10px;
 }
+
 .dialog-footer button {
     display: flex;
     line-height: 22px;
     align-items: center;
     height: 30px;
-    padding: 0px 10px;
-    background-color:transparent;
-    border:1px solid #ccc;
+    padding: 0px 20px;
+    background-color: transparent;
+    border: 1px solid #ccc;
 }
-
-    .dialog-footer button:hover {
-        background-color: #1b8bd4 !important;
-        color: #fff;
-        cursor:pointer;
+    .dialog-footer button:focus {
+        border-color: #1b8bd4;
     }
+    .dialog-footer button:hover {
+        cursor: pointer;
+        border-color: #1b8bd4;
+    }
+button#btnCancel {
+    margin-right: 5px;
+}

@@ -17,7 +17,7 @@
         margin-right: 20px;
     }
 
-    .header-right .UserSection {
+    .header-right .user {
         display: flex;
         color: #fff;
         align-items: center;
@@ -25,15 +25,15 @@
         width:185px;
     }
 
-        .header-right .UserSection:hover {
+        .header-right .user:hover {
             cursor: pointer;
         }
 
-    .header-right div.UserSection > * {
+    .header-right div.user > * {
         margin-left: 10px;
     }
 
-    .header-right .UserSection .User-avatar {
+    .header-right .user .user-avatar {
         background-image: url('../../content/employeeimage.png');
         border-radius: 50%;
         width: 32px;
@@ -44,7 +44,7 @@
         background-color:#fff;
     }
 
-    .header-right .UserSection .User-detail {
+    .header-right .user .user-detail {
         background-image: url('../../content/images/button/default-small-arrow.png');
         width: 25px;
         height: 25px;
@@ -84,7 +84,7 @@
 }
 
 
-.header-right .Support {
+.header-right .support {
     background-image: url('../../content/images/ic_support.svg');
     width: 70px;
     height: 58px;
@@ -101,7 +101,7 @@
     background-color: #0e588a;
     color: #fff;
 }
-.User-selection {
+.user-selection {
     position: absolute;
     top: 55px;
     right: -10px;
@@ -116,21 +116,21 @@
     visibility: hidden;
 }
 
-.Show-selectiton {
+.show-selectiton {
     visibility: visible;
     opacity: 1;
 }
-.User-selection ol {
+.user-selection ol {
     list-style: none;
     padding: 2px;
     margin: 2px;
     text-align: center;
 }
 
-    .User-selection ol li a {
+    .user-selection ol li a {
         text-decoration: none;
     }
 
-.User-selection::-webkit-scrollbar {
+.user-selection::-webkit-scrollbar {
     width: 3px;
 }

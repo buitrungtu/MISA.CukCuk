@@ -114,15 +114,15 @@
                     <div class="notification-icon"><i class="icon-globe"></i></div>
                     <div class="notification-number"><span>2</span></div>
                 </div>
-                <div class="Support">
+                <div class="support">
 
                 </div>
-                <div class="UserSection">
-                    <div class="User-avatar"></div>
-                    <div class="User-name">Bùi Trung Tú</div>
-                    <div class="User-detail"></div>
+                <div class="user">
+                    <div class="user-avatar"></div>
+                    <div class="user-name">Bùi Trung Tú</div>
+                    <div class="user-detail"></div>
                 </div>
-                <div class="User-selection">
+                <div class="user-selection">
                     <ol>
                         <li><a href="#">Đổi mật khẩu</a></li>
                         <li><a href="#">Đăng xuất</a></li>
@@ -159,9 +159,11 @@
                             <tr>
                                 <th id="CustomerCode">Mã khách hàng </th>
                                 <th id="CustomerName">Tên khách hàng </th>
+                                <th id="Birdday">Ngày sinh </th>
                                 <th id="Email">Email </th>
                                 <th id="Mobile">SĐT </th>
                                 <th id="Address">Địa chỉ </th>
+                                <th id="CompanyName">Tên công ty </th>
                             </tr>
                         </thead>
                         <tbody>                                                      
@@ -210,7 +212,7 @@
                     <input type="text" class="required" id="txtCustomerCode" />
                 </div>
                 <div class="information-field">
-                    <label>Tên khách hàng<span>(*)</span> </label>
+                    <label class="text-col-2">Tên khách hàng<span>(*)</span> </label>
                     <input type="text" class="required" id="txtCustomerName"/>
                 </div>
             </div>
@@ -220,7 +222,7 @@
                     <input id="txtMemberCode" />
                 </div>
                 <div class="information-field">
-                    <label>Hạng thẻ</label> 
+                    <label class="text-col-2">Hạng thẻ</label> 
                     <select id="MemberRank">
                         <option value="1">Thường</option>
                         <option value="2">Thân quen</option>
@@ -262,7 +264,7 @@
                     <input id="txtTaxCode" />
                 </div>
                 <div class="information-field">
-                    <label>Email </label>
+                    <label class="text-col-2">Email </label>
                     <input type="email" id="txtEmail" />
                 </div>
             </div>
@@ -280,15 +282,16 @@
             </div>
         </div>
         <div class="dialog-footer">
-            <div class="btn-left">
-                <button id="btnHelp"><i  class="icon icon-help"></i>Giúp</button>
-            </div>
             <div class="btn-right">
                 <button id="btnSave"><i class="icon icon-save"></i>Cất</button>
                 <button id="btnSaveAndAdd"><i class="icon icon-save-add"></i>Cất & Thêm</button>
                 <button id="btnCancel"><i class="icon icon-cancel"></i>Hủy bỏ</button>
             </div>
+            <div class="btn-left">
+                <button id="btnHelpDialog"><i class="icon icon-help"></i>Giúp</button>
+            </div>
         </div>
+        
     </div>
     <!--end pupup dialog-->
     <!--end Content-->
