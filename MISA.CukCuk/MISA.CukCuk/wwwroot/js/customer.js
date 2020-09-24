@@ -22,7 +22,7 @@ class CustomerJS {
         $('.required').blur(this.checkRequired);
 
         // dịch con trỏ khi bấm tab
-        $('#btnHelpDialog').blur(this.targetToStart);
+        $('#btnCancel').blur(this.targetToStart);
     }
     loadData() {
         var self = this;
@@ -42,7 +42,7 @@ class CustomerJS {
                                 <td>`+ item.email + `</td>
                                 <td class="text-center">`+ item.mobile + `</td>
                                 <td class="text-center" title="`+ item.address + `">` + self.shortAddress(item.address) + `</td>
-                                <td title="`+ item.companyName + `">`+ self.shortCompanyName(item.companyName) + `</td>
+                                <td title="`+ item.companyName + `">` + self.shortCompanyName(item.companyName) + `</td>
                             </tr>`);
                 $('.grid-content tbody').append(trHTML);
             })
@@ -197,10 +197,12 @@ class CustomerJS {
     targetToStart() {
         $("#txtCustomerCode").focus();
     }
+    // hàm định dạng địa chỉ
     shortAddress(str) {
         var temp = str.split(",");
-        return "... " + temp[temp.length-1];
+        return "... " + temp[temp.length - 1];
     }
+    // hàm thu gọn tên công ty
     shortCompanyName(str) {
         if (str.length > 20) {
             return str.slice(0, 20) + " ...";

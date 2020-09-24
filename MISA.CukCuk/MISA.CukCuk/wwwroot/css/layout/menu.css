@@ -1,44 +1,19 @@
 ﻿.menu {
-    float: left;
     width: 250px;
-    height: 100vh;
+    height: 100%;
     background-color: #0973b9;
-}
-.logo {
-    width: 100%;
-    height: 60px;
-    display: flex;
-}
-    .logo .iconbar {
-        height: 100%;
-        width: 50px;
-        background-image: url('../../content/images/icon-left-header.png');
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-
-    .logo #logo-text {
-        height: 100%;
-        width: 200px;
-        background-image: url('../../content/images/logo-text.png');
-        background-repeat: no-repeat;
-        background-position: 0px 19px;
-        cursor: pointer;
-    }
-
-.menu-content {
-    width: 100%;
-    height: calc(100% - 60px);
     overflow: auto;
 }
-    .menu-content::-webkit-scrollbar {
+
+    .menu::-webkit-scrollbar {
         width: 5px;
         background-color: #e8e8e8;
     }
 
-    .menu-content::-webkit-scrollbar-thumb {
+    .menu::-webkit-scrollbar-thumb {
         background-color: #063b5e;
     }
+
 .menu-item {
     color: #fff;
     height: 45px;
@@ -54,7 +29,12 @@
     }
 
 
-    
+
     .menu-item .menu-item-text {
         line-height: 45px;
     }
+
+
+
+
+

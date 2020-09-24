@@ -1,6 +1,36 @@
-﻿.header {
-    width: 100%;
+﻿.Top {
+    display: flex;
+    background-color: #0973b9;
     height: 60px;
+}
+
+.logo {
+    width: 250px;
+    height: 60px;
+    display: flex;
+}
+
+    .logo #iconbar {
+        height: 100%;
+        width: 50px;
+        background-image: url('../../content/images/icon-left-header.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        cursor: pointer;
+    }
+
+    .logo #logo-text {
+        height: 100%;
+        width: 200px;
+        background-image: url('../../content/images/logo-text.png');
+        background-repeat: no-repeat;
+        background-position: 0px 19px;
+        cursor: pointer;
+    }
+
+.header {
+    width: 100%;
+    height: 100%;
     display: flex;
     background-color: #0973b9;
     justify-content: space-between;
@@ -22,7 +52,8 @@
         color: #fff;
         align-items: center;
         font-size: 17px;
-        width:185px;
+        width: 185px;
+        margin-right: 10px;
     }
 
         .header-right .user:hover {

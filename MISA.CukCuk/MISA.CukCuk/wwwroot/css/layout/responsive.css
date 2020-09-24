@@ -1,9 +1,9 @@
-﻿@media screen and (max-width: 1120px) {
-    #btnMerge, #btnImport, #btnExport, #btnHelp, .split {
+﻿@media only screen and (max-width: 768px) {
+    .menu {
         display: none;
     }
-    .paging-right {
-        display: none;
+
+    .content {
+        width: 100% !important;
     }
 }
-

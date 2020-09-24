@@ -1,12 +1,11 @@
 ﻿.content {
     width: calc(100% - 250px);
-    height: 100vh;
-    margin-left: 250px;
+    height: 100%;
 }
 
 .content-body {
     padding: 10px;
-    height: calc(100vh - 80px);
+    height: calc(100% - 20px);
     position: relative;
 }
 
@@ -19,6 +18,7 @@
     color: #0d86d6;
     margin-left: 20px;
 }
+
 .page-title .triangle {
     border-top: 8px solid transparent;
     border-right: 8px solid transparent;
