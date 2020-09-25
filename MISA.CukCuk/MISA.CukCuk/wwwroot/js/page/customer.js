@@ -4,12 +4,14 @@
 
 class CustomerJS {
     constructor() {
-        this.FormType = null;
-        this.initEvents();
-        this.loadData();
+        this.FormType = null;  
+        this.initEvents(); // khởi tạo sự kiện 
+        this.loadData(); // load dữ liệu ngay khi trang web được load
     }
     initEvents() {
+
         $("table").on("click", "tbody tr", this.rowOnClick);
+
         $('#btnCancel').click(this.btnCloseOnClick.bind(this));
         $('.title-button-close').click(this.btnCloseOnClick.bind(this));
         $('.dialog-modal').click(this.btnCloseOnClick.bind(this));
@@ -24,6 +26,11 @@ class CustomerJS {
         // dịch con trỏ khi bấm tab
         $('#btnCancel').blur(this.targetToStart);
     }
+    /**
+     * Load dữ liệu
+     * Autor:Bui Trung Tu (24/9/2020)
+     * 
+     * */
     loadData() {
         var self = this;
         $.ajax({
@@ -33,24 +40,30 @@ class CustomerJS {
             dataType: "json",
             async: false
         }).done(function (res) {
-            $('.grid-content tbody').empty();
+            $('#tbListData tbody').empty();
             $.each(res, function (i, item) {
                 var trHTML = $(`<tr>
                                 <td>`+ item.customerCode + `</td>
                                 <td>`+ item.customerName + `</td>
-                                <td class="text-center">`+ item.birdday + `</td>
+                                <td>`+ item.gender + `</td>
+                                <td class="text-center">`+ self.formatDate(item.birthday) + `</td>
                                 <td>`+ item.email + `</td>
-                                <td class="text-center">`+ item.mobile + `</td>
+                                <td>`+ item.mobile + `</td>
                                 <td class="text-center" title="`+ item.address + `">` + self.shortAddress(item.address) + `</td>
-                                <td title="`+ item.companyName + `">` + self.shortCompanyName(item.companyName) + `</td>
+                                <td class="text-right">` + item.debitMoney.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") + `</td>
                             </tr>`);
-                $('.grid-content tbody').append(trHTML);
+                $('#tbListData tbody').append(trHTML);
             })
         }).fail(function () {
             alert("Gặp lỗi khi load dữ liệu!");
         })
         
     }
+    /**
+     * Validate dữ liệu input
+     * Autor:Bui Trung Tu (24/9/2020)
+     *
+     * */
     checkRequired() {
         var value = this.value;
         if (!value) {
@@ -62,12 +75,24 @@ class CustomerJS {
             return false;
         }
     }
+    /**
+     * Toggle khi người dùng click vào show User-detail
+     * Autor:Bui Trung Tu (24/9/2020)
+     *
+     * */
     ShowUserSelection() {
         $('.User-selection').toggleClass('Show-selectiton');
     }
+    /**
+    * Toggle khi người dùng click vào show User-detail
+    * Autor:Bui Trung Tu (24/9/2020)
+    *
+    * */
     btnAddOnClick() {
         this.showDialogDetail();
     }
+  
+    
     btnCloseOnClick() {
         this.hideDialogDetail();
     }
@@ -84,17 +109,29 @@ class CustomerJS {
         $('.dialog-modal').hide();
         $('.dialog').hide();
     }
-    rowOnClick(sender) {
+    rowOnClick() {
         //this.classList.add("row-selected");  or
         $(this).addClass("row-selected");
         $(this).siblings().removeClass("row-selected"); //.siblings() tìm tất cả anh em ruột của nó (ngoại trừ chính nó)
     }
+    /**
+    * Edit dữ liệu
+    * Autor:Bui Trung Tu (24/9/2020)
+    *
+    * */
     btnEditOnClick() {
         var self = this;
+        // xác định đối tượng cần edit
         var customerSelected = $('.row-selected');
+        debugger;
+        console.log(customerSelected);
         if (customerSelected.length > 0) {
+            // lấy customerCode
             var customerCode = customerSelected.children()[0].textContent;
+            debugger;
+            console.log(customerCode);
             this.showDialogDetail();
+            // lấy dữ liệu từ CSDL của đối tượng customer thông qua mã
             $.ajax({
                 url: "/api/customer/" + customerCode,
                 method: "GET",
@@ -104,6 +141,7 @@ class CustomerJS {
                 if (customer == null) {
                     alert("Không có dữ liệu của khách hàng này");
                 } else {
+                    // hiện dữ liệu của customer hiện tại cho người dùng
                     $("#txtCustomerCode").val(customer["customerCode"]);
                     $("#txtCustomerName").val(customer["customerName"]);
                     $("#txtMemberCode").val(customer["memberCode"]);
@@ -116,6 +154,7 @@ class CustomerJS {
                     $("#txtEmail").val(customer["email"]);
                     $("#txtAddress").val(customer["address"]);
                     $("#txtNote").val(customer["customerNote"]);
+                    //chuyển FormType thành edit
                     self.FormType = "Edit";
                 }
             }).fail(function () {
@@ -202,12 +241,15 @@ class CustomerJS {
         var temp = str.split(",");
         return "... " + temp[temp.length - 1];
     }
-    // hàm thu gọn tên công ty
-    shortCompanyName(str) {
-        if (str.length > 20) {
-            return str.slice(0, 20) + " ...";
-        }
-        return str;
+
+    formatDate(date) {
+        var dat = new Date(date);
+
+        var month = dat.getMonth() + 1;
+        var day = dat.getDate();
+        var year = dat.getFullYear();
+        return year + "/" + month + "/" + day;
     }
+  
 }
 

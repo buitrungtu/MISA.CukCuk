@@ -17,10 +17,12 @@ namespace MISA.CukCuk.Model
                 MemberRank = "1",
                 CustomerType = "1",
                 Mobile = "0977340334",
-                Birdday = "30/2/1990",
+                Birthday = new DateTime(1989,2,15),
                 CompanyName = "Công ty cổ phần MISA",
                 TaxCode = "",
                 Email = "manhnv@gmail.com",
+                Gender="Nam",
+                DebitMoney = 10000000,
                 Address = "Duy Tân, Cầu Giấy, Hà Nội",
                 Note = ""
             },
@@ -32,10 +34,12 @@ namespace MISA.CukCuk.Model
                 MemberRank = "1",
                 CustomerType = "1",
                 Mobile = "0971203341",
-                Birdday = "14/4/1986",
+                Birthday = new DateTime(1993,11,11),
                 CompanyName = "Công ty cổ phần Vinamilk",
                 TaxCode = "",
                 Email = "thanglv@gmail.com",
+                Gender="Nam",
+                DebitMoney = 12000000,
                 Address = "Hoàng Quốc Việt, Cầu Giấy, Hà Nội",
                 Note = ""
             },
@@ -47,10 +51,12 @@ namespace MISA.CukCuk.Model
                 MemberRank = "1",
                 CustomerType = "3",
                 Mobile = "0912213033",
-                Birdday = "7/2/1999",
+                Birthday = new DateTime(1988,12,5),
                 CompanyName = "Công ty cổ phần Sun Homie",
                 TaxCode = "",
                 Email = "hakhan7299@gmail.com",
+                Gender="Nữ",
+                DebitMoney = 1200000,
                 Address = "Tân Lập, Đan Phượng, Hà Nội",
                 Note = ""
             },
@@ -62,10 +68,12 @@ namespace MISA.CukCuk.Model
                 MemberRank = "2",
                 CustomerType = "1",
                 Mobile = "0977340111",
-                Birdday = "10/10/2006",
+                Birthday = new DateTime(1978,6,7),
                 CompanyName = "Công ty cổ phần SBTC",
                 TaxCode = "",
                 Email = "chubethongminh@gmail.com",
+                Gender="Nam",
+                DebitMoney = 120000000,
                 Address = "Minh Khai, Bắc Từ Liêm, Hà Nội",
                 Note = ""
             },
@@ -77,10 +85,12 @@ namespace MISA.CukCuk.Model
                 MemberRank = "2",
                 CustomerType = "1",
                 Mobile = "0977342544",
-                Birdday = "30/6/1999",
+                Birthday = new DateTime(1998,2,7),
                 CompanyName = "Công ty Viettel Telecom",
                 TaxCode = "",
                 Email = "honghiquan@gmail.com",
+                Gender="Nữ",
+                DebitMoney = 500000,
                 Address = "Phú Yên, An Lão, Hải Phòng",
                 Note = ""
             },
@@ -92,10 +102,12 @@ namespace MISA.CukCuk.Model
                 MemberRank = "3",
                 CustomerType = "3",
                 Mobile = "0971230334",
-                Birdday = "20/8/1973",
+                Birthday = new DateTime(1997,10,11),
                 CompanyName = "Công ty HocMai Education",
                 TaxCode = "",
                 Email = "hoangkyanh@gmail.com",
+                Gender="Nam",
+                DebitMoney = 1500000000,
                 Address = "Thượng Cát, Bắc Từ Liêm, Hà Nội",
                 Note = ""
             },
@@ -107,10 +119,12 @@ namespace MISA.CukCuk.Model
                 MemberRank = "2",
                 CustomerType = "1",
                 Mobile = "0977343695",
-                Birdday = "11/12/1998",
+                Birthday = new DateTime(1995,11,21),
                 CompanyName = "Công ty cổ phần Vibex",
                 TaxCode = "",
                 Email = "ironmonkey@gmail.com",
+                Gender="Nam",
+                DebitMoney = 21000000,
                 Address = "Mỹ Đình, Nam Từ Liêm, Hà Nội",
                 Note = ""
             },
@@ -122,10 +136,12 @@ namespace MISA.CukCuk.Model
                 MemberRank = "1",
                 CustomerType = "1",
                 Mobile = "0977323654",
-                Birdday = "2/10/1998",
+                Birthday = new DateTime(1998,4,20),
                 CompanyName = "Công ty cổ phần Hoa Vy",
                 TaxCode = "",
                 Email = "nguyensim@gmail.com",
+                Gender="Nam",
+                DebitMoney = 35000000,
                 Address = "Mỹ Đình, Nam Từ Liêm, Hà Nội",
                 Note = ""
             },
@@ -137,10 +153,12 @@ namespace MISA.CukCuk.Model
                 MemberRank = "2",
                 CustomerType = "1",
                 Mobile = "0977132334",
-                Birdday = "21/7/1974",
+                Birthday = new DateTime(1992,3,13),
                 CompanyName = "Công ty cổ phần Toàn Phát",
                 TaxCode = "",
                 Email = "wandotky@gmail.com",
+                Gender="Nam",
+                DebitMoney = 190000000,
                 Address = "Hoài Đức A, Hoài Đức, Hà Nội",
                 Note = ""
             },
@@ -152,10 +170,12 @@ namespace MISA.CukCuk.Model
                 MemberRank = "2",
                 CustomerType = "1",
                 Mobile = "0977346321",
-                Birdday = "12/1/1988",
+                Birthday = new DateTime(1991,8,6),
                 CompanyName = "Công ty FPT Software",
                 TaxCode = "",
-                Email = "chibinh@gmail.com",
+                Email = "hoatat@gmail.com",
+                Gender="Nam",
+                DebitMoney = 9000000,
                 Address = "Tây Tựu, Bắc Từ Liêm, Hà Nội",
                 Note = ""
             }
@@ -204,6 +224,11 @@ namespace MISA.CukCuk.Model
         public string CustomerType { get; set; }
 
         /// <summary>
+        /// Giới tính
+        /// </summary>
+        public string Gender { get; set; }
+
+        /// <summary>
         /// Điện thoại di động
         /// </summary>
         public string Mobile { get; set; }
@@ -211,7 +236,7 @@ namespace MISA.CukCuk.Model
         /// <summary>
         /// Ngày sinh
         /// </summary>
-        public string Birdday { get; set; }
+        public DateTime Birthday { get; set; }
 
         /// <summary>
         /// Tên công ty
@@ -227,6 +252,12 @@ namespace MISA.CukCuk.Model
         /// Email
         /// </summary>
         public string Email { get; set; }
+
+        /// <summary>
+        /// Số tiền nợ
+        /// </summary>
+        public double DebitMoney { get; set; }
+
 
         /// <summary>
         /// Địa chỉ

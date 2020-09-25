@@ -59,7 +59,7 @@ namespace MISA.CukCuk.Controllers
                 customerEdit.MemberRank = customer.MemberRank;
                 customerEdit.CustomerType = customer.CustomerType;
                 customerEdit.Mobile = customer.Mobile;
-                customerEdit.Birdday = customer.Birdday;
+                customerEdit.Birthday = customer.Birthday;
                 customerEdit.CompanyName = customer.CompanyName;
                 customerEdit.TaxCode = customer.TaxCode;
                 customerEdit.Email = customer.Email;

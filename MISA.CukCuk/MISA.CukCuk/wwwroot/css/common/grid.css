@@ -54,7 +54,7 @@
 }
 
 table td, th {
-    padding: 4px;
+    padding: 4px 10px;
     cursor: pointer;
     border: 1px solid #dddddd;
 }
@@ -71,6 +71,9 @@ table td, th {
 table .text-center{
     text-align:center;
 }
+table .text-right{
+    text-align:right;
+}
 /* chia độ rộng của từng cột */
 #CustomerCode {
     width: 110px;
@@ -81,8 +84,14 @@ th#Address {
 th#Mobile {
     width: 150px;
 }
-th#CompanyName {
-    width: 250px;
+th#DebitMoney {
+    width: 150px;
+}
+th#Birdday {
+    width: 150px;
+}
+th#Gender {
+    width: 100px;
 }
     /* chia độ rộng của từng cột */
 

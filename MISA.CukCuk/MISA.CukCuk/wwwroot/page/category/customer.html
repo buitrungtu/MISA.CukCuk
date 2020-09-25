@@ -157,19 +157,20 @@
                         <button id="btnHelp" title="Giúp"><i class="icon icon-help"></i>Giúp</button>
                     </div>
                     <div class="grid-content">
-                        <table>
+                        <table id="tbListData">
                             <thead>
                                 <tr>
                                     <th id="CustomerCode">Mã khách hàng </th>
                                     <th id="CustomerName">Tên khách hàng </th>
+                                    <th id="Gender">Giới tính </th>
                                     <th id="Birdday">Ngày sinh </th>
-                                    <th id="Email">Email </th>
-                                    <th id="Mobile">SĐT </th>
+                                    <th id="Email" title="Địa chỉ Email">Email </th>
+                                    <th id="Mobile" title="Số điện thoại">SĐT </th>
                                     <th id="Address">Địa chỉ </th>
-                                    <th id="CompanyName">Tên công ty </th>
+                                    <th id="DebitMoney">Số tiền nợ </th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody >
                                 <!--load data from database on here-->
 
                             </tbody>
@@ -300,10 +301,9 @@
     <!--end pupup dialog-->
     <!--end Content-->
     <!--ember JavaScript-->
-    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/lib/jquery-3.4.1.min.js"></script>
     <script src="/js/common.js"></script>
-    <script src="/js/customer.js"></script>
-
+    <script src="/js/page/customer.js"></script>
     <!--end ember JavaScript-->
 </body>
 </html>
