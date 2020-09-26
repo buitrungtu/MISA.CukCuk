@@ -27,7 +27,7 @@
     height: calc(100vh - 60px);
 }
 
-/* 2 Class này sẽ được add vào menu khi người dùng bấm nút ẩn menu*/
+/* Class này sẽ được add vào menu khi người dùng bấm nút ẩn menu*/
 .resize-content{
     width:100% !important;
 }

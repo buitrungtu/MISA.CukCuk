@@ -39,8 +39,10 @@ class BaseJS {
         $('#txtCustomerCode').blur(this.checkRequired);
         $('.required').blur(this.checkRequired);
         $("#btnLoad").click(this.btnReloadOnClick.bind(this));
+        $('#iconbar').click(this.resizeContent);
         // dịch con trỏ khi bấm tab
         $('#btnCancel').blur(this.targetToStart);
+        
     }
 
     getData() {
@@ -274,6 +276,10 @@ class BaseJS {
     }
     targetToStart() {
         $("#txtCustomerCode").focus();
+    }
+    resizeContent() {
+        $('.menu').toggle();
+        $('.content').toggleClass("resize-content");
     }
 }
 
