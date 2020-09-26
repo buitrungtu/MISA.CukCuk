@@ -26,7 +26,7 @@
         <div class="header">
             <div class="header-left">
                 <select id="restaurant">
-                    <option>--Chuỗi nhà hàng--</option>
+                    <option>Đại dương xanh</option>
                     <option>Nhà hàng gì đó</option>
                     <option>Nhà hàng gì đó</option>
                     <option>Nhà hàng gì đó</option>
@@ -104,10 +104,14 @@
                     <div class="menu-item-icon icon-menu"></div>
                     <div class="menu-item-text">Thực đơn</div>
                 </div>
-                <div class="menu-item">
+                <a class="menu-item" href="customer.html">
                     <div class="menu-item-icon icon-category"></div>
-                    <div class="menu-item-text">Danh mục</div>
-                </div>
+                    <div class="menu-item-text">Danh mục khách hàng</div>
+                </a>
+                <a class="menu-item" href="employee.html">
+                    <div class="menu-item-icon icon-category"></div>
+                    <div class="menu-item-text">Danh mục nhân viên</div>
+                </a>
                 <div class="menu-item">
                     <div class="menu-item-icon icon-uninvoiced"></div>
                     <div class="menu-item-text">Hủy hóa đơn</div>
@@ -160,19 +164,18 @@
                         <table id="tbListData">
                             <thead>
                                 <tr>
-                                    <th id="CustomerCode">Mã khách hàng </th>
-                                    <th id="CustomerName">Tên khách hàng </th>
-                                    <th id="Gender">Giới tính </th>
-                                    <th id="Birdday">Ngày sinh </th>
-                                    <th id="Email" title="Địa chỉ Email">Email </th>
-                                    <th id="Mobile" title="Số điện thoại">SĐT </th>
-                                    <th id="Address">Địa chỉ </th>
-                                    <th id="DebitMoney">Số tiền nợ </th>
+                                    <th id="CustomerCode" fieldName ="customerCode" >Mã khách hàng </th>
+                                    <th id="CustomerName" fieldName="customerName">Tên khách hàng </th>
+                                    <th id="Gender" fieldName="gender">Giới tính </th>
+                                    <th id="Birdday" fieldName="birthday">Ngày sinh </th>
+                                    <th id="Email" fieldName="email" title="Địa chỉ Email">Email </th>
+                                    <th id="Mobile" fieldName="mobile" title="Số điện thoại">SĐT </th>
+                                    <th id="Address" fieldName="address">Địa chỉ </th>
+                                    <th id="DebitMoney" fieldName="debitMoney">Số tiền nợ </th>
                                 </tr>
                             </thead>
-                            <tbody >
+                            <tbody>
                                 <!--load data from database on here-->
-
                             </tbody>
                         </table>
                     </div>
@@ -302,7 +305,8 @@
     <!--end Content-->
     <!--ember JavaScript-->
     <script src="/js/lib/jquery-3.4.1.min.js"></script>
-    <script src="/js/common.js"></script>
+    <script src="/js/common/common.js"></script>
+    <script src="/js/base/base.js"></script>
     <script src="/js/page/customer.js"></script>
     <!--end ember JavaScript-->
 </body>

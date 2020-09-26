@@ -2,9 +2,314 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>CukCuk</title>
+    <!--ember CSS-->
+    <link href="/css/common/main.css" rel="stylesheet" />
+    <link href="/css/layout/menu.css" rel="stylesheet" />
+    <link href="/css/layout/header.css" rel="stylesheet" />
+    <link href="/css/common/button.css" rel="stylesheet" />
+    <link href="/css/common/content.css" rel="stylesheet" />
+    <link href="/css/common/grid.css" rel="stylesheet" />
+    <link href="/css/common/icon.css" rel="stylesheet" />
+    <link href="/css/common/dialog.css" rel="stylesheet" />
+    <link href="/css/layout/responsive.css" rel="stylesheet" />
+
+    <!--end import CSS-->
 </head>
 <body>
+    <div class="Top">
+        <!--logo-->
+        <div class="logo">
+            <div id="iconbar"></div>
+            <div id="logo-text"></div>
+        </div>
+        <div class="header">
+            <div class="header-left">
+                <select id="restaurant">
+                    <option>Đại dương xanh</option>
+                    <option>Nhà hàng gì đó</option>
+                    <option>Nhà hàng gì đó</option>
+                    <option>Nhà hàng gì đó</option>
+                </select>
+            </div>
+            <div class="header-right">
+                <div class="select-language">
+                    <select id="language">
+                        <option>Tiếng Việt (Tiếng Việt)</option>
+                        <option>English (Tiếng Anh)</option>
+                        <option>Chinese (Tiếng Trung)</option>
+                        <option>Russian (Tiếng Nga)</option>
+                    </select>
+                </div>
+                <div class="notification">
+                    <div class="notification-icon"><i class="icon-globe"></i></div>
+                    <div class="notification-number"><span>2</span></div>
+                </div>
+                <div class="support">
 
+                </div>
+                <div class="user">
+                    <div class="user-avatar"></div>
+                    <div class="user-name">Bùi Trung Tú</div>
+                    <div class="user-detail"></div>
+                </div>
+                <div class="user-selection">
+                    <ol>
+                        <li><a href="#">Đổi mật khẩu</a></li>
+                        <li><a href="#">Đăng xuất</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!--end logo-->
+    </div>
+    <!--menu-->
+    <div class="bottom">
+        <div class="menu">
+            <!--menu-item-->
+            <div class="menu-content">
+                <div class="menu-item">
+                    <div class="menu-item-icon icon-board"></div>
+                    <div class="menu-item-text">Tổng quan</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-icon icon-report"></div>
+                    <div class="menu-item-text">Báo cáo</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-icon icon-buy"></div>
+                    <div class="menu-item-text">Mua hàng</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-icon icon-store"></div>
+                    <div class="menu-item-text icon-report">Kho</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-icon icon-money"></div>
+                    <div class="menu-item-text">Qũy tiền mặt</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-icon icon-deposit"></div>
+                    <div class="menu-item-text">Qũy tiền gửi</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-icon icon-cost"></div>
+                    <div class="menu-item-text">Chi phí</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-icon icon-sale"></div>
+                    <div class="menu-item-text">Khuyến mãi</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-icon icon-menu"></div>
+                    <div class="menu-item-text">Thực đơn</div>
+                </div>
+                <a class="menu-item" href="customer.html">
+                    <div class="menu-item-icon icon-category"></div>
+                    <div class="menu-item-text">Danh mục khách hàng</div>
+                </a>
+                <a class="menu-item" href="employee.html">
+                    <div class="menu-item-icon icon-category"></div>
+                    <div class="menu-item-text">Danh mục nhân viên</div>
+                </a>
+                <div class="menu-item">
+                    <div class="menu-item-icon icon-uninvoiced"></div>
+                    <div class="menu-item-text">Hủy hóa đơn</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-icon icon-setting"></div>
+                    <div class="menu-item-text">Thiết lập hệ thống</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-icon icon-logo5food"></div>
+                    <div class="menu-item-text">5Food</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-icon icon-menu-help"></div>
+                    <div class="menu-item-text">Trợ giúp</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-icon icon-subscribe"></div>
+                    <div class="menu-item-text">Thuê bao</div>
+                </div>
+            </div>
+        </div>
+        <!--menu end-->
+        <!--start Content-->
+
+        <div class="content">
+            <div class="content-body">
+
+                <div class="page-title">
+                    <div class="triangle"></div>
+                    <h1>Danh mục <span> nhân viên </span></h1>
+                </div>
+
+                <div class="grid">
+                    <div class="toolbar">
+                        <button id="btnAdd" title="Thêm"><i class="icon icon-add"></i>Thêm</button>
+                        <button id="btnDuplicate" title="Nhân bản"><i class="icon icon-duplicate"></i>Nhân bản</button>
+                        <button id="btnEdit" title="Sửa"><i class="icon icon-edit"></i>Sửa</button>
+                        <button id="btnDelete" title="Xóa"><i class="icon icon-delete"></i>Xóa</button>
+                        <button id="btnLoad" title="Nạp"><i class="icon icon-load"></i>Nạp</button>
+                        <div class="split"></div>
+                        <button id="btnImport" title="Nhập khẩu"><i class="icon icon-import"></i>Nhập khẩu</button>
+                        <button id="btnExport" title="Xuất khẩu"><i class="icon icon-export"></i>Xuất khẩu</button>
+                        <div class="split"></div>
+                        <button id="btnMerge" title="Gộp nhân viên"><i class="icon icon-merge"></i>Gộp nhân viên</button>
+                        <div class="split"></div>
+                        <button id="btnHelp" title="Giúp"><i class="icon icon-help"></i>Giúp</button>
+                    </div>
+                    <div class="grid-content">
+                        <table id="tbListData">
+                            <thead>
+                                <tr>
+                                    <th id="CustomerCode" fieldName="employeeCode"> Mã nhân viên </th>
+                                    <th id="CustomerName" fieldName="employeeName"> Tên nhân viên </th>
+                                    <th id="Gender" fieldName="gender"> Giới tính </th>
+                                    <th id="Birdday" fieldName="birthday"> Ngày sinh </th>
+                                    <th id="Email" fieldName="email" title="Địa chỉ Email"> Email </th>
+                                    <th id="Mobile" fieldName="mobile" title="Số điện thoại"> Vị trí </th>
+                                    <th id="Address" fieldName="departmentName"> Phòng ban </th>
+                                    <th id="DebitMoney" fieldName="salary"> Mức lương </th>
+                                    <th id="DebitMoney" fieldName="workStatus"> Tình trạng công việc </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!--load data from database on here-->
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="paging">
+                        <div class="paging-left">
+                            <i class="paging-icon icon-first"></i>
+                            <i class="paging-icon icon-prev"></i>
+                            <div class="paging-left-center">
+                                <p class="paging-text">Trang</p>
+                                <input id="txtPageNumber" value="0" />
+                                <p class="paging-text">trên 1</p>
+                            </div>
+                            <i class="paging-icon icon-next"></i>
+                            <i class="paging-icon icon-last"></i>
+                            <div class="paging-refresh">
+                                <i class="paging-icon icon-refresh"></i>
+                            </div>
+                            <input id="txbNumber" type="number" value="100" />
+                        </div>
+                        <div class="paging-right">
+                            Hiển thị 1 - 19 trên 19 kết quả.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--popup dialog-->
+    <div class="dialog-modal"></div>
+    <div class="dialog">
+        <div class="dialog-title">
+            <div class="title-text">
+                Nhân viên
+            </div>
+            <div class="title-button-close"></div>
+        </div>
+        <div class="dialog-body">
+            <div class="col-2">
+                <div class="information-field">
+                    <label>Mã nhân viên<span>(*)</span> </label>
+                    <input type="text" class="required" id="txtCustomerCode" />
+                </div>
+                <div class="information-field">
+                    <label class="text-col-2">Tên nhân viên<span>(*)</span> </label>
+                    <input type="text" class="required" id="txtCustomerName" />
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="information-field">
+                    <label>Mã thẻ thành viên</label>
+                    <input id="txtMemberCode" />
+                </div>
+                <div class="information-field">
+                    <label class="text-col-2">Hạng thẻ</label>
+                    <select id="MemberRank">
+                        <option value="1">Thường</option>
+                        <option value="2">Thân quen</option>
+                        <option value="3">VIP</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="information-field">
+                    <label>Nhóm nhân viên </label>
+                    <select id="CustomerType">
+                        <option value="1">Thường</option>
+                        <option value="2">Thân quen</option>
+                        <option value="3">VIP</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="information-field">
+                    <label>ĐT di động<span>(*)</span> </label>
+                    <input type="tel" id="txtMobile" class="required" required />
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="information-field">
+                    <label>Ngày sinh </label>
+                    <input id="txtBirdday" />
+                </div>
+            </div>
+            <div class="col">
+                <div class="information-field">
+                    <label>Tên công ty </label>
+                    <input id="txtCompanyName" />
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="information-field">
+                    <label>Mã số thuế </label>
+                    <input id="txtTaxCode" />
+                </div>
+                <div class="information-field">
+                    <label class="text-col-2">Email </label>
+                    <input type="email" id="txtEmail" />
+                </div>
+            </div>
+            <div class="col">
+                <div class="information-field">
+                    <label>Địa chỉ </label>
+                    <input id="txtAddress" />
+                </div>
+            </div>
+            <div class="col">
+                <div class="information-field">
+                    <label>Ghi chú </label>
+                    <textarea id="txtNote"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="dialog-footer">
+            <div class="btn-right">
+                <button id="btnSave"><i class="icon icon-save"></i>Cất</button>
+                <button id="btnSaveAndAdd"><i class="icon icon-save-add"></i>Cất & Thêm</button>
+                <button id="btnCancel"><i class="icon icon-cancel"></i>Hủy bỏ</button>
+            </div>
+            <div class="btn-left">
+                <button id="btnHelpDialog"><i class="icon icon-help"></i>Giúp</button>
+            </div>
+        </div>
+    </div>
+    <!--end pupup dialog-->
+    <!--end Content-->
+    <!--ember JavaScript-->
+    <script src="/js/lib/jquery-3.4.1.min.js"></script>
+    <script src="/js/common/common.js"></script>
+    <script src="/js/base/base.js"></script>
+    <script src="/js/page/employee.js"></script>
+    <!--end ember JavaScript-->
 </body>
 </html>

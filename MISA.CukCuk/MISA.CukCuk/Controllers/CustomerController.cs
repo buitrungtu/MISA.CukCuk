@@ -35,11 +35,11 @@ namespace MISA.CukCuk.Controllers
         //POST để thêm
         public bool Post([FromBody] Customer customer)
         {
-            // thêm mới 1 customer
             if(customer != null)
             {
                 // tạo id cho customer mới
                 customer.CustomerID = Guid.NewGuid();
+                // thêm vào list
                 Customer.CustomerList.Add(customer);
                 return true;
             }
