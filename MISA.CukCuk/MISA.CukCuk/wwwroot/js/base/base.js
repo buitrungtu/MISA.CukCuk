@@ -56,7 +56,6 @@ class BaseJS {
     //TODO: Test todo
     loadData() {
         try {
-            debugger;
             // đọc thông tin các cột dữ liệu:
             var fields = $('table#tbListData thead th');            
             $.each(this.Data, function (i, obj) {
@@ -64,25 +63,25 @@ class BaseJS {
                 debugger;
                 $.each(fields, function (index, field) {
                     var fieldName = $(field).attr('fieldName');
-                    var value,td;
-                    switch (fieldName) {
-                        case 'address':
-                            value = commonJS.formatAddress(obj[fieldName]);
-                            td = $(`<td class="text-center">` + value + `</td>`);
-                            break;
-                        case 'debitMoney' || 'salary':
+                    var format = $(field).attr('format');
+                    var value, td;
+                    switch (format) {
+                        case 'money':
                             value = commonJS.formatMoney(obj[fieldName]);
                             td = $(`<td class="text-right">` + value + `</td>`);
                             break;
-                        case 'birthday':
+                        case 'date':
                             value = commonJS.formatDate(obj[fieldName]);
                             td = $(`<td class="text-center">` + value + `</td>`);
+                            break;
+                        case 'address':
+                            value = commonJS.formatAddress(obj[fieldName]);
+                            td = $(`<td>` + value + `</td>`);
                             break;
                         default:
                             value = obj[fieldName];
                             td = $(`<td>` + value + `</td>`);
-                    }
-                    
+                    }                                                       
                     $(tr).append(td);
                 })
                 // binding dữ liệu lên UI
