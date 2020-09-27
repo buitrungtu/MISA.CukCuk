@@ -1,13 +1,5 @@
-﻿$(document).ready(function () {
-    try {
-        var baseJS = new BaseJS();
-    } catch (e) {
-        console.log("Error");
-    }
-})
-
-/**
- * Class quản lý các function cho trang Customer
+﻿/**
+ * Class quản lý các function chung cua các trang
  * Author: Bui Trung Tu (25/9/2020)
  * */
 class BaseJS {
@@ -62,7 +54,6 @@ class BaseJS {
             var fields = $('table#tbListData thead th');            
             $.each(this.Data, function (i, obj) {
                 var tr = $(`<tr></tr>`);
-                debugger;
                 $.each(fields, function (index, field) {
                     var fieldName = $(field).attr('fieldName');
                     var format = $(field).attr('format');
@@ -78,7 +69,7 @@ class BaseJS {
                             break;
                         case 'address':
                             value = commonJS.formatAddress(obj[fieldName]);
-                            td = $(`<td>` + value + `</td>`);
+                            td = $(`<td title="` + obj[fieldName] +`">` + value + `</td>`);
                             break;
                         default:
                             value = obj[fieldName];
@@ -158,13 +149,11 @@ class BaseJS {
     /**
     * Edit dữ liệu
     * Autor:Bui Trung Tu (24/9/2020)
-    *
     * */
     btnEditOnClick() {
         var self = this;
         // xác định đối tượng cần edit
         var customerSelected = $('.row-selected');
-        debugger;
         console.log(customerSelected);
         if (customerSelected.length > 0) {
             // lấy customerCode
@@ -237,7 +226,6 @@ class BaseJS {
         customer.CompanyName = $('#txtCompanyName').val();
         customer.TaxCode = $('#txtTaxCode').val();
         customer.Note = $('#txtNote').val();
-        debugger;
         $.ajax({
             url: "/api/customer",
             method: Method,
@@ -277,9 +265,13 @@ class BaseJS {
     targetToStart() {
         $("#txtCustomerCode").focus();
     }
+    /**
+     * Ẩn thanh menu bên trái
+     * Author: Bui Trung Tu (25/9/2020)
+     * */
     resizeContent() {
-        $('.menu').toggle();
-        $('.content').toggleClass("resize-content");
+        $(".menu").slideToggle("slow");
+        $(".content").toggleClass("resize-content");
     }
 }
 

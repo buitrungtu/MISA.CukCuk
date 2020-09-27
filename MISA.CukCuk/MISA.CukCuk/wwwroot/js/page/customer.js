@@ -11,7 +11,7 @@ class CustomerJS extends BaseJS {
         super();
     }
     /**
-     * Overide hàm getData của base.js
+     * Overide lại hàm getData của base.js
      * Author: Bui Trung Tu (25/9/2020)
      * */
     getData() {

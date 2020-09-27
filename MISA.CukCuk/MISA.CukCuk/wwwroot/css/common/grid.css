@@ -80,7 +80,7 @@ table .text-right {
 }
 /* chia độ rộng của từng cột */
 #CustomerCode {
-    width: 110px;
+    width: 120px;
 }
 
 th#Address {
@@ -101,6 +101,9 @@ th#Birdday {
 
 th#Gender {
     width: 100px;
+}
+th#CustomerName {
+    min-width: 200px;
 }
 /* chia độ rộng của từng cột */
 

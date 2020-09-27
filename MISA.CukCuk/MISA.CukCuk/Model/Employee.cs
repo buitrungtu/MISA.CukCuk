@@ -17,7 +17,7 @@ namespace MISA.CukCuk.Model
                 Email = "manhnv@gmail.com",
                 Gender="Nam",               
                 Address = "Duy Tân, Cầu Giấy, Hà Nội",
-                  PositionName = "Giám đốc",
+                PositionName = "Giám đốc",
                 DepartmentName = "Đào tạo",
                 Salary = 150000000,
                 WorkStatus = "Đang làm việc"

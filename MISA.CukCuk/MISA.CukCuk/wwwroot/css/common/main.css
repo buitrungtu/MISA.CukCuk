@@ -28,6 +28,9 @@
 }
 
 /* Class này sẽ được add vào menu khi người dùng bấm nút ẩn menu*/
+.hide-menu{
+    display:none;
+}
 .resize-content{
     width:100% !important;
 }
