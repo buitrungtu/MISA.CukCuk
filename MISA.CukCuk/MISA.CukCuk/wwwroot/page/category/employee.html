@@ -220,75 +220,80 @@
             <div class="col-2">
                 <div class="information-field">
                     <label>Mã nhân viên<span>(*)</span> </label>
-                    <input type="text" class="required" id="txtCustomerCode" />
+                    <input type="text" fieldName ="employeeCode" class="required" id="txtCustomerCode" />
                 </div>
                 <div class="information-field">
                     <label class="text-col-2">Tên nhân viên<span>(*)</span> </label>
-                    <input type="text" class="required" id="txtCustomerName" />
+                    <input type="text" fieldName ="employeeName" class="required" id="txtCustomerName" />
                 </div>
             </div>
             <div class="col-2">
                 <div class="information-field">
-                    <label>Mã thẻ thành viên</label>
-                    <input id="txtMemberCode" />
+                    <label>Vị trí</label>
+                    <input fieldName ="positionName" id="txtMemberCode" />
                 </div>
                 <div class="information-field">
-                    <label class="text-col-2">Hạng thẻ</label>
-                    <select id="MemberRank">
-                        <option value="1">Thường</option>
-                        <option value="2">Thân quen</option>
-                        <option value="3">VIP</option>
+                    <label class="text-col-2">Giới tính</label>
+                    <div class="radio" style="display:flex">
+                        <input type="radio" id="male" name="gender" value="male" fieldName ="gender">
+                        <label for="Nam">Nam</label><br>
+                        <input type="radio" id="female" name="gender" value="female">
+                        <label for="Nữ">Nữ</label><br>
+                        <input type="radio" id="other" name="gender" value="other">
+                        <label for="Khác">Khác</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="information-field">
+                    <label>Phòng ban </label>
+                    <select fieldName="departmentName" id="CustomerType">
+                        <option value="Đào tạo">Đào tạo</option>
+                        <option value="Sản xuất">Sản xuất</option>
+                        <option value="Truyền thông">Truyền thông</option>
                     </select>
                 </div>
-            </div>
-            <div class="col-2">
                 <div class="information-field">
-                    <label>Nhóm nhân viên </label>
-                    <select id="CustomerType">
-                        <option value="1">Thường</option>
-                        <option value="2">Thân quen</option>
-                        <option value="3">VIP</option>
+                    <label class="text-col-2">Tình trạng</label>
+                    <select fieldName="workStatus" id="MemberRank">
+                        <option value="Đang làm việc">Đang làm việc</option>
+                        <option value="Đã nghỉ việc">Đã nghỉ việc</option>
+                        <option value="Tạm nghỉ">Tạm nghỉ</option>
                     </select>
                 </div>
             </div>
             <div class="col-2">
                 <div class="information-field">
                     <label>ĐT di động<span>(*)</span> </label>
-                    <input type="tel" id="txtMobile" class="required" required />
+                    <input fieldName ="mobile" type="tel" id="txtMobile" class="required" required />
                 </div>
             </div>
             <div class="col-2">
                 <div class="information-field">
                     <label>Ngày sinh </label>
-                    <input id="txtBirdday" />
+                    <input fieldName ="birthday" type="date" id="txtBirdday" />
                 </div>
-            </div>
-            <div class="col">
-                <div class="information-field">
-                    <label>Tên công ty </label>
-                    <input id="txtCompanyName" />
-                </div>
-            </div>
+            </div>           
             <div class="col-2">
                 <div class="information-field">
-                    <label>Mã số thuế </label>
-                    <input id="txtTaxCode" />
+                    <label>Mức lương </label>
+                    <input fieldName ="salary" id="txtTaxCode" />
                 </div>
                 <div class="information-field">
                     <label class="text-col-2">Email </label>
-                    <input type="email" id="txtEmail" />
+                    <input fieldName ="email" type="email" id="txtEmail" />
                 </div>
             </div>
             <div class="col">
                 <div class="information-field">
                     <label>Địa chỉ </label>
-                    <input id="txtAddress" />
+                    <input fieldName ="address" id="txtAddress" />
                 </div>
             </div>
             <div class="col">
                 <div class="information-field">
                     <label>Ghi chú </label>
-                    <textarea id="txtNote"></textarea>
+                    <textarea fieldName ="note" id="txtNote"></textarea>
                 </div>
             </div>
         </div>

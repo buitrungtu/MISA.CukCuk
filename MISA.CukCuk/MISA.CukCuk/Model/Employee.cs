@@ -158,6 +158,7 @@ namespace MISA.CukCuk.Model
         public Employee()
         {
             EmployeeID = Guid.NewGuid();
+            Note = "";
         }
         #endregion
         #region "Property"
@@ -221,6 +222,11 @@ namespace MISA.CukCuk.Model
         /// Tình trạng công việc
         /// </summary>
         public string WorkStatus { get; set; }
+
+        /// <summary>
+        /// Ghi chú
+        /// </summary>
+        public string Note { get; set; }
         #endregion
         #region "Metod - Function"
         #endregion

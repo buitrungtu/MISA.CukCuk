@@ -7,11 +7,9 @@ class BaseJS {
         try {
             this.FormType = null;
             this.getData();
-            this.initEvents(); 
+            this.initEvents();
             this.loadData();
-        } catch (e) {
-
-        }
+        } catch (e) {}
     }
     /**
      * Gán sự kiện cho các thành phần
@@ -34,14 +32,24 @@ class BaseJS {
         $('#iconbar').click(this.resizeContent);
         // dịch con trỏ khi bấm tab
         $('#btnCancel').blur(this.targetToStart);
-        
+
     }
 
+    /**
+     * Lấy dữ liệu
+     * Author: Bui Trung Tu (24/9/2020)
+     * */
     getData() {
         this.Data = [];
     }
 
-
+    /**
+     * Lấy dữ liệu của 1 đối tượng
+     * Author: Bui Trung Tu (24/9/2020)
+     * */
+    getObjData() {
+        this.Obj = {};
+    }
     /**
      * Load dữ liệu
      * Autor:Bui Trung Tu (24/9/2020)
@@ -50,8 +58,9 @@ class BaseJS {
     //TODO: Test todo
     loadData() {
         try {
+            $('#tbListData tbody').empty();
             // đọc thông tin các cột dữ liệu:
-            var fields = $('table#tbListData thead th');            
+            var fields = $('table#tbListData thead th');
             $.each(this.Data, function (i, obj) {
                 var tr = $(`<tr></tr>`);
                 $.each(fields, function (index, field) {
@@ -69,12 +78,12 @@ class BaseJS {
                             break;
                         case 'address':
                             value = commonJS.formatAddress(obj[fieldName]);
-                            td = $(`<td title="` + obj[fieldName] +`">` + value + `</td>`);
+                            td = $(`<td title="` + obj[fieldName] + `">` + value + `</td>`);
                             break;
                         default:
                             value = obj[fieldName];
                             td = $(`<td>` + value + `</td>`);
-                    }                                                       
+                    }
                     $(tr).append(td);
                 })
                 // binding dữ liệu lên UI
@@ -116,11 +125,7 @@ class BaseJS {
     ShowUserSelection() {
         $('.User-selection').toggleClass('Show-selectiton');
     }
-    /**
-    * Toggle khi người dùng click vào show User-detail
-    * Autor:Bui Trung Tu (24/9/2020)
-    *
-    * */
+
     btnAddOnClick() {
         this.showDialogDetail();
     }
@@ -146,6 +151,7 @@ class BaseJS {
         $(this).addClass("row-selected");
         $(this).siblings().removeClass("row-selected");
     }
+
     /**
     * Edit dữ liệu
     * Autor:Bui Trung Tu (24/9/2020)
@@ -153,47 +159,26 @@ class BaseJS {
     btnEditOnClick() {
         var self = this;
         // xác định đối tượng cần edit
-        var customerSelected = $('.row-selected');
-        console.log(customerSelected);
-        if (customerSelected.length > 0) {
+        var objSelected = $('.row-selected');
+        if (objSelected.length > 0) {
             // lấy customerCode
-            var customerCode = customerSelected.children()[0].textContent;
-            debugger;
-            console.log(customerCode);
+            this.objCode = objSelected.children()[0].textContent;
+            this.getObjData();
             this.showDialogDetail();
-            // lấy dữ liệu từ CSDL của đối tượng customer thông qua mã
-            $.ajax({
-                url: "/api/customer/" + customerCode,
-                method: "GET",
-                contentType: "application/json",
-                dataType: "json"
-            }).done(function (customer) {
-                if (customer == null) {
-                    alert("Không có dữ liệu của khách hàng này");
-                } else {
-                    // hiện dữ liệu của customer hiện tại cho người dùng
-                    $("#txtCustomerCode").val(customer["customerCode"]);
-                    $("#txtCustomerName").val(customer["customerName"]);
-                    $("#txtMemberCode").val(customer["memberCode"]);
-                    $("#MemberRank").val(customer["memberRank"]);
-                    $("#CustomerType").val(customer["customerType"]);
-                    $("#txtMobile").val(customer["mobile"]);
-                    $("#txtBirdday").val(customer["birdday"]);
-                    $("#txtCompanyName").val(customer["companyName"]);
-                    $("#txtTaxCode").val(customer["taxCode"]);
-                    $("#txtEmail").val(customer["email"]);
-                    $("#txtAddress").val(customer["address"]);
-                    $("#txtNote").val(customer["customerNote"]);
-                    //chuyển FormType thành edit
-                    self.FormType = "Edit";
-                }
-            }).fail(function () {
-                alert("Có lỗi khi lấy thông tin khách hàng này");
+            var fields = $(".dialog-body input,.dialog-body select,.dialog-body textarea");
+            $.each(fields, function (index, field) {
+                var fieldName = $(field).attr('fieldName');             
+                $(field).val(self.Obj[fieldName]);
             })
+            self.FormType = "Edit";
         } else {
             alert("Bạn phải chọn 1 khách hàng để thực hiện chức năng này");
         }
     }
+    /**
+    * Cất dữ liệu
+    * Autor:Bui Trung Tu (24/9/2020)
+    * */
     btnSaveOnClick() {
         // validate dữ liệu
         var inputRequireds = $('.required');
@@ -207,64 +192,48 @@ class BaseJS {
         if (isValid == false) {
             return;
         }
+        // check xem là thêm mới hay sửa thông tin
         var self = this;
         var Method = "POST";
         if (self.FormType == "Edit") {
             Method = "PUT";
         }
-        var customer = {};
-        customer.CustomerCode = $('#txtCustomerCode').val();
-        customer.CustomerName = $('#txtCustomerName').val();
-        customer.MemberCode = $('#txtMemberCode').val();
-        customer.MemberRank = $('#MemberRank').val();
-        customer.CustomerType = $('#CustomerType').val();
-        customer.Email = $('#txtEmail').val();
-        customer.Mobile = $('#txtMobile').val();
-        customer.Address = $('#txtAddress').val();
-        customer.CustomerType = $('#CustomerType').val();
-        customer.Birdday = $('#txtBirdday').val();
-        customer.CompanyName = $('#txtCompanyName').val();
-        customer.TaxCode = $('#txtTaxCode').val();
-        customer.Note = $('#txtNote').val();
-        $.ajax({
-            url: "/api/customer",
-            method: Method,
-            data: JSON.stringify(customer),
-            contentType: "application/json",
-            dataType: "json"
-        }).done(function (res) {
-            if (res) {
-                self.btnCloseOnClick();
-                self.loadData();
+        var obj = {};
+        var fields = $(".dialog-body input,.dialog-body select,.dialog-body textarea");
+        $.each(fields, function (index, field) {
+            var fieldName = $(field).attr('fieldName');
+            fieldName = fieldName.charAt(0).toUpperCase() + fieldName.slice(1);
+            if (fieldName == "DebitMoney") {
+                obj[fieldName] = Number($(field).val());
+            } else {
+                obj[fieldName] = $(field).val();
             }
-        }).fail(function () {
-            alert("Có lỗi, hãy thử lại!");
+            console.log(obj[fieldName]);
+            
         })
+        this.saveToDB(obj, Method);
+    }
+    /**
+     * Lưu dữ liệu vào CSDL
+     * */
+    saveToDB(obj,Method) {
+
     }
     btnDeleteOnClick() {
-        var self = this;
-        var customerSelected = $('.row-selected');
-        if (customerSelected.length > 0) {
-            var customerCode = customerSelected.children()[0].textContent;
-            $.ajax({
-                url: "/api/customer/" + customerCode,
-                method: "DELETE"
-            }).done(function (res) {
-                if (res == true) {
-                    self.loadData();
-                } else {
-                    alert("Không tìm thấy khách hàng này");
-                }
-            }).fail(function () {
-                alert("Xóa thất bại");
-            })
+        var objSelected = $('.row-selected');
+        if (objSelected.length > 0) {
+            var objCode = objSelected.children()[0].textContent;
+            this.deleteToDB(objCode);
         } else {
             alert("Bạn phải chọn đối tượng muốn xóa!");
         }
     }
+    deleteToDB(objCode) {
+    }
     targetToStart() {
         $("#txtCustomerCode").focus();
     }
+
     /**
      * Ẩn thanh menu bên trái
      * Author: Bui Trung Tu (25/9/2020)

@@ -83,12 +83,17 @@ select, input, textarea, button {
 }
     .information-field select:focus {
         border-color: #0973b9
-    } 
+    }
 .information-field textarea {
     height: 92px;
-    padding:5px;
+    padding: 5px;
+    font-size: 15px;
+    font-family: MISA Fronts;
 }
-
+.radio {
+    width: 200px;
+    display: flex;
+}
 label span {
     padding: 0px 1px;
     color: red;
