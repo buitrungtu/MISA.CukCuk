@@ -17,7 +17,7 @@
     <!--end import CSS-->
 </head>
 <body>
-    <div class="Top">
+    <div class="top">
         <!--logo-->
         <div class="logo">
             <div id="iconbar"></div>
@@ -220,28 +220,33 @@
             <div class="col-2">
                 <div class="information-field">
                     <label>Mã nhân viên<span>(*)</span> </label>
-                    <input type="text" fieldName ="employeeCode" class="required" id="txtCustomerCode" />
+                    <input type="text" fieldName="employeeCode" class="required" id="txtCustomerCode" />
                 </div>
                 <div class="information-field">
                     <label class="text-col-2">Tên nhân viên<span>(*)</span> </label>
-                    <input type="text" fieldName ="employeeName" class="required" id="txtCustomerName" />
+                    <input type="text" fieldName="employeeName" class="required" id="txtCustomerName" />
                 </div>
             </div>
             <div class="col-2">
                 <div class="information-field">
                     <label>Vị trí</label>
-                    <input fieldName ="positionName" id="txtMemberCode" />
+                    <input fieldName="positionName" id="txtMemberCode" />
                 </div>
                 <div class="information-field">
                     <label class="text-col-2">Giới tính</label>
-                    <div class="radio" style="display:flex">
-                        <input type="radio" id="male" name="gender" value="male" fieldName ="gender">
+                    <select fieldName="gender">
+                        <option value="Nam">Nam</option>
+                        <option value="Nữ">Nữ</option>
+                        <option value="Khác">Khác</option>
+                    </select>
+                    <!--<div class="radio">
+                        <input type="radio" name="gender" value="Nam">
                         <label for="Nam">Nam</label><br>
-                        <input type="radio" id="female" name="gender" value="female">
+                        <input type="radio" name="gender" value="Nữ">
                         <label for="Nữ">Nữ</label><br>
-                        <input type="radio" id="other" name="gender" value="other">
+                        <input type="radio" name="gender" value="Khác">
                         <label for="Khác">Khác</label>
-                    </div>
+                    </div>-->
                 </div>
             </div>
             <div class="col-2">
@@ -265,35 +270,35 @@
             <div class="col-2">
                 <div class="information-field">
                     <label>ĐT di động<span>(*)</span> </label>
-                    <input fieldName ="mobile" type="tel" id="txtMobile" class="required" required />
+                    <input fieldName="mobile" type="tel" id="txtMobile" class="required" required />
                 </div>
             </div>
             <div class="col-2">
                 <div class="information-field">
                     <label>Ngày sinh </label>
-                    <input fieldName ="birthday" type="date" id="txtBirdday" />
+                    <input fieldName="birthday" type="date" id="txtBirdday" />
                 </div>
-            </div>           
+            </div>
             <div class="col-2">
                 <div class="information-field">
                     <label>Mức lương </label>
-                    <input fieldName ="salary" id="txtTaxCode" />
+                    <input fieldName="salary" format="number" id="txtTaxCode" />
                 </div>
                 <div class="information-field">
                     <label class="text-col-2">Email </label>
-                    <input fieldName ="email" type="email" id="txtEmail" />
+                    <input fieldName="email" type="email" id="txtEmail" />
                 </div>
             </div>
             <div class="col">
                 <div class="information-field">
                     <label>Địa chỉ </label>
-                    <input fieldName ="address" id="txtAddress" />
+                    <input fieldName="address" id="txtAddress" />
                 </div>
             </div>
             <div class="col">
                 <div class="information-field">
                     <label>Ghi chú </label>
-                    <textarea fieldName ="note" id="txtNote"></textarea>
+                    <textarea fieldName="note" id="txtNote"></textarea>
                 </div>
             </div>
         </div>

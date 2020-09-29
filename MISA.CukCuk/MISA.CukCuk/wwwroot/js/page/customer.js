@@ -10,7 +10,7 @@ class CustomerJS extends BaseJS {
     constructor() {
         super();
     }
-    
+
     /**
      * Overide lại hàm getData của base.js
      * Author: Bui Trung Tu (25/9/2020)
@@ -47,13 +47,13 @@ class CustomerJS extends BaseJS {
             dataType: "json",
             async: false
         }).done(function (res) {
-            if (res) {
+            if (res) { // lưu thành công
                 self.btnCloseOnClick();
                 self.getData();
                 self.loadData();
             }
         }).fail(function () {
-            alert("Có lỗi, hãy thử lại!");
+            alert("Lỗi khi lưu xuống DB");
         })
     }
     /**
@@ -76,26 +76,28 @@ class CustomerJS extends BaseJS {
             alert("Xóa thất bại");
         })
     }
-    /**
-     * Overide lại hàm getObjData của base.js
-     * Author: Bui Trung Tu (28/9/2020)
-     * */
-    getObjData() {
-        try {
-            var self = this;
-            // lấy dữ liệu từ CSDL của đối tượng customer thông qua mã
-            $.ajax({
-                url: "/api/customer/" + self.objCode,
-                method: "GET",
-                contentType: "application/json",
-                dataType: "json",
-                async: false
-            }).done(function (customer) {
-                self.Obj = customer;
-            })
-        } catch (e) {
 
-        }   
+    /**
+    * Overide lại hàm getObjData của base.js
+    * Author: Bui Trung Tu (28/9/2020)
+    * @param {string} objCode
+    */
+    getObjData(objCode) {
+        var self = this;
+        // lấy dữ liệu từ CSDL của đối tượng customer thông qua mã
+        $.ajax({
+            url: "/api/customer/" + objCode,
+            method: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            async: false
+        }).done(function (customer) {
+            if (customer) {
+                self.Obj = customer; // truyền lại dữ liệu của đối tượng sang cho base.js xử lý tiếp
+            }
+        }).fail(function () {
+            alert("Lỗi khi lấy dữ liệu");
+        })
     }
 }
 

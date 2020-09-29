@@ -29,7 +29,7 @@
 
     .dialog .dialog-body {
         background-color: #fff;
-        height: calc(100% - 75px);
+        height: calc(100% - 85px);
         padding: 5px;
     }
 
@@ -73,34 +73,40 @@
 select, input, textarea, button {
     outline: none;
 }
-.text-col-2{
-    padding-left:5px;
+
+.text-col-2 {
+    padding-left: 8px;
 }
+
 .information-field select {
     width: calc(100% - 135px);
     height: 30px;
     border: 1px solid #ccc;
 }
+
     .information-field select:focus {
         border-color: #0973b9
     }
+
 .information-field textarea {
-    height: 92px;
+    height: 82px;
     padding: 5px;
     font-size: 15px;
     font-family: MISA Fronts;
 }
+
 .radio {
     width: 200px;
     display: flex;
 }
+
 label span {
     padding: 0px 1px;
     color: red;
 }
 
 .dialog .dialog-footer {
-    height: 40px;
+    height: 50px;
     width: 100%;
     background-color: #fff;
     display: flex;

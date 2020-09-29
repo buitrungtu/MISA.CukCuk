@@ -17,7 +17,7 @@
     <!--end import CSS-->
 </head>
 <body>
-    <div class="Top">
+    <div class="top">
         <!--logo-->
         <div class="logo">
             <div id="iconbar"></div>
@@ -255,8 +255,16 @@
             </div>
             <div class="col-2">
                 <div class="information-field">
-                    <label>Số tiền nợ</label>
-                    <input type="tel" fieldName ="debitMoney" id="txtDebitMoney" class="required" required />
+                    <label>Giới tính</label>
+                    <select fieldName="gender">
+                        <option value="Nam">Nam</option>
+                        <option value="Nữ">Nữ</option>
+                        <option value="Khác">Khác</option>
+                    </select>
+                </div>
+                <div class="information-field">
+                    <label class="text-col-2">Số tiền nợ</label>
+                    <input type="tel" fieldName="debitMoney" format="number" id="txtDebitMoney" />
                 </div>
             </div>
             <div class="col-2">

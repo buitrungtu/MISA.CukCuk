@@ -62,6 +62,8 @@ namespace MISA.CukCuk.Controllers
                 customerEdit.Birthday = customer.Birthday;
                 customerEdit.CompanyName = customer.CompanyName;
                 customerEdit.TaxCode = customer.TaxCode;
+                customerEdit.Gender = customer.Gender;
+                customerEdit.DebitMoney = customer.DebitMoney;
                 customerEdit.Email = customer.Email;
                 customerEdit.Address = customer.Address;
                 customerEdit.Note = customer.Note;

@@ -1,4 +1,4 @@
-﻿.Top {
+﻿.top {
     display: flex;
     background-color: #0973b9;
     height: 60px;
@@ -35,9 +35,11 @@
     background-color: #0973b9;
     justify-content: space-between;
 }
+
 .header-left {
     align-self: center;
 }
+
 .header-right {
     display: flex;
     align-items: center;
@@ -54,6 +56,7 @@
         font-size: 17px;
         width: 185px;
         margin-right: 10px;
+        cursor: pointer;
     }
 
         .header-right .user:hover {
@@ -71,8 +74,8 @@
         height: 32px;
         background-repeat: no-repeat;
         background-size: cover;
-        background-position:-1px 0px;
-        background-color:#fff;
+        background-position: -1px 0px;
+        background-color: #fff;
     }
 
     .header-right .user .user-detail {
@@ -90,6 +93,7 @@
     background-color: #0e588a;
     color: #fff;
 }
+
 .header-right .notification {
     position: relative;
     cursor: pointer;
@@ -119,11 +123,11 @@
     background-image: url('../../content/images/ic_support.svg');
     width: 70px;
     height: 58px;
-    background-repeat:no-repeat;
-    background-position:-14px 0px;
+    background-repeat: no-repeat;
+    background-position: -14px 0px;
     background-size: cover;
     cursor: pointer;
-    margin:0px;
+    margin: 0px;
 }
 
 .header-right #language {
@@ -132,6 +136,7 @@
     background-color: #0e588a;
     color: #fff;
 }
+
 .user-selection {
     position: absolute;
     top: 55px;
@@ -151,6 +156,7 @@
     visibility: visible;
     opacity: 1;
 }
+
 .user-selection ol {
     list-style: none;
     padding: 2px;

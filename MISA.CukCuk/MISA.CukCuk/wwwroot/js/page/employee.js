@@ -11,10 +11,10 @@ class CustomerJS extends BaseJS {
         super();
     }
 
-/**
- * Overide lại hàm getData của base.js
- * Author: Bui Trung Tu (25/9/2020)
- * */
+    /**
+     * Overide lại hàm getData của base.js
+     * Author: Bui Trung Tu (25/9/2020)
+     * */
     getData() {
         try {
             var self = this;
@@ -25,31 +25,39 @@ class CustomerJS extends BaseJS {
                 dataType: "json",
                 async: false
             }).done(function (data) {
-                debugger;
-                self.Data = data;
-            }).fail(function () {
+                self.Data = data; // truyền lại dữ liệu sang cho base.js để hiển thị
+            }).fail(function () { 
                 alert("Có lỗi khi lấy dữ liệu");
             })
         } catch (e) {
 
         }
     }
-    getObjData() {
-        try {
-            var self = this;
-            // lấy dữ liệu từ CSDL của đối tượng customer thông qua mã
-            $.ajax({
-                url: "/api/employee/" + self.objCode,
-                method: "GET",
-                contentType: "application/json",
-                dataType: "json",
-                async: false
-            }).done(function (employee) {
-                self.Obj = employee;
-            })
-        } catch (e) {
 
-        }
+    /**
+     * Overide lại hàm getObjData của base.js
+     * Author: Bui Trung Tu (28/9/2020)
+     * @param {string} objCode
+     */
+    getObjData(objCode) {
+        debugger;
+        var self = this;
+        // lấy dữ liệu từ CSDL của đối tượng customer thông qua mã
+        $.ajax({
+            url: "/api/employee/" + objCode,
+            method: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            async: false
+        }).done(function (employee) {
+            console.log(employee);
+            if (employee) {
+                self.Obj = employee; // truyền lại dữ liệu của đối tượng sang cho base.js xử lý tiếp
+
+            }
+        }).fail(function () {
+            alert("Lỗi khi lấy dữ liệu");
+        })
     }
     /**
      * Overide lại hàm saveToDB của base.js
@@ -57,6 +65,8 @@ class CustomerJS extends BaseJS {
      * */
     saveToDB(employee, Method) {
         var self = this;
+        console.log(employee);
+        debugger;
         $.ajax({
             url: "/api/employee",
             method: Method,
@@ -66,7 +76,9 @@ class CustomerJS extends BaseJS {
             async: false
         }).done(function (res) {
             if (res) {
+                // Lưu thành công
                 self.btnCloseOnClick();
+                self.getData(); 
                 self.loadData();
             }
         }).fail(function () {
@@ -84,6 +96,8 @@ class CustomerJS extends BaseJS {
             method: "DELETE"
         }).done(function (res) {
             if (res == true) {
+                // xóa thành công
+                self.getData();
                 self.loadData();
             } else {
                 alert("Không tìm thấy khách hàng này");
