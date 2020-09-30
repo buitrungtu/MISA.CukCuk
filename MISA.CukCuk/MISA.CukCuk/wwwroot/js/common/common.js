@@ -5,19 +5,43 @@
 var commonJS = {
     /**
      * Định dạng ngày tháng
-     * Author: Bui Trung Tu
+     * Author: Bui Trung Tu (23/9/2020)
      * @param {string|number|Date} date
      */
      formatDate(date) {
         var date = new Date(date);
         var month = date.getMonth() + 1;
+        if (month < 10) {
+            month = "0" + month;
+        }
         var day = date.getDate();
+        if (day < 10) {
+            day = "0" + day;
+        }
         var year = date.getFullYear();
-        return year + "/" + month + "/" + day;
+        return day + "/" + month + "/" + year;
+    },
+    /**
+     * Định dạng ngày tháng cho input date html
+     * Author: Bui Trung Tu (30/9/2020)
+     * @param {string|number|Date} date
+     */
+    formatDateForInput(date) {
+        var date = new Date(date);
+        var month = date.getMonth() + 1;
+        if (month < 10) {
+            month = "0" + month;
+        }
+        var day = date.getDate();
+        if (day < 10) {
+            day = "0" + day;
+        }
+        var year = date.getFullYear();
+        return year + "-" + month + "-" + day;
     },
      /**
       * Định dạng tiền tệ
-      * Author: Bui Trung Tu
+      * Author: Bui Trung Tu (23/9/2020)
       * @param {number} money
       */
      formatMoney(money) {
@@ -25,11 +49,25 @@ var commonJS = {
     },
      /**
       * Định dạng địa chỉ
-      * Author: Bui Trung Tu
+      * Author: Bui Trung Tu (23/9/2020)
       * @param {string} str
       */
     formatAddress(str) {
         var temp = str.split(",");
         return "..." + temp[temp.length - 1];
+    },
+    /**
+     * 
+     * */
+    formatMoneyForDialog(money) {
+        var x = money;
+        x = x.replace(/,/g, "");
+        x = x.split("").reverse().join("");
+        x = x.replace(/.../g, function (e) {
+            return e + ",";
+        }); // Insert new commas
+        x = x.split("").reverse().join("");
+        x = x.replace(/^,/, "");
+        return x;
     }
 }

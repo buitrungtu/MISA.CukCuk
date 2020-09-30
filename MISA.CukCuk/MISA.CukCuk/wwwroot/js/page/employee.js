@@ -50,7 +50,6 @@ class CustomerJS extends BaseJS {
             dataType: "json",
             async: false
         }).done(function (employee) {
-            console.log(employee);
             if (employee) {
                 self.Obj = employee; // truyền lại dữ liệu của đối tượng sang cho base.js xử lý tiếp
 
@@ -60,12 +59,13 @@ class CustomerJS extends BaseJS {
         })
     }
     /**
-     * Overide lại hàm saveToDB của base.js
-     * Author: Bui Trung Tu (28/9/2020)
-     * */
+     * Lưu dữ liệu xuôngs DB
+     * Author: Bui Trung Tu
+     * @param {object} employee
+     * @param {string} Method
+     */
     saveToDB(employee, Method) {
         var self = this;
-        console.log(employee);
         debugger;
         $.ajax({
             url: "/api/employee",

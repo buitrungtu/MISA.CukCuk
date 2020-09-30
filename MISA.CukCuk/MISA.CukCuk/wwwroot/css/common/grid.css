@@ -178,3 +178,7 @@ table tr:hover :not(th) {
 }
 
 /*end grid paging*/
+/*text-overflow: ellipsis;
+white-space: nowrap;
+max-width: 150px;
+overflow: hidden*/

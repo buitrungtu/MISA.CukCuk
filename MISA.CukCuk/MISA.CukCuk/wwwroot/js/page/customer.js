@@ -38,7 +38,7 @@ class CustomerJS extends BaseJS {
      * Author: Bui Trung Tu (28/9/2020)
      * */
     saveToDB(customer, Method) {
-        var self = this;
+        var self = this; // form base
         $.ajax({
             url: "/api/customer",
             method: Method,
@@ -58,7 +58,7 @@ class CustomerJS extends BaseJS {
     }
     /**
      * Overide lại hàm deleteToDB của base.js
-     * Author: Bui Trung Tu (28/9/2020);
+     * Author: Bui Trung Tu (28/9/2020)
      * */
     deleteToDB(customerCode) {
         var self = this;

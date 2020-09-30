@@ -13,7 +13,6 @@ class BaseJS {
         } catch (e) { }
     }
     // #region Gán sự kiện
-
     /**
     * Gán sự kiện cho các thành phần
     * Author: Bui Trung Tu (25/9/2020)
@@ -35,10 +34,12 @@ class BaseJS {
         $('#iconbar').click(this.resizeContent);
         $('#btnCancel').blur(this.targetToStart);
         $('#btnDuplicate').click(this.btnDuplicate.bind(this));
+        //$("#txtSalary, #txtDebitMoney").keyup(this.formatMoney);
     }
     // #endregion
 
     // #region Hàm Dựng
+
     /**
      * (Hàm dựng) Lấy dữ liệu
      * Author: Bui Trung Tu (24/9/2020)
@@ -142,12 +143,17 @@ class BaseJS {
                 $.each(fields, function (index, field) {
                     var fieldName = $(field).attr('fieldName');
                     //Binding dữ liệu lên form dialog
-                    $(field).val(self.Obj[fieldName]);
+                    if (fieldName == "birthday") {
+                        $(field).val(commonJS.formatDateForInput(self.Obj[fieldName]));
+                    } else {
+                        $(field).val(self.Obj[fieldName]);
+                    }
+
                 })
                 self.FormType = "Edit";
             } catch (e) {
                 alert("Có lỗi xảy ra, hãy thử lại");
-            }           
+            }
         } else {
             alert("Bạn phải chọn 1 bản ghi để thực hiện chức năng này");
         }
@@ -201,14 +207,15 @@ class BaseJS {
             var fields = $(".dialog-body input,.dialog-body select,.dialog-body textarea");
             $.each(fields, function (index, field) {
                 var fieldName = $(field).attr('fieldName');
-                fieldName = fieldName.charAt(0).toUpperCase() + fieldName.slice(1);
+                fieldName = fieldName.charAt(0).toUpperCase() + fieldName.slice(1); // viết hoa chữ cái đầu tiên
                 var format = $(field).attr('format');
                 if (format == "number") {
-                    obj[fieldName] = Number($(field).val());
+                    obj[fieldName] = Number($(field).val().replace());
                 } else {
                     obj[fieldName] = $(field).val();
-                }   
+                }
             })
+            console.log(obj);
             // Lưu dữ liệu
             this.saveToDB(obj, Method); // Lưu dữ liệu xuống DB (Thực hiện tại các lớp kế thừa)
         } catch (e) {
@@ -332,6 +339,9 @@ class BaseJS {
         $(".menu").slideToggle("slow");
         $(".content").toggleClass("resize-content");
     }
+    formatMoney() {
+        $(this).val(commonJS.formatMoneyForDialog($(this).val()));
+    }
+
     // #endregion
 }
-

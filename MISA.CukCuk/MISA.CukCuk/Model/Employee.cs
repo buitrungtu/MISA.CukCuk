@@ -10,7 +10,7 @@ namespace MISA.CukCuk.Model
         public static List<Employee> EmployeeList = new List<Employee>(){
             new Employee()
             {
-                EmployeeCode = "KH001",
+                EmployeeCode = "NV001",
                 EmployeeName = "Nguyễn Văn Mạnh",             
                 Mobile = "0977340334",
                 Birthday = new DateTime(1989,02,15),                
@@ -25,7 +25,7 @@ namespace MISA.CukCuk.Model
             },
             new Employee()
             {
-                EmployeeCode = "KH002",
+                EmployeeCode = "NV002",
                 EmployeeName = "Lê Văn Thắng",           
                 Mobile = "0971203341",
                 Birthday = new DateTime(1993,11,11),
@@ -39,7 +39,7 @@ namespace MISA.CukCuk.Model
             },
             new Employee()
             {
-                EmployeeCode = "KH003",
+                EmployeeCode = "NV003",
                 EmployeeName = "Nguyễn Thị Thu Hà",               
                 Mobile = "0912213033",
                 Birthday = new DateTime(1988,12,05),               
@@ -53,7 +53,7 @@ namespace MISA.CukCuk.Model
             },
             new Employee()
             {
-                EmployeeCode = "KH004",
+                EmployeeCode = "NV004",
                 EmployeeName = "Phan Tấn Trung",             
                 Mobile = "0977340111",
                 Birthday = new DateTime(1978,06,07),             
@@ -67,7 +67,7 @@ namespace MISA.CukCuk.Model
             },
             new Employee()
             {
-                EmployeeCode = "KH005",
+                EmployeeCode = "NV005",
                 EmployeeName = "Bùi Thị Trà My",           
                 Mobile = "0977342544",
                 Birthday = new DateTime(1998,02,07),           
@@ -81,7 +81,7 @@ namespace MISA.CukCuk.Model
             },
             new Employee()
             {
-                EmployeeCode = "KH006",
+                EmployeeCode = "NV006",
                 EmployeeName = "Đàm Thế Phong",             
                 Mobile = "0971230334",
                 Birthday = new DateTime(1997,10,11),
@@ -95,7 +95,7 @@ namespace MISA.CukCuk.Model
             },
             new Employee()
             {
-                EmployeeCode = "KH007",
+                EmployeeCode = "NV007",
                 EmployeeName = "Hoàng Nghĩa Long",          
                 Mobile = "0977343695",
                 Birthday = new DateTime(1995,11,21),
@@ -109,7 +109,7 @@ namespace MISA.CukCuk.Model
             },
             new Employee()
             {
-                EmployeeCode = "KH008",
+                EmployeeCode = "NV008",
                 EmployeeName = "Nguyễn Duy Hiếu",
                 Mobile = "0977323654",
                 Birthday = new DateTime(1998,04,20),
@@ -123,7 +123,7 @@ namespace MISA.CukCuk.Model
             },
             new Employee()
             {
-                EmployeeCode = "KH009",
+                EmployeeCode = "NV009",
                 EmployeeName = "Lê Thế Nam",            
                 Mobile = "0977132334",
                 Birthday = new DateTime(1992,03,13),           
@@ -137,7 +137,7 @@ namespace MISA.CukCuk.Model
             },
             new Employee()
             {
-                EmployeeCode = "KH010",
+                EmployeeCode = "NV010",
                 EmployeeName = "Hoa Tất Thắng",          
                 Mobile = "0977346321",
                 Birthday = new DateTime(1991,08,06),            

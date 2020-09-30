@@ -13,9 +13,9 @@
     display: none;
     position: absolute;
     top: calc(50% - 250px);
-    left: calc(50% - 350px);
-    width: 700px;
-    height: 500px;
+    left: calc(50% - 400px);
+    width: 800px;
+    height: 550px;
     border: 6px solid #0973b9;
     border-radius: 10px;
 }
@@ -63,7 +63,7 @@
     }
 
     .information-field input {
-        height: 27px;
+        height: 28px;
     }
 
         .information-field input:focus, textarea:focus {
@@ -89,7 +89,7 @@ select, input, textarea, button {
     }
 
 .information-field textarea {
-    height: 82px;
+    height: 120px;
     padding: 5px;
     font-size: 15px;
     font-family: MISA Fronts;
@@ -119,4 +119,14 @@ label span {
 
 .required-error, .required-error:focus {
     border: 1px solid #ff0000 !important;
+}
+
+/*css cho các trường đặc biệt*/ 
+input#txtBirdday {
+    font-size: 15px;
+    font-family: MISA Fronts;
+}
+#txtSalary, #txtDebitMoney {
+    text-align: right;
+    padding: 0px 8px 0px 0px;
 }
