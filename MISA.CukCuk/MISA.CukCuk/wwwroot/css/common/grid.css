@@ -57,6 +57,10 @@ table td, th {
     padding: 4px 10px;
     cursor: pointer;
     border: 1px solid #dddddd;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 200px;
+    overflow: hidden
 }
 
     table td:first-child, th:first-child {
@@ -84,7 +88,7 @@ table .text-right {
 }
 
 th#Address {
-    width: 150px;
+    width:150px;
 }
 
 th#Mobile {
@@ -102,6 +106,7 @@ th#Birdday {
 th#Gender {
     width: 100px;
 }
+
 th#CustomerName {
     min-width: 200px;
 }
@@ -178,7 +183,3 @@ table tr:hover :not(th) {
 }
 
 /*end grid paging*/
-/*text-overflow: ellipsis;
-white-space: nowrap;
-max-width: 150px;
-overflow: hidden*/

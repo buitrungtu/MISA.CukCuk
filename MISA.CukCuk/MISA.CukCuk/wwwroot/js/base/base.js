@@ -34,7 +34,7 @@ class BaseJS {
         $('#iconbar').click(this.resizeContent);
         $('#btnCancel').blur(this.targetToStart);
         $('#btnDuplicate').click(this.btnDuplicate.bind(this));
-        //$("#txtSalary, #txtDebitMoney").keyup(this.formatMoney);
+        $("#txtSalary, #txtDebitMoney").keyup(this.formatMoney);
     }
     // #endregion
 
@@ -108,7 +108,7 @@ class BaseJS {
                             td = $(`<td class="text-center">` + value + `</td>`);
                             break;
                         case 'address':
-                            value = commonJS.formatAddress(obj[fieldName]);
+                            value = obj[fieldName];
                             td = $(`<td title="` + obj[fieldName] + `">` + value + `</td>`);
                             break;
                         default:
@@ -130,12 +130,12 @@ class BaseJS {
     * Autor:Bui Trung Tu (24/9/2020)
     * */
     btnEditOnClick() {
-        var self = this;
-        // xác định đối tượng cần edit
-        var objSelected = $('.row-selected');
-        if (objSelected.length > 0) {
-            // lấy customerCode
-            try {
+        try {
+            var self = this;
+            // xác định đối tượng cần edit
+            var objSelected = $('.row-selected');
+            if (objSelected.length > 0) {
+                // lấy customerCode
                 var objCode = objSelected.children()[0].textContent;
                 this.getObjData(objCode); // lấy dữ liệu của đối tượng được chọn (Thực hiện tại các lớp kế thừa)
                 this.showDialogDetail();
@@ -145,17 +145,20 @@ class BaseJS {
                     //Binding dữ liệu lên form dialog
                     if (fieldName == "birthday") {
                         $(field).val(commonJS.formatDateForInput(self.Obj[fieldName]));
-                    } else {
+                    } else if (fieldName == "debitMoney") {
+                        $(field).val(commonJS.formatMoney(self.Obj[fieldName]));
+                    }
+                    else {
                         $(field).val(self.Obj[fieldName]);
                     }
 
                 })
                 self.FormType = "Edit";
-            } catch (e) {
-                alert("Có lỗi xảy ra, hãy thử lại");
+            } else {
+                alert("Bạn phải chọn 1 bản ghi để thực hiện chức năng này");
             }
-        } else {
-            alert("Bạn phải chọn 1 bản ghi để thực hiện chức năng này");
+        } catch (e) {
+            alert("Có lỗi, hãy thử lại");
         }
     }
 
@@ -165,18 +168,20 @@ class BaseJS {
      * Author: Bui Trung Tu (25/9/2020)
      * */
     btnDeleteOnClick() {
-        // kiểm tra đối tượng mà người dùng chọn
-        var objSelected = $('.row-selected');
-        if (objSelected.length > 0) {
-            try {
+        try {
+            var objSelected = $('.row-selected');
+            // kiểm tra đối tượng mà người dùng chọn
+            if (objSelected.length > 0) {
+
                 var objCode = objSelected.children()[0].textContent;
                 this.deleteToDB(objCode); // xóa đối tượng (Thực hiện tại các lớp kế thừa)
-            } catch (e) {
-                alert("Có lỗi xảy ra, hãy thử lại")
+
+            } else {
+                alert("Bạn phải chọn đối tượng muốn xóa!");
             }
-        } else {
-            alert("Bạn phải chọn đối tượng muốn xóa!");
-        }
+        } catch (e) {
+            alert("Có lỗi xảy ra, hãy thử lại");
+        }        
     }
 
     /**
@@ -184,25 +189,25 @@ class BaseJS {
     * Author: Bui Trung Tu (24/9/2020)
     * */
     btnSaveOnClick() {
-        // validate dữ liệu
-        var inputRequireds = $('.required');
-        var isValid = true;
-        $.each(inputRequireds, function (i, item) {
-            var valid = $('input').trigger("blur");
-            if (isValid && valid.hasClass("required-error")) {
-                isValid = false;
-            }
-        })
-        if (isValid == false) {
-            return;
-        }
-        // check xem là thêm mới hay sửa thông tin
-        var self = this;
-        var Method = "POST"; // Mặc định là thêm
-        if (self.FormType == "Edit") {
-            Method = "PUT";
-        }
         try {
+            // validate dữ liệu
+            var inputRequireds = $('.required');
+            var isValid = true;
+            $.each(inputRequireds, function (i, item) {
+                var valid = $('input').trigger("blur");
+                if (isValid && valid.hasClass("required-error")) {
+                    isValid = false;
+                }
+            })
+            if (isValid == false) {
+                return;
+            }
+            // check xem là thêm mới hay sửa thông tin
+            var self = this;
+            var Method = "POST"; // Mặc định là thêm
+            if (self.FormType == "Edit") {
+                Method = "PUT";
+            }
             var obj = {};
             var fields = $(".dialog-body input,.dialog-body select,.dialog-body textarea");
             $.each(fields, function (index, field) {
@@ -210,7 +215,7 @@ class BaseJS {
                 fieldName = fieldName.charAt(0).toUpperCase() + fieldName.slice(1); // viết hoa chữ cái đầu tiên
                 var format = $(field).attr('format');
                 if (format == "number") {
-                    obj[fieldName] = Number($(field).val().replace());
+                    obj[fieldName] = Number($(field).val().split(',').join(''));
                 } else {
                     obj[fieldName] = $(field).val();
                 }
@@ -219,27 +224,29 @@ class BaseJS {
             // Lưu dữ liệu
             this.saveToDB(obj, Method); // Lưu dữ liệu xuống DB (Thực hiện tại các lớp kế thừa)
         } catch (e) {
-            alert("Lưu dữ liệu thất bại, hãy thử lại");
+            alert("Lưu dữ liệu thất bại");
         }
+        
     }
     /**
      * Nhân đôi đối tượng
      * Author: Bui Trung Tu(29/9/2020)
      * */
     btnDuplicate() {
-        // xác định đối tượng cần edit
-        var objSelected = $('.row-selected');
-        if (objSelected.length > 0) {
-            try {
+        try {
+            // xác định đối tượng cần edit
+            var objSelected = $('.row-selected');
+            if (objSelected.length > 0) {
                 var objCode = objSelected.children()[0].textContent;
                 this.getObjData(objCode);
                 this.saveToDB(this.Obj, "POST");
-            } catch (e) {
-                alert("Có lỗi xảy ra, hãy thử lại")
+            } else {
+                alert("Bạn phải chọn 1 bản ghi để thực hiện chức năng này");
             }
-        } else {
-            alert("Bạn phải chọn 1 bản ghi để thực hiện chức năng này");
+        } catch (e) {
+            alert("Có lỗi, hãy thử lại");
         }
+        
     }
     // #endregion
 
@@ -336,7 +343,7 @@ class BaseJS {
      * Author: Bui Trung Tu (25/9/2020)
      * */
     resizeContent() {
-        $(".menu").slideToggle("slow");
+        $(".menu").fadeToggle("slow");
         $(".content").toggleClass("resize-content");
     }
     formatMoney() {

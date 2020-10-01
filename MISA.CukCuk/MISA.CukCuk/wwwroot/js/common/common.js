@@ -45,20 +45,14 @@ var commonJS = {
       * @param {number} money
       */
      formatMoney(money) {
-        return money.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
+        return money.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
     },
+
      /**
-      * Định dạng địa chỉ
-      * Author: Bui Trung Tu (23/9/2020)
-      * @param {string} str
+      * Định dạng tiền tệ ngay khi người dùng nhập số tiền
+      * Author: Bui Trung Tu (30/9/2020)
+      * @param {string} money
       */
-    formatAddress(str) {
-        var temp = str.split(",");
-        return "..." + temp[temp.length - 1];
-    },
-    /**
-     * 
-     * */
     formatMoneyForDialog(money) {
         var x = money;
         x = x.replace(/,/g, "");
