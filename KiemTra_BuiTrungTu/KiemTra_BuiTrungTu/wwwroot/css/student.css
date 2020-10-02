@@ -1,0 +1,121 @@
+﻿body {
+    padding: 0;
+    margin: 0;
+    font-family: Tahoma;
+    font-size: 15px;
+}
+
+.top {
+    height: 60px;
+    background-color: #0973b9;
+}
+
+.top h1.title-page {
+    text-align: center;
+    color: #fff;
+    margin: 0;
+    padding: 10px;
+}
+.bottom {
+    height: calc(100% - 60px);
+    width: 100%;
+    display: flex;
+}
+
+.menu {
+    width: 250px;
+    height: calc(100vh - 60px);
+    background-color: #0973b9;
+}
+.menu-item {
+    width:100%;
+    color: #fff;
+    height: 45px;
+    display: flex;
+    border-bottom: 1px solid #08598e;
+    border-top: 1px solid #1b8bd4;
+    text-decoration: none;
+    cursor: pointer;
+}
+    .menu-item:hover {
+        cursor: pointer;
+        background-color: #f19322;
+    }
+    .menu-item .menu-item-text {
+        line-height: 45px;
+        margin-left:10px;
+    }
+
+.content {
+    width: calc(100% - 250px);
+    height: 100%;
+}
+
+.content-body {
+    padding: 10px;
+    height: calc(100% - 20px);
+    position: relative;
+}
+
+    .content-body .page-title h1 {
+        margin: 5px 0px;
+        font-size: 18px;
+    }
+
+.page-title h1 span {
+    color: #0d86d6;
+    margin-left: 20px;
+}
+
+.page-title .triangle {
+    border-top: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 8px solid #0973b9;
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 18px;
+    left: 110px;
+}
+  
+.grid {
+    position: absolute;
+    border: 1px solid #ccc;
+    top: 50px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+}
+    .grid .grid-content {
+        height: calc(100% - 60px);
+        width: 100%;
+        overflow: auto;
+    }
+
+        .grid .grid-content::-webkit-scrollbar {
+            width: 5px;
+            background-color: rgb(239,239,239);
+        }
+
+.grid-content table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table td, th {
+    padding: 4px 10px;
+    border: 1px solid #dddddd;
+}
+
+table thead {
+    background-color: rgb(239,239,239);
+}
+
+table .text-center {
+    text-align: center;
+}
+
+table .text-right {
+    text-align: right;
+}

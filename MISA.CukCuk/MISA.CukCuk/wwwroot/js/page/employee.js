@@ -60,7 +60,7 @@ class CustomerJS extends BaseJS {
     }
     /**
      * Lưu dữ liệu xuôngs DB
-     * Author: Bui Trung Tu
+     * Author: Bui Trung Tu (28/9/2020)
      * @param {object} employee
      * @param {string} Method
      */
@@ -85,10 +85,12 @@ class CustomerJS extends BaseJS {
             alert("Có lỗi, hãy thử lại!");
         })
     }
+
     /**
      * Overide lại hàm deleteToDB của base.js
-     * Author: Bui Trung Tu (28/9/2020);
-     * */
+     * Author: Bui Trung Tu (28/9/2020)
+     * @param {any} employeeCode
+     */
     deleteToDB(employeeCode) {
         var self = this;
         $.ajax({

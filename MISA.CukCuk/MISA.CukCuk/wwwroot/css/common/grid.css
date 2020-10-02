@@ -53,7 +53,7 @@
     border-collapse: collapse;
 }
 
-table td, th {
+#tbListData td, th {
     padding: 4px 10px;
     cursor: pointer;
     border: 1px solid #dddddd;
@@ -115,10 +115,6 @@ th#CustomerName {
 table tr:hover :not(th) {
     background-color: #b8e3ff;
     cursor: pointer;
-}
-
-.row-selected {
-    background-color: #007ece66;
 }
 
 /*end grid content*/

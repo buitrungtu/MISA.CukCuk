@@ -33,10 +33,13 @@ class CustomerJS extends BaseJS {
 
         }
     }
+
     /**
      * Overide lại hàm saveToDB của base.js
      * Author: Bui Trung Tu (28/9/2020)
-     * */
+     * @param {object} customer
+     * @param {string} Method
+     */
     saveToDB(customer, Method) {
         var self = this; // form base
         $.ajax({
@@ -56,15 +59,19 @@ class CustomerJS extends BaseJS {
             alert("Lỗi khi lưu xuống DB");
         })
     }
+
     /**
      * Overide lại hàm deleteToDB của base.js
-     * Author: Bui Trung Tu (28/9/2020)
-     * */
+     *  Author: Bui Trung Tu (28/9/2020)
+     * @param {string} customerCode
+     */
     deleteToDB(customerCode) {
+        console.log("Đã vào đây");
         var self = this;
         $.ajax({
             url: "/api/customer/" + customerCode,
-            method: "DELETE"
+            method: "DELETE",
+            async: false
         }).done(function (res) {
             if (res == true) {
                 self.getData();

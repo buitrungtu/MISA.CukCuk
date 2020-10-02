@@ -18,22 +18,31 @@ class BaseJS {
     * Author: Bui Trung Tu (25/9/2020)
     * */
     initEvents() {
-        // Gán sự kiện cho các element
+        //lưu vết lựa chọn người dùng
         $("table").on("click", "tbody tr", this.rowOnClick);
+        //thoát form dialog
         $('#btnCancel').click(this.btnCloseOnClick.bind(this));
         $('.title-button-close').click(this.btnCloseOnClick.bind(this));
         $('.dialog-modal').click(this.btnCloseOnClick.bind(this));
+        //show lựa chọn với tài khoản
         $('.user').click(this.showUserSelection.bind(this));
+        //thêm 1 bản ghi
         $('#btnAdd').click(this.btnAddOnClick.bind(this));
+        //Sửa 1 bản ghi
         $('#btnEdit').click(this.btnEditOnClick.bind(this));
+        // Lưu thêm or sửa
         $('#btnSave').click(this.btnSaveOnClick.bind(this));
+        // Xóa bản ghi
         $('#btnDelete').click(this.btnDeleteOnClick.bind(this));
-        $('#txtCustomerCode').blur(this.checkRequired);
-        $('.required').blur(this.checkRequired);
-        $("#btnLoad").click(this.btnReloadOnClick.bind(this));
-        $('#iconbar').click(this.resizeContent);
-        $('#btnCancel').blur(this.targetToStart);
+        // nhân bản 1 bản ghi
         $('#btnDuplicate').click(this.btnDuplicate.bind(this));
+        // check validate
+        $('input[required]').blur(this.checkRequired);
+        // load lại dữ liệu
+        $("#btnLoad").click(this.btnReloadOnClick.bind(this));
+        // hành trình bấm tab trên form dialog
+        $('#btnHelpDialog').blur(this.targetToStart);
+        // định dạng tiền tệ trực tiếp trên form dialog 
         $("#txtSalary, #txtDebitMoney").keyup(this.formatMoney);
     }
     // #endregion
@@ -69,7 +78,7 @@ class BaseJS {
     }
 
     /**
-     * (Hàm dựng) Gửi thông điệp xóa 1 đối tượng xuống DB 
+     * (Hàm dựng) Gửi thông điệp xóa đối tượng xuống DB 
      * Author: Bui Trung Tu (28/9/2020)
      * @param {object} objCode
      */
@@ -119,6 +128,7 @@ class BaseJS {
                 })
                 // binding dữ liệu lên UI
                 $('#tbListData tbody').append(tr);
+                //console.log(obj[Object.keys(obj)[0]]); // Lấy trường đầu tiên của obj
             })
         } catch (e) {
             alert("Có lỗi xảy ra, hãy thử lại");
@@ -134,7 +144,7 @@ class BaseJS {
             var self = this;
             // xác định đối tượng cần edit
             var objSelected = $('.row-selected');
-            if (objSelected.length > 0) {
+            if (objSelected.length == 1) {
                 // lấy customerCode
                 var objCode = objSelected.children()[0].textContent;
                 this.getObjData(objCode); // lấy dữ liệu của đối tượng được chọn (Thực hiện tại các lớp kế thừa)
@@ -145,17 +155,18 @@ class BaseJS {
                     //Binding dữ liệu lên form dialog
                     if (fieldName == "birthday") {
                         $(field).val(commonJS.formatDateForInput(self.Obj[fieldName]));
-                    } else if (fieldName == "debitMoney") {
+                    } else if (fieldName == "debitMoney" || fieldName == "salary" ) {
                         $(field).val(commonJS.formatMoney(self.Obj[fieldName]));
                     }
                     else {
                         $(field).val(self.Obj[fieldName]);
                     }
-
                 })
                 self.FormType = "Edit";
+            } else if (true) {
+                alert("Chọn 1 bản ghi thôi bạn ạ");
             } else {
-                alert("Bạn phải chọn 1 bản ghi để thực hiện chức năng này");
+                alert("Bạn phải chọn 1 bản ghi");
             }
         } catch (e) {
             alert("Có lỗi, hãy thử lại");
@@ -167,15 +178,20 @@ class BaseJS {
      * Xóa 1 đối tượng
      * Author: Bui Trung Tu (25/9/2020)
      * */
+    //TODO: Sửa lại hàm delete (Gom hết mã cần xóa thành 1 chuỗi, xong sang server cắt rồi xóa - chứ k gửi và xóa từng bản ghi một)
     btnDeleteOnClick() {
         try {
-            var objSelected = $('.row-selected');
+            var seft = this;
+            var objSelecteds = $('.row-selected');
+            console.log(objSelecteds);
             // kiểm tra đối tượng mà người dùng chọn
-            if (objSelected.length > 0) {
-
-                var objCode = objSelected.children()[0].textContent;
-                this.deleteToDB(objCode); // xóa đối tượng (Thực hiện tại các lớp kế thừa)
-
+            if (objSelecteds.length > 0) {
+                $.each(objSelecteds, function (i, objSelected) {
+                    var objCode = objSelected.children[0].textContent;
+                    console.log(objCode);
+                    debugger;
+                    seft.deleteToDB(objCode);// xóa đối tượng (Thực hiện tại các lớp kế thừa)
+                })
             } else {
                 alert("Bạn phải chọn đối tượng muốn xóa!");
             }
@@ -191,7 +207,7 @@ class BaseJS {
     btnSaveOnClick() {
         try {
             // validate dữ liệu
-            var inputRequireds = $('.required');
+            var inputRequireds = $('input[required]');
             var isValid = true;
             $.each(inputRequireds, function (i, item) {
                 var valid = $('input').trigger("blur");
@@ -253,22 +269,13 @@ class BaseJS {
     // #region Phương thức phụ
 
     /**
-    * Load lại dữ liệu
-    * Author: Bùi Trung Tú
+    * Validate dữ liệu input
+    * Autor:Bui Trung Tu (24/9/2020)
+    *
     * */
-    btnReloadOnClick() {
-        this.getData();
-        this.loadData();
-    }
-
-    /**
-     * Validate dữ liệu input
-     * Autor:Bui Trung Tu (24/9/2020)
-     *
-     * */
     checkRequired() {
         var value = this.value;
-        if (!value) {
+        if (!value && !(value && value.trim())) {
             $(this).addClass('required-error');
             $(this).attr("placeholder", "Bạn phải nhập thông tin này.");
             return true;
@@ -276,6 +283,16 @@ class BaseJS {
             $(this).removeClass('required-error');
             return false;
         }
+    }
+
+
+    /**
+    * Load lại dữ liệu
+    * Author: Bùi Trung Tú
+    * */
+    btnReloadOnClick() {
+        this.getData();
+        this.loadData();
     }
 
     /**
@@ -326,8 +343,17 @@ class BaseJS {
      * Author: Bui Trung Tu (20/9/2020)
      * */
     rowOnClick() {
-        $(this).addClass("row-selected");
-        $(this).siblings().removeClass("row-selected");
+        if (event.ctrlKey) { // nếu đang bấm ctrl
+            if ($(this).hasClass("row-selected")) {
+                $(this).removeClass("row-selected");
+            } else {
+                $(this).addClass("row-selected");
+            }
+        } else {
+            $(this).addClass("row-selected");
+            $(this).siblings().removeClass("row-selected");
+        }
+       
     }
 
     /**
@@ -338,14 +364,6 @@ class BaseJS {
         $("#txtCustomerCode").focus();
     }
 
-    /**
-     * Ẩn thanh menu bên trái
-     * Author: Bui Trung Tu (25/9/2020)
-     * */
-    resizeContent() {
-        $(".menu").fadeToggle("slow");
-        $(".content").toggleClass("resize-content");
-    }
     formatMoney() {
         $(this).val(commonJS.formatMoneyForDialog($(this).val()));
     }

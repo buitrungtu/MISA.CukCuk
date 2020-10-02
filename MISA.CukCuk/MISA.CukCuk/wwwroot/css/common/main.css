@@ -27,14 +27,3 @@
     height: calc(100vh - 60px);
 }
 
-/* Class này sẽ được add vào menu khi người dùng bấm nút ẩn menu*/
-.hide-menu{
-    display:none;
-}
-.resize-content{
-    width:100% !important;
-}
-/* Class này sẽ được add vào trường tr khi người dùng chọn 1 đối tượng trên grid*/
-.row-selected {
-    background-color: #8fb8d266;
-}

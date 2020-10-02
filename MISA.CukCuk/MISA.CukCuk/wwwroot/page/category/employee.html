@@ -13,6 +13,7 @@
     <link href="/css/common/icon.css" rel="stylesheet" />
     <link href="/css/common/dialog.css" rel="stylesheet" />
     <link href="/css/layout/responsive.css" rel="stylesheet" />
+    <link href="/css/common/common.css" rel="stylesheet" />
 
     <!--end import CSS-->
 </head>
@@ -220,21 +221,21 @@
             <div class="col-2">
                 <div class="information-field">
                     <label>Mã nhân viên<span>(*)</span> </label>
-                    <input type="text" fieldName="employeeCode" class="required" id="txtCustomerCode" />
+                    <input tabindex="1" type="text" fieldName="employeeCode" required id="txtCustomerCode" />
                 </div>
                 <div class="information-field">
                     <label class="text-col-2">Tên nhân viên<span>(*)</span> </label>
-                    <input type="text" fieldName="employeeName" class="required" id="txtCustomerName" />
+                    <input tabindex="2" type="text" fieldName="employeeName" required id="txtCustomerName" />
                 </div>
             </div>
             <div class="col-2">
                 <div class="information-field">
                     <label>Vị trí</label>
-                    <input fieldName="positionName" id="txtMemberCode" />
+                    <input tabindex="3" fieldName="positionName" id="txtMemberCode" />
                 </div>
                 <div class="information-field">
                     <label class="text-col-2">Giới tính</label>
-                    <select fieldName="gender">
+                    <select tabindex="4" fieldName="gender">
                         <option value="Nam">Nam</option>
                         <option value="Nữ">Nữ</option>
                         <option value="Khác">Khác</option>
@@ -252,7 +253,7 @@
             <div class="col-2">
                 <div class="information-field">
                     <label>Phòng ban </label>
-                    <select fieldName="departmentName" id="CustomerType">
+                    <select tabindex="5" fieldName="departmentName" id="CustomerType">
                         <option value="Đào tạo">Đào tạo</option>
                         <option value="Sản xuất">Sản xuất</option>
                         <option value="Truyền thông">Truyền thông</option>
@@ -260,7 +261,7 @@
                 </div>
                 <div class="information-field">
                     <label class="text-col-2">Tình trạng</label>
-                    <select fieldName="workStatus" id="MemberRank">
+                    <select tabindex="6" fieldName="workStatus" id="MemberRank">
                         <option value="Đang làm việc">Đang làm việc</option>
                         <option value="Đã nghỉ việc">Đã nghỉ việc</option>
                         <option value="Tạm nghỉ">Tạm nghỉ</option>
@@ -270,46 +271,46 @@
             <div class="col-2">
                 <div class="information-field">
                     <label>ĐT di động<span>(*)</span> </label>
-                    <input fieldName="mobile" type="tel" id="txtMobile" class="required" required />
+                    <input tabindex="7" fieldName="mobile" type="tel" id="txtMobile" class="required" required />
                 </div>
             </div>
             <div class="col-2">
                 <div class="information-field">
                     <label>Ngày sinh </label>
-                    <input fieldName="birthday" type="date" id="txtBirdday" />
+                    <input tabindex="8" fieldName="birthday" type="date" id="txtBirdday" format="date"/>
                 </div>
             </div>
             <div class="col-2">
                 <div class="information-field">
                     <label>Mức lương </label>
-                    <input fieldName="salary" format="number" id="txtSalary" />
+                    <input tabindex="9" fieldName="salary" format="number" id="txtSalary" />
                 </div>
                 <div class="information-field">
                     <label class="text-col-2">Email </label>
-                    <input fieldName="email" type="email" id="txtEmail" />
+                    <input tabindex="10" fieldName="email" type="email" id="txtEmail" />
                 </div>
             </div>
             <div class="col">
                 <div class="information-field">
                     <label>Địa chỉ </label>
-                    <input fieldName="address" id="txtAddress" />
+                    <input tabindex="11" fieldName="address" id="txtAddress" />
                 </div>
             </div>
             <div class="col">
                 <div class="information-field">
                     <label>Ghi chú </label>
-                    <textarea fieldName="note" id="txtNote"></textarea>
+                    <textarea tabindex="12" fieldName="note" id="txtNote"></textarea>
                 </div>
             </div>
         </div>
         <div class="dialog-footer">
             <div class="btn-right">
-                <button id="btnSave"><i class="icon icon-save"></i>Cất</button>
-                <button id="btnSaveAndAdd"><i class="icon icon-save-add"></i>Cất & Thêm</button>
-                <button id="btnCancel"><i class="icon icon-cancel"></i>Hủy bỏ</button>
+                <button tabindex="13" id="btnSave"><i class="icon icon-save"></i>Cất</button>
+                <button tabindex="14" id="btnSaveAndAdd"><i class="icon icon-save-add"></i>Cất & Thêm</button>
+                <button tabindex="15" id="btnCancel"><i class="icon icon-cancel"></i>Hủy bỏ</button>
             </div>
             <div class="btn-left">
-                <button id="btnHelpDialog"><i class="icon icon-help"></i>Giúp</button>
+                <button tabindex="16" id="btnHelpDialog"><i class="icon icon-help"></i>Giúp</button>
             </div>
         </div>
     </div>
