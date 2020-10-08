@@ -221,11 +221,11 @@
             <div class="col-2">
                 <div class="information-field">
                     <label>Mã nhân viên<span>(*)</span> </label>
-                    <input tabindex="1" type="text" fieldName="employeeCode" required id="txtCustomerCode" />
+                    <input tabindex="1" type="text" fieldName="employeeCode" id="txtCustomerCode" required />
                 </div>
                 <div class="information-field">
                     <label class="text-col-2">Tên nhân viên<span>(*)</span> </label>
-                    <input tabindex="2" type="text" fieldName="employeeName" required id="txtCustomerName" />
+                    <input tabindex="2" type="text" fieldName="employeeName" id="txtCustomerName" required />
                 </div>
             </div>
             <div class="col-2">
@@ -277,7 +277,7 @@
             <div class="col-2">
                 <div class="information-field">
                     <label>Ngày sinh </label>
-                    <input tabindex="8" fieldName="birthday" type="date" id="txtBirdday" format="date"/>
+                    <input tabindex="8" fieldName="birthday" type="date" id="txtBirdday" format="date" />
                 </div>
             </div>
             <div class="col-2">
@@ -314,12 +314,35 @@
             </div>
         </div>
     </div>
+    <div class="dialog-confirm">
+        <div class="dialog-title">
+            <div class="title-text">
+                Xác nhận
+            </div>
+            <div class="title-button-close"></div>
+        </div>
+        <div class="dialog-content">
+            <div class="dialog-message">
+                <p>Các bản ghi bị xóa sẽ không thể khôi phục lại.</p>
+                <span>Bạn thực sự muốn xóa?</span>
+            </div>
+            <div class="dialog-btn">
+                <button tabindex="1" id="btnYes">
+                    Xác nhận
+                </button>
+                <button tabindex="2" id="btnNo">
+                    Hủy
+                </button>
+            </div>
+        </div>
+    </div>
     <!--end pupup dialog-->
     <!--end Content-->
     <!--ember JavaScript-->
     <script src="/js/lib/jquery-3.4.1.min.js"></script>
     <script src="/js/common/common.js"></script>
     <script src="/js/base/base.js"></script>
+    <script src="/js/common/validate.js"></script>
     <script src="/js/page/employee.js"></script>
     <!--end ember JavaScript-->
 </body>

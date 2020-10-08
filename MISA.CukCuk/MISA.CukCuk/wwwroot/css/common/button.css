@@ -20,7 +20,7 @@
         background-color: #ffffff;
     }
 
-.dialog .dialog-title .title-button-close {
+.dialog-title .title-button-close {
     position: absolute;
     right: 0;
     border: 1px solid #ccc;

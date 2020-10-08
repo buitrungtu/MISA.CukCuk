@@ -148,15 +148,15 @@
                 <div class="grid">
                     <div class="toolbar">
                         <button id="btnAdd" title="Thêm"><i class="icon icon-add"></i>Thêm</button>
-                        <button id="btnDuplicate" title="Nhân bản"><i class="icon icon-duplicate"></i>Nhân bản</button>
-                        <button id="btnEdit" title="Sửa"><i class="icon icon-edit"></i>Sửa</button>
-                        <button id="btnDelete" title="Xóa"><i class="icon icon-delete"></i>Xóa</button>
+                        <button id="btnDuplicate" title="Nhân bản"><i class="icon icon-duplicate hiden"></i>Nhân bản</button>
+                        <button id="btnEdit" title="Sửa"><i class="icon icon-edit hiden"></i>Sửa</button>
+                        <button id="btnDelete" title="Xóa"><i class="icon icon-delete hiden"></i>Xóa</button>
                         <button id="btnLoad" title="Nạp"><i class="icon icon-load"></i>Nạp</button>
                         <div class="split"></div>
                         <button id="btnImport" title="Nhập khẩu"><i class="icon icon-import"></i>Nhập khẩu</button>
                         <button id="btnExport" title="Xuất khẩu"><i class="icon icon-export"></i>Xuất khẩu</button>
                         <div class="split"></div>
-                        <button id="btnMerge" title="Gộp khách hàng"><i class="icon icon-merge"></i>Gộp khách hàng</button>
+                        <button id="btnMerge" title="Gộp khách hàng"><i class="icon icon-merge hiden"></i>Gộp khách hàng</button>
                         <div class="split"></div>
                         <button id="btnHelp" title="Giúp"><i class="icon icon-help"></i>Giúp</button>
                     </div>
@@ -164,11 +164,11 @@
                         <table id="tbListData">
                             <thead>
                                 <tr>
-                                    <th id="CustomerCode" fieldName ="customerCode" >Mã khách hàng </th>
+                                    <th id="CustomerCode" fieldName="customerCode">Mã khách hàng </th>
                                     <th id="CustomerName" fieldName="customerName">Tên khách hàng </th>
-                                    <th id="Gender" fieldName="gender">Giới tính </th>
+                                    <th id="Gender" fieldName="genderName">Giới tính </th>
                                     <th id="Birdday" fieldName="birthday" format="date">Ngày sinh </th>
-                                    <th id="Email" fieldName="email"  title="Địa chỉ Email">Email </th>
+                                    <th id="Email" fieldName="email" title="Địa chỉ Email">Email </th>
                                     <th id="Mobile" fieldName="mobile" title="Số điện thoại">SĐT </th>
                                     <th id="Address" fieldName="address" format="address">Địa chỉ </th>
                                     <th id="DebitMoney" fieldName="debitMoney" format="money">Số tiền nợ </th>
@@ -218,21 +218,21 @@
             <div class="col-2">
                 <div class="information-field">
                     <label>Mã khách hàng<span>(*)</span> </label>
-                    <input type="text" tabindex="1" fieldName ="customerCode" required id="txtCustomerCode" />
+                    <input type="text" tabindex="1" fieldName="customerCode" required id="txtCustomerCode" />
                 </div>
                 <div class="information-field">
                     <label class="text-col-2">Tên khách hàng<span>(*)</span> </label>
-                    <input type="text" tabindex="2" fieldName ="customerName"  required id="txtCustomerName" />
+                    <input type="text" tabindex="2" fieldName="customerName" required id="txtCustomerName" />
                 </div>
             </div>
             <div class="col-2">
                 <div class="information-field">
                     <label>Mã thẻ thành viên</label>
-                    <input tabindex="3" fieldName ="memberCode" id="txtMemberCode" />
+                    <input tabindex="3" fieldName="memberCode" id="txtMemberCode" />
                 </div>
                 <div class="information-field">
                     <label class="text-col-2">Hạng thẻ</label>
-                    <select tabindex="4" id="MemberRank" fieldName ="memberRank">
+                    <select tabindex="4" id="MemberRank" fieldName="memberRank">
                         <option value="1">Thường</option>
                         <option value="2">Thân quen</option>
                         <option value="3">VIP</option>
@@ -270,35 +270,35 @@
             <div class="col-2">
                 <div class="information-field">
                     <label>Ngày sinh </label>
-                    <input tabindex="9" fieldName ="birthday" placeholder="dd-mm-yyyy" type="date" id="txtBirdday" />
+                    <input tabindex="9" fieldName="birthday" placeholder="dd-mm-yyyy" type="date" id="txtBirdday" />
                 </div>
             </div>
             <div class="col">
                 <div class="information-field">
                     <label>Tên công ty </label>
-                    <input tabindex="10" fieldName ="companyName" id="txtCompanyName" />
+                    <input tabindex="10" fieldName="companyName" id="txtCompanyName" />
                 </div>
             </div>
             <div class="col-2">
                 <div class="information-field">
                     <label>Mã số thuế </label>
-                    <input tabindex="11" fieldName ="taxCode" id="txtTaxCode" />
+                    <input tabindex="11" fieldName="taxCode" id="txtTaxCode" />
                 </div>
                 <div class="information-field">
                     <label class="text-col-2">Email </label>
-                    <input tabindex="12" fieldName ="email" type="email" id="txtEmail" />
+                    <input tabindex="12" fieldName="email" type="email" id="txtEmail" />
                 </div>
             </div>
             <div class="col">
                 <div class="information-field">
                     <label>Địa chỉ </label>
-                    <input tabindex="13" fieldName ="address" id="txtAddress" />
+                    <input tabindex="13" fieldName="address" id="txtAddress" />
                 </div>
             </div>
             <div class="col">
                 <div class="information-field">
                     <label>Ghi chú </label>
-                    <textarea tabindex="14" fieldName ="note" id="txtNote"></textarea>
+                    <textarea tabindex="14" fieldName="note" id="txtNote"></textarea>
                 </div>
             </div>
         </div>
@@ -313,12 +313,35 @@
             </div>
         </div>
     </div>
+    <div class="dialog-confirm">
+        <div class="dialog-title">
+            <div class="title-text">
+                Xác nhận
+            </div>
+            <div class="title-button-close"></div>
+        </div>
+        <div class="dialog-content">
+            <div class="dialog-message">
+                <p>Các bản ghi bị xóa sẽ không thể khôi phục lại.</p>
+                <span>Bạn thực sự muốn xóa?</span>
+            </div>
+            <div class="dialog-btn">
+                <button tabindex="1" id="btnYes">
+                    Xác nhận
+                </button>
+                <button tabindex="2" id="btnNo">
+                    Hủy
+                </button>
+            </div>
+        </div>
+    </div>
     <!--end pupup dialog-->
     <!--end Content-->
     <!--ember JavaScript-->
     <script src="/js/lib/jquery-3.4.1.min.js"></script>
     <script src="/js/common/common.js"></script>
     <script src="/js/base/base.js"></script>
+    <script src="/js/common/validate.js"></script>
     <script src="/js/page/customer.js"></script>
     <!--end ember JavaScript-->
 </body>

@@ -19,7 +19,8 @@ namespace MISA.CukCuk.Controllers
         public IEnumerable<Customer> Get() //IEnumerable là interface (dạng kiểu mảng) có thể trả về list hoặc mảng 
         {
             // Lấy danh sách customer
-            return Customer.CustomerList; 
+            CustomerAccess cta = new CustomerAccess();
+            return cta.GetData(); 
         }
         
         // GET api/<CustomerController>/5
@@ -27,7 +28,7 @@ namespace MISA.CukCuk.Controllers
         public object Get(string customerCode)
         {
             // lấy thông tin 1 customer thông qua ustomerCode
-            return Customer.CustomerList.Where(x => x.CustomerCode == customerCode).FirstOrDefault();
+            return null;
         }
 
         // POST api/<CustomerController>
@@ -35,14 +36,14 @@ namespace MISA.CukCuk.Controllers
         //POST để thêm
         public bool Post([FromBody] Customer customer)
         {
-            if(customer != null)
-            {
-                // tạo id cho customer mới
-                customer.CustomerID = Guid.NewGuid();
-                // thêm vào list
-                Customer.CustomerList.Add(customer);
-                return true;
-            }
+            //if(customer != null)
+            //{
+            //    // tạo id cho customer mới
+            //    customer.CustomerID = Guid.NewGuid();
+            //    // thêm vào list
+            //    Customer.CustomerList.Add(customer);
+            //    return true;
+            //}
             return false;
         }
 
@@ -51,37 +52,45 @@ namespace MISA.CukCuk.Controllers
         // PUT để sửa
         public bool Put([FromBody] Customer customer)
         {
-            var customerEdit = Customer.CustomerList.Where(x => x.CustomerCode == customer.CustomerCode).FirstOrDefault();
-            if(customerEdit != null)
-            {
-                customerEdit.CustomerName = customer.CustomerName;
-                customerEdit.MemberCode = customer.MemberCode;
-                customerEdit.MemberRank = customer.MemberRank;
-                customerEdit.CustomerType = customer.CustomerType;
-                customerEdit.Mobile = customer.Mobile;
-                customerEdit.Birthday = customer.Birthday;
-                customerEdit.CompanyName = customer.CompanyName;
-                customerEdit.TaxCode = customer.TaxCode;
-                customerEdit.Gender = customer.Gender;
-                customerEdit.DebitMoney = customer.DebitMoney;
-                customerEdit.Email = customer.Email;
-                customerEdit.Address = customer.Address;
-                customerEdit.Note = customer.Note;
-                return true;
-            }
+            //var customerEdit = Customer.CustomerList.Where(x => x.CustomerCode == customer.CustomerCode).FirstOrDefault();
+            //if(customerEdit != null)
+            //{
+            //    customerEdit.CustomerName = customer.CustomerName;
+            //    customerEdit.MemberCode = customer.MemberCode;
+            //    customerEdit.MemberRank = customer.MemberRank;
+            //    customerEdit.CustomerType = customer.CustomerType;
+            //    customerEdit.Mobile = customer.Mobile;
+            //    customerEdit.Birthday = customer.Birthday;
+            //    customerEdit.CompanyName = customer.CompanyName;
+            //    customerEdit.TaxCode = customer.TaxCode;
+            //    customerEdit.Gender = customer.Gender;
+            //    customerEdit.DebitMoney = customer.DebitMoney;
+            //    customerEdit.Email = customer.Email;
+            //    customerEdit.Address = customer.Address;
+            //    customerEdit.Note = customer.Note;
+            //    return true;
+            //}
             return false;
         }
 
         // DELETE api/<CustomerController>/5
-        [HttpDelete("{customerCode}")]
-        public bool Delete(string customerCode)
+        [HttpDelete("{strCustomerCode}")]
+        public bool Delete(string strCustomerCode)
         {
-            var customerDelete = Customer.CustomerList.Where(x => x.CustomerCode == customerCode).FirstOrDefault();
-            if(customerDelete != null)
-            {
-                Customer.CustomerList.Remove(customerDelete);
-                return true;
-            }
+            //string[] arr = strCustomerCode.Split(",");
+            //bool check = true;
+            //foreach (var customerCode in arr)
+            //{
+            //    var customerDelete = Customer.CustomerList.Where(x => x.CustomerCode == customerCode).FirstOrDefault();
+            //    if (customerDelete != null)
+            //    {
+            //        Customer.CustomerList.Remove(customerDelete);
+            //    }
+            //    else
+            //    {
+            //        check = false;
+            //    }
+            //}
             return false;
         }
     }

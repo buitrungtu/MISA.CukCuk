@@ -117,6 +117,60 @@ label span {
     border-bottom-right-radius: 4px;
 }
 
+.dialog-confirm {
+    display: none;
+    position: absolute;
+    top: calc(50% - 75px);
+    left: calc(50% - 200px);
+    width: 400px;
+    height: 150PX;
+    border: 6px solid #0973b9;
+    border-radius: 5px;
+}
+
+    .dialog-confirm .dialog-title {
+        height: 25px;
+        background-color: #0973b9;
+        color: #fff;
+        display: flex;
+    }
+
+    .dialog-confirm .dialog-content {
+        width: 100%;
+        height: calc(100% - 25px);
+        background-color: #fff;
+    }
+
+    .dialog-confirm .dialog-message {
+        width: 100%;
+        height: calc(100% - 50px);
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .dialog-confirm .dialog-btn {
+        width: 100%;
+        display: flex;
+        height: 50px;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+.dialog-btn button {
+    padding: 10px 10px;
+    border: 1px solid #ccc;
+    margin: 0px;
+    cursor: pointer;
+}
+
+    .dialog-btn button:focus {
+        border: 1px solid #0973b9;
+    }
+
+button#btnNo {
+    padding: 10px 25px;
+}
 /*css cho các trường đặc biệt*/
 input#txtBirdday {
     font-size: 15px;

@@ -69,16 +69,24 @@ namespace MISA.CukCuk.Controllers
         }
 
         // DELETE api/<EmployeeController>/5
-        [HttpDelete("{EmployeeCode}")]
-        public bool Delete(string EmployeeCode)
+        [HttpDelete("{strEmployeeCode}")]
+        public bool Delete(string strEmployeeCode)
         {
-            var EmployeeDelete = Employee.EmployeeList.Where(x => x.EmployeeCode == EmployeeCode).FirstOrDefault();
-            if (EmployeeDelete != null)
+            string[] arr = strEmployeeCode.Split(",");
+            bool check = true;
+            foreach (var EmployeeCode in arr)
             {
-                Employee.EmployeeList.Remove(EmployeeDelete);
-                return true;
+                var EmployeeDelete = Employee.EmployeeList.Where(x => x.EmployeeCode == EmployeeCode).FirstOrDefault();
+                if (EmployeeDelete != null)
+                {
+                    Employee.EmployeeList.Remove(EmployeeDelete);
+                }
+                else
+                {
+                    check = false;
+                }
             }
-            return false;
+            return check;          
         }
     }
 }

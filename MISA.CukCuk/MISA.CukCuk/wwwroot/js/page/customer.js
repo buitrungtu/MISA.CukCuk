@@ -37,8 +37,8 @@ class CustomerJS extends BaseJS {
     /**
      * Overide lại hàm saveToDB của base.js
      * Author: Bui Trung Tu (28/9/2020)
-     * @param {object} customer
-     * @param {string} Method
+     * @param {object} customer thông tin khách hàng cần lưu
+     * @param {string} Method phương thức lưu (POST hay PUT)
      */
     saveToDB(customer, Method) {
         var self = this; // form base
@@ -63,19 +63,20 @@ class CustomerJS extends BaseJS {
     /**
      * Overide lại hàm deleteToDB của base.js
      *  Author: Bui Trung Tu (28/9/2020)
-     * @param {string} customerCode
+     * @param {string} customerCodes danh sách mã của các đối tượng cần xóa
      */
-    deleteToDB(customerCode) {
-        console.log("Đã vào đây");
+    deleteToDB(customerCodes) {
+        debugger;
         var self = this;
         $.ajax({
-            url: "/api/customer/" + customerCode,
+            url: "/api/customer/" + customerCodes,
             method: "DELETE",
             async: false
         }).done(function (res) {
             if (res == true) {
                 self.getData();
                 self.loadData();
+                self.btnCloseOnClick();
             } else {
                 alert("Không tìm thấy khách hàng này");
             }
@@ -87,7 +88,7 @@ class CustomerJS extends BaseJS {
     /**
     * Overide lại hàm getObjData của base.js
     * Author: Bui Trung Tu (28/9/2020)
-    * @param {string} objCode
+    * @param {string} objCode mã của đối tượng
     */
     getObjData(objCode) {
         var self = this;
