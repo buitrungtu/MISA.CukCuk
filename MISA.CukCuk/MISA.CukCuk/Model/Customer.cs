@@ -47,36 +47,29 @@ namespace MISA.CukCuk.Model
         /// <summary>
         /// Nhóm khách hàng
         /// </summary>
-        public string CustomerType { get; set; }
+        public int CustomerType { get; set; }
 
         /// <summary>
         /// Giới tính
         /// </summary>
-        private int Gender { get; set; }
-
+        public Gender Gender { get; set; }
         public string GenderName
         {
             get
             {
                 switch (Gender)
                 {
-                    case 0:
+                    case Gender.Female:
                         return "Nữ";
-                    case 1:
+                    case Gender.Male:
                         return "Nam";
-                    case 2:
+                    case Gender.Gay:
                         return "Gay";
-                    case 3:
+                    case Gender.Less:
                         return "Less";
-                    case 4:
-                        return "Khác";
                     default:
-                        return "Lưỡng tính";
+                        return "Không xác định";
                 }
-            }
-            set
-            {
-                Gender = Int32.Parse(value);
             }
         }
 
@@ -108,7 +101,7 @@ namespace MISA.CukCuk.Model
         /// <summary>
         /// Số tiền nợ
         /// </summary>
-        public double DebitMoney { get; set; }
+        public double? DebitAmount { get; set; }
 
 
         /// <summary>

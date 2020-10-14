@@ -7,7 +7,7 @@ class BaseJS {
     constructor() {
         try {
             this.FormType = null;
-            this.deleteObjs = ""; // danh sách mã obj cần xóa
+            this.objID = null;
             this.getData();
             this.initEvents();
             this.loadData();
@@ -48,6 +48,61 @@ class BaseJS {
         })
         // định dạng tiền tệ trực tiếp trên form dialog 
         $("#txtSalary, #txtDebitMoney").keyup(this.formatMoney);
+
+
+        // phân trang
+        $("#pageNext").click(this.PagingNext.bind(this));
+        $("#pagePrev").click(this.PagingPrev.bind(this));
+        $("#pageFirst").click(this.PagingFirst.bind(this));
+        $("#pageLast").click(this.PagingLast.bind(this));
+    }
+    // #endregion
+
+    // #region Phân trang
+    /**
+     * Tiến lên 1 trang
+     * Author: Bùi Trung Tú (8/10/2020)
+     * */
+    PagingNext() {
+        
+        var currentPage = $('#txtPageNumber').val();
+        var currentPage = Number(currentPage) + 1;
+        var record = $('#txbNumberRecord').val();
+        debugger;
+        this.Paging(record,currentPage); // thực hiện tại lớp kế thừa 
+        $("#txtPageNumber").val(currentPage + ''); //cập nhật lại số trang
+    }
+    /**
+     * Lùi lại 1 trang
+     * Author: Bùi Trung Tú (8/10/2020)
+     * */
+    PagingPrev() {
+        var currentPage = $('#txtPageNumber').val();
+        if (currentPage > 0) {
+            var currentPage = $('#txtPageNumber').val();
+            var currentPage = Number(currentPage) - 1;
+            var record = $('#txbNumberRecord').val();
+            this.Paging(record,currentPage); // thực hiện tại lớp kế thừa 
+            $("#txtPageNumber").val(currentPage + ''); //cập nhật lại số trang
+        }
+    }
+    /**
+     * Về trang đầu tiên
+     * Author: Bùi Trung Tú (8/10/2020)
+     * */
+    PagingFirst() {
+        var record = $('#txbNumberRecord').val();
+        this.Paging(record,0); // thực hiện tại lớp kế thừa 
+        $('#txtPageNumber').val("0");
+    }
+    /**
+     * Tới trang cuối cùng
+     * Author: Bùi Trung Tú (8/10/2020)
+     * */
+    PagingLast() {
+        var record = $('#txbNumberRecord').val();
+        this.Paging(record,16); // thực hiện tại lớp kế thừa 
+        $('#txtPageNumber').val("16");
     }
     // #endregion
 
@@ -66,7 +121,7 @@ class BaseJS {
      * (Hàm dựng) Lấy dữ liệu của 1 đối tượng
      * Author: Bui Trung Tu (24/9/2020)
      * */
-    getObjData(objCode) {
+    getObjData(objID) {
         this.Obj = {};
         // Các lớp kế thừa sẽ override lại hàm này
     }
@@ -89,7 +144,9 @@ class BaseJS {
     deleteToDB(objCode) {
         // Các lớp kế thừa sẽ override lại hàm này
     }
+    Paging(record,currentPage) {
 
+    }
     // #endregion
 
     // #region Phương thức chính
@@ -109,25 +166,23 @@ class BaseJS {
                 $.each(fields, function (index, field) {
                     var fieldName = $(field).attr('fieldName');
                     var format = $(field).attr('format');
-                    var value, td;
-                    // UI conventions
+                    var value = obj[fieldName], td;
+                    if (value == null) value = "";
+                    // UI conventions                    
                     switch (format) {
                         case 'money':
-                            value = commonJS.formatMoney(obj[fieldName]);
-                            td = $(`<td class="text-right">` + value + `</td>`);
+                            td = $(`<td class="text-right">` + commonJS.formatMoney(value) + `</td>`);
                             break;
                         case 'date':
-                            value = commonJS.formatDate(obj[fieldName]);
-                            td = $(`<td class="text-center">` + value + `</td>`);
+                            td = $(`<td class="text-center">` + commonJS.formatDate(value) + `</td>`);
                             break;
-                        case 'address':
-                            value = obj[fieldName];
+                        case 'address':                           
                             td = $(`<td title="` + obj[fieldName] + `">` + value + `</td>`);
                             break;
                         default:
-                            value = obj[fieldName];
                             td = $(`<td>` + value + `</td>`);
                     }
+                    $(tr).data('keyID', obj.customerID);
                     $(tr).append(td);
                 })
                 //$(tr).data('objID', obj[Object.keys(obj)[0]]); // lấy ra trường đầu tiên của đối tượng obj
@@ -145,33 +200,38 @@ class BaseJS {
     * */
     btnEditOnClick() {
         try {
-            var self = this;
-            // xác định đối tượng cần edit
-            var objSelected = $('.row-selected');
-            if (objSelected.length == 1) {
-                // lấy customerCode
-                var objCode = objSelected.children()[0].textContent;
-                this.getObjData(objCode); // lấy dữ liệu của đối tượng được chọn (Thực hiện tại các lớp kế thừa)
-                this.showDialogDetail();
-                var fields = $(".dialog-body input,.dialog-body select,.dialog-body textarea");
-                //binding dữ liệu lên form:
-                $.each(fields, function (index, field) {
-                    var fieldName = $(field).attr('fieldName');
-                    if (fieldName == "birthday") {
-                        $(field).val(commonJS.formatDateForInput(self.Obj[fieldName]));
-                    } else if (fieldName == "debitMoney" || fieldName == "salary" ) {
-                        $(field).val(commonJS.formatMoney(self.Obj[fieldName]));
-                    }
-                    else {
-                        $(field).val(self.Obj[fieldName]);
-                    }
-                })
-                // chuyển trạng thái cho nút Save thành edit 
-                self.FormType = "Edit";
-            } else if (true) {
-                alert("Chọn 1 bản ghi thôi bạn ạ");
-            } else {
-                alert("Bạn phải chọn 1 bản ghi");
+            if ($("#btnEdit").hasClass("hiden") == false) {
+                var self = this;
+                // xác định đối tượng cần edit
+                var objSelected = $('.row-selected');
+                if (objSelected.length == 1) {
+                    // lấy customerID
+                    var objID = objSelected.data('keyID');
+                    this.getObjData(objID); // lấy dữ liệu của đối tượng được chọn (Thực hiện tại các lớp kế thừa)
+                    console.log(this.Obj)
+                    this.showDialogDetail();
+                    var fields = $(".dialog-body input,.dialog-body select,.dialog-body textarea");
+                    //binding dữ liệu lên form:
+                    $.each(fields, function (index, field) {
+                        var fieldName = $(field).attr('fieldName');
+                        if (fieldName == "birthday") {
+                            $(field).val(commonJS.formatDateForInput(self.Obj[fieldName]));
+                        } else if (fieldName == "debitAmount" || fieldName == "salary") {
+                            $(field).val(commonJS.formatMoney(self.Obj[fieldName]));
+                        }
+                        else {
+                            if (self.Obj[fieldName] == null) {
+                                self.Obj[fieldName] = "";
+                            }
+                            $(field).val(self.Obj[fieldName]);
+                        }
+                    })
+                    // chuyển trạng thái cho nút Save thành edit 
+                    self.objID = objID;
+                    self.FormType = "Edit";
+                } else {
+                    alert("Chỉ có thể sửa từng bản ghi một");
+                }
             }
         } catch (e) {
             alert("Có lỗi, hãy thử lại");
@@ -179,43 +239,62 @@ class BaseJS {
     }
 
 
-    
+
     /**
      * Xóa 1 đối tượng
      * Author: Bui Trung Tu (25/9/2020)
      * */
     btnDeleteOnClick() {
         try {
-            var seft = this; 
-            var objSelecteds = $('.row-selected');            
-            // kiểm tra đối tượng mà người dùng chọn
-            if (objSelecteds.length > 0) {
+            // nếu nút không bị ẩn (đã có ít nhất 1 dòng được chọn)
+            if ($("#btnDelete").hasClass('hiden') == false) {
+                //  Hiện form yêu cầu xác nhận lần 2
                 $('.dialog-modal').show();
                 $('.dialog-confirm').show();
                 $('.dialog-confirm #btnYes').focus();
-                $.each(objSelecteds, function (i, objSelected) {
-                    var objCode = objSelected.children[0].textContent;
-                    seft.deleteObjs += "," + objCode; // gom tất cả mã cần xóa thành 1 chuỗi
-                })
-                seft.deleteObjs = seft.deleteObjs.substring(1); // xóa ký tự đầu chuỗi (là dấu ',' thừa)
-                //  Hiện form yêu cầu xác nhận lần 2
-            } else {
-                alert("Bạn phải chọn đối tượng muốn xóa!");
             }
         } catch (e) {
             alert("Có lỗi xảy ra, hãy thử lại");
-        }        
+        }
     }
     /**
      * Thực hiện việc xóa đối tượng
      * */
     DeleteObjs() {
+        // xóa 1
         try {
-            this.deleteToDB(this.deleteObjs);// xóa đối tượng (Thực hiện tại các lớp kế thừa)
+            debugger;
+            var objSelecteds = $('.row-selected');
+            if (objSelecteds.length == 1) {
+                debugger;
+                this.deleteToDB(objSelecteds.data('keyID'));
+            }
         } catch (e) {
             alert("Có lỗi xảy ra, hãy thử lại");
-        }        
+            console.log(e);
+        }
+
+
+
+
+        //TODO: Gặp vấn đề trong vòng lặp, phần tử con không gọi được thuộc tính data("keyID")
+        // xóa nhiều
+        //try {
+        //    var objSelecteds = $('.row-selected');
+        //    var deleteObjs = "";
+        //    $.each(objSelecteds, function (i, objSelected) {
+        //        var objID = objSelected.data("keyID");
+        //        deleteObjs += "," + objID; // gom tất cả mã cần xóa thành 1 chuỗi
+        //    })
+        //    console.log(deleteObjs);
+        //    deleteObjs = deleteObjs.substring(1); // xóa ký tự đầu chuỗi (là dấu ',' thừa)
+        //    this.deleteToDB(deleteObjs);// xóa đối tượng (Thực hiện tại các lớp kế thừa)
+        //} catch (e) {
+        //    alert("Có lỗi xảy ra, hãy thử lại");
+        //}
     }
+
+
     /**
     * Lưu dữ liệu
     * Author: Bui Trung Tu (24/9/2020)
@@ -258,7 +337,7 @@ class BaseJS {
         } catch (e) {
             alert("Lưu dữ liệu thất bại");
         }
-        
+
     }
     /**
      * Nhân đôi đối tượng
@@ -266,25 +345,25 @@ class BaseJS {
      * */
     btnDuplicate() {
         try {
-            // xác định đối tượng cần edit
-            var objSelected = $('.row-selected');
-            if (objSelected.length > 0) {
-                var objCode = objSelected.children()[0].textContent;
-                this.getObjData(objCode);
-                this.saveToDB(this.Obj, "POST");
-            } else {
-                alert("Bạn phải chọn 1 bản ghi để thực hiện chức năng này");
+            if ($('#btnDuplicate').hasClass('hiden') == false) {
+                // xác định đối tượng cần edit
+                var objSelected = $('.row-selected');
+                if (objSelected.length > 0) {
+                    var objCode = objSelected.children()[0].textContent;
+                    this.getObjData(objCode);
+                    this.saveToDB(this.Obj, "POST");
+                }
             }
         } catch (e) {
             alert("Có lỗi, hãy thử lại");
         }
-        
+
     }
     // #endregion
 
     // #region Phương thức phụ
 
-   
+
     /**
     * Load lại dữ liệu
     * Author: Bùi Trung Tú
@@ -354,7 +433,15 @@ class BaseJS {
             $(this).addClass("row-selected");
             $(this).siblings().removeClass("row-selected");
         }
-       
+        // check để bỏ ẩn các nút cần lựa chọn đối tượng trước khi thực hiện
+        if ($('table#tbListData tbody').children().hasClass("row-selected")) {
+            $('.grid .toolbar').children().removeClass('hiden');
+        } else {
+            $('#btnDuplicate').addClass('hiden');
+            $('#btnEdit').addClass('hiden');
+            $('#btnDelete').addClass('hiden');
+            $('#btnMerge').addClass('hiden');
+        }
     }
 
     /**

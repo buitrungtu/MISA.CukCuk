@@ -7,150 +7,6 @@ namespace MISA.CukCuk.Model
 {
     public class Employee
     {
-        public static List<Employee> EmployeeList = new List<Employee>(){
-            new Employee()
-            {
-                EmployeeCode = "NV001",
-                EmployeeName = "Nguyễn Văn Mạnh",             
-                Mobile = "0977340334",
-                Birthday = new DateTime(1989,02,15),                
-                Email = "manhnv@gmail.com",
-                Gender="Nam",               
-                Address = "Duy Tân, Cầu Giấy, Hà Nội",
-                PositionName = "Giám đốc",
-                DepartmentName = "Đào tạo",
-                Salary = 150000000,
-                WorkStatus = "Đang làm việc"
-
-            },
-            new Employee()
-            {
-                EmployeeCode = "NV002",
-                EmployeeName = "Lê Văn Thắng",           
-                Mobile = "0971203341",
-                Birthday = new DateTime(1993,11,11),
-                Email = "thanglv@gmail.com",
-                Gender="Nam",
-                Address = "Hoàng Quốc Việt, Cầu Giấy, Hà Nội",
-                PositionName = "Nhân viên",
-                DepartmentName = "Sản xuất",
-                Salary = 15000000,
-                WorkStatus = "Đang làm việc"
-            },
-            new Employee()
-            {
-                EmployeeCode = "NV003",
-                EmployeeName = "Nguyễn Thị Thu Hà",               
-                Mobile = "0912213033",
-                Birthday = new DateTime(1988,12,05),               
-                Email = "hakhan7299@gmail.com",
-                Gender="Nữ",             
-                Address = "Tân Lập, Đan Phượng, Hà Nội",
-                PositionName = "Nhân viên",
-                DepartmentName = "Sản xuất",
-                Salary = 15000000,
-                WorkStatus = "Đang làm việc"
-            },
-            new Employee()
-            {
-                EmployeeCode = "NV004",
-                EmployeeName = "Phan Tấn Trung",             
-                Mobile = "0977340111",
-                Birthday = new DateTime(1978,06,07),             
-                Email = "chubethongminh@gmail.com",
-                Gender="Nam",
-                Address = "Minh Khai, Bắc Từ Liêm, Hà Nội",
-                PositionName = "Nhân viên",
-                DepartmentName = "Đào tạo",
-                Salary = 15000000,
-                WorkStatus = "Đang làm việc"
-            },
-            new Employee()
-            {
-                EmployeeCode = "NV005",
-                EmployeeName = "Bùi Thị Trà My",           
-                Mobile = "0977342544",
-                Birthday = new DateTime(1998,02,07),           
-                Email = "honghiquan@gmail.com",
-                Gender="Nữ",            
-                Address = "Phú Yên, An Lão, Hải Phòng",
-                  PositionName = "Nhân viên",
-                DepartmentName = "Sản xuất",
-                Salary = 15000000,
-                WorkStatus = "Đang làm việc"
-            },
-            new Employee()
-            {
-                EmployeeCode = "NV006",
-                EmployeeName = "Đàm Thế Phong",             
-                Mobile = "0971230334",
-                Birthday = new DateTime(1997,10,11),
-                Email = "hoangkyanh@gmail.com",
-                Gender="Nam",
-                Address = "Thượng Cát, Bắc Từ Liêm, Hà Nội",
-                  PositionName = "Nhân viên",
-                DepartmentName = "Đào tạo",
-                Salary = 15000000,
-                WorkStatus = "Đang làm việc"
-            },
-            new Employee()
-            {
-                EmployeeCode = "NV007",
-                EmployeeName = "Hoàng Nghĩa Long",          
-                Mobile = "0977343695",
-                Birthday = new DateTime(1995,11,21),
-                Email = "ironmonkey@gmail.com",
-                Gender="Nam",
-                Address = "Mỹ Đình, Nam Từ Liêm, Hà Nội",
-                PositionName = "Nhân viên",
-                DepartmentName = "Sản xuất",
-                Salary = 15000000,
-                WorkStatus = "Đã nghỉ việc"
-            },
-            new Employee()
-            {
-                EmployeeCode = "NV008",
-                EmployeeName = "Nguyễn Duy Hiếu",
-                Mobile = "0977323654",
-                Birthday = new DateTime(1998,04,20),
-                Email = "nguyensim@gmail.com",
-                Gender="Nam",
-                Address = "Mỹ Đình, Nam Từ Liêm, Hà Nội",
-                PositionName = "Nhân viên",
-                DepartmentName = "Sản xuất",
-                Salary = 15000000,
-                WorkStatus = "Đang làm việc"
-            },
-            new Employee()
-            {
-                EmployeeCode = "NV009",
-                EmployeeName = "Lê Thế Nam",            
-                Mobile = "0977132334",
-                Birthday = new DateTime(1992,03,13),           
-                Email = "wandotky@gmail.com",
-                Gender="Nam",
-                Address = "Hoài Đức A, Hoài Đức, Hà Nội",
-                PositionName = "Nhân viên",
-                DepartmentName = "Đào tạo",
-                Salary = 15000000,
-                WorkStatus = "Đang làm việc"
-            },
-            new Employee()
-            {
-                EmployeeCode = "NV010",
-                EmployeeName = "Hoa Tất Thắng",          
-                Mobile = "0977346321",
-                Birthday = new DateTime(1991,08,06),            
-                Email = "hoatat@gmail.com",
-                Gender="Nam",
-                Address = "Tây Tựu, Bắc Từ Liêm, Hà Nội",
-                PositionName = "Nhân viên",
-                DepartmentName = "Đào tạo",
-                Salary = 15000000,
-                WorkStatus = "Đang làm việc"
-            }
-        };
-
         #region "Constructor"
         /// <summary>
         /// Hàm khởi tạo
@@ -165,7 +21,7 @@ namespace MISA.CukCuk.Model
         /// <summary>
         /// Khóa chính (ID nhân viên)
         /// </summary>
-        public Guid EmployeeID { get; set; }
+        public Guid? EmployeeID { get; set; }
 
         /// <summary>
         /// Mã khách hàng
@@ -180,8 +36,26 @@ namespace MISA.CukCuk.Model
         /// <summary>
         /// Giới tính
         /// </summary>
-        public string Gender { get; set; }
-
+        public Gender Gender { get; set; }
+        public string GenderName
+        {
+            get
+            {
+                switch(Gender)
+                {
+                    case Gender.Female:
+                        return "Nữ";
+                    case Gender.Male:
+                        return "Nam";
+                    case Gender.Gay:
+                        return "Gay";
+                    case Gender.Less:
+                        return "Less";
+                    default:
+                        return "Không xác định";
+                }
+            }            
+        }
         /// <summary>
         /// Điện thoại di động
         /// </summary>
@@ -221,14 +95,33 @@ namespace MISA.CukCuk.Model
         /// <summary>
         /// Tình trạng công việc
         /// </summary>
-        public string WorkStatus { get; set; }
-
+        public WorkStatus WorkStatus { get; set; }
+        public string WorkStatusName
+        {
+            get
+            {
+                switch(WorkStatus){
+                    case WorkStatus.Working:
+                        return "Đang làm việc";
+                    case WorkStatus.Stopped:
+                        return "Đã nghỉ việc";
+                    case WorkStatus.Waiting:
+                        return "Đang thử việc";
+                    case WorkStatus.Childbirth:
+                        return "Đang nghỉ sinh sản";
+                    case WorkStatus.Foreign:
+                        return "Đang công tác nước ngoài";
+                    default:
+                        return "Không xác định";
+                }
+            }
+        }
         /// <summary>
         /// Ghi chú
         /// </summary>
         public string Note { get; set; }
-        #endregion
-        #region "Metod - Function"
-        #endregion
+#endregion
+#region "Metod - Function"
+#endregion
     }
 }

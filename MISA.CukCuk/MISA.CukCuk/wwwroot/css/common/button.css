@@ -15,7 +15,7 @@
     padding-right: 8px;
 }
 
-    .toolbar button:hover {
+    .toolbar button:hover:not(.hiden) { /*tất cả các nút đều có hiệu ứng hover trừ nút có class hiden*/
         border-color: #1b8bd4;
         background-color: #ffffff;
     }

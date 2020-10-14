@@ -19,7 +19,7 @@ class CustomerJS extends BaseJS {
         try {
             var self = this;
             $.ajax({
-                url: "/api/employee",
+                url: "/api/employeeApi",
                 method: "GET",
                 contentType: "application/json",
                 dataType: "json",
@@ -44,7 +44,7 @@ class CustomerJS extends BaseJS {
         var self = this;
         // lấy dữ liệu từ CSDL của đối tượng customer thông qua mã
         $.ajax({
-            url: "/api/employee/" + objCode,
+            url: "/api/employeeApi/" + objCode,
             method: "GET",
             contentType: "application/json",
             dataType: "json",
@@ -66,9 +66,8 @@ class CustomerJS extends BaseJS {
      */
     saveToDB(employee, Method) {
         var self = this;
-        debugger;
         $.ajax({
-            url: "/api/employee",
+            url: "/api/employeeApi",
             method: Method,
             data: JSON.stringify(employee),
             contentType: "application/json",
@@ -94,7 +93,7 @@ class CustomerJS extends BaseJS {
     deleteToDB(employeeCodes) {
         var self = this;
         $.ajax({
-            url: "/api/employee/" + employeeCodes,
+            url: "/api/employeeApi/" + employeeCodes,
             method: "DELETE"
         }).done(function (res) {
             if (res == true) {

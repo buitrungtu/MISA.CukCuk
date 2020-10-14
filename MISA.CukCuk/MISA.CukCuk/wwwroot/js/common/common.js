@@ -44,7 +44,8 @@ var commonJS = {
       * Author: Bui Trung Tu (23/9/2020)
       * @param {number} money
       */
-     formatMoney(money) {
+    formatMoney(money) {
+        if (money == null) return 0;
         return money.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
     },
 

@@ -11,15 +11,32 @@ class CustomerJS extends BaseJS {
         super();
     }
 
+    Paging(record,currentPage) {
+        var self = this;
+        $.ajax({
+            url: "/api/customerApi/" + record + "/" + currentPage,
+            method: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            async: false
+        }).done(function (data) {
+            self.Data = data;
+            self.loadData();
+        }).fail(function () {
+            alert("Có lỗi khi lấy dữ liệu");
+        })
+    }
+
+
     /**
      * Overide lại hàm getData của base.js
      * Author: Bui Trung Tu (25/9/2020)
      * */
-    getData() {
+    getData() {      
         try {
             var self = this;
             $.ajax({
-                url: "/api/customer",
+                url: "/api/customerApi",
                 method: "GET",
                 contentType: "application/json",
                 dataType: "json",
@@ -30,7 +47,6 @@ class CustomerJS extends BaseJS {
                 alert("Có lỗi khi lấy dữ liệu");
             })
         } catch (e) {
-
         }
     }
 
@@ -42,8 +58,9 @@ class CustomerJS extends BaseJS {
      */
     saveToDB(customer, Method) {
         var self = this; // form base
+        customer.customerID = self.objID;
         $.ajax({
-            url: "/api/customer",
+            url: "/api/customerApi",
             method: Method,
             data: JSON.stringify(customer),
             contentType: "application/json",
@@ -52,8 +69,9 @@ class CustomerJS extends BaseJS {
         }).done(function (res) {
             if (res) { // lưu thành công
                 self.btnCloseOnClick();
-                self.getData();
-                self.loadData();
+                //self.getData();
+                //self.loadData();
+                $("table#tbListData thead th").load(location.href + "table#tbListData thead th>*");
             }
         }).fail(function () {
             alert("Lỗi khi lưu xuống DB");
@@ -69,7 +87,7 @@ class CustomerJS extends BaseJS {
         debugger;
         var self = this;
         $.ajax({
-            url: "/api/customer/" + customerCodes,
+            url: "/api/customerApi/" + customerCodes,
             method: "DELETE",
             async: false
         }).done(function (res) {
@@ -90,16 +108,18 @@ class CustomerJS extends BaseJS {
     * Author: Bui Trung Tu (28/9/2020)
     * @param {string} objCode mã của đối tượng
     */
-    getObjData(objCode) {
+    getObjData(customerID) {
         var self = this;
+        debugger;
         // lấy dữ liệu từ CSDL của đối tượng customer thông qua mã
         $.ajax({
-            url: "/api/customer/" + objCode,
+            url: "/api/customerApi/" + customerID,
             method: "GET",
             contentType: "application/json",
             dataType: "json",
             async: false
         }).done(function (customer) {
+            console.log(customer);
             if (customer) {
                 self.Obj = customer; // truyền lại dữ liệu của đối tượng sang cho base.js xử lý tiếp
             }
