@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MISA.Bussiness.Interfaces;
 using MISA.CukCuk.Model;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -13,13 +14,20 @@ namespace MISA.CukCuk.Api
     [ApiController]
     public class EmployeeApi : ControllerBase
     {
-        EmployeeAccess employeeAccess = new EmployeeAccess();
+        IEmployeeService _employeeService;
+        public EmployeeApi(IEmployeeService employeeService)
+        {
+            _employeeService = employeeService;
+        }
         // GET: api/<EmployeeController>
         [HttpGet]
-        public IEnumerable<Employee> Get() //IEnumerable là interface (dạng kiểu mảng) có thể trả về list hoặc mảng 
+        public IActionResult Get()
         {
-            // Lấy danh sách Employee
-            return employeeAccess.GetData(30, 0);
+            var employees = _employeeService.Get();
+            if (employees.Count() > 0)
+                return Ok(employees);
+            else
+                return NoContent();
         }
 
         // GET api/<EmployeeController>/5

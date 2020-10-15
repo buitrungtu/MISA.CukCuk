@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MISA.Bussiness.Interfaces;
 using MISA.CukCuk.Model;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -13,7 +14,11 @@ namespace MISA.CukCuk.Api
     [ApiController]
     public class CustomerApi : ControllerBase
     {
-        CustomerAccess customerAccess = new CustomerAccess();
+        ICustomerService _customerService;
+        public CustomerApi(ICustomerService customerService)
+        {
+            _customerService = customerService;
+        }
         // GET: api/<CustomerController>
 
         /// <summary>
@@ -22,10 +27,13 @@ namespace MISA.CukCuk.Api
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IEnumerable<Customer> Get() //IEnumerable là interface (dạng kiểu mảng) có thể trả về list hoặc mảng 
+        public IActionResult Get()
         {
-            // Lấy danh sách customer
-            return customerAccess.GetData(30, 0);
+            var customers = _customerService.Get();
+            if (customers.Count() > 0)
+                return Ok(customers);
+            else
+                return NoContent();
         }
         /// <summary>
         /// Lấy dữ liệu có phân trang
@@ -35,9 +43,13 @@ namespace MISA.CukCuk.Api
         /// <param name="page">Trang muốn lấy (Số bản ghi bỏ qua) </param>
         /// <returns></returns>
         [HttpGet("{record}/{page}")]
-        public IEnumerable<Customer> GetData(int record, int page)
+        public IActionResult GetData(int record, int page)
         {
-            return customerAccess.GetData(record, record * page);
+            var customers = _customerService.Get();
+            if (customers.Count() > 0)
+                return Ok(customers);
+            else
+                return NoContent();
         }
 
         /// <summary>
@@ -47,11 +59,12 @@ namespace MISA.CukCuk.Api
         /// <param name="customerID">ID khách hàng trong DB</param>
         /// <returns></returns>
         //GET api/<CustomerController>/5
-        [HttpGet("{customerID}")]
-        public object Get(string customerID)
-        {
-            return customerAccess.GetCustomerByID(customerID);
-        }
+
+        //[HttpGet("{customerID}")]
+        //public object Get(string customerID)
+        //{
+        //    return customerAccess.GetCustomerByID(customerID);
+        //}
 
         /// <summary>
         /// Thêm một Customer
@@ -60,16 +73,16 @@ namespace MISA.CukCuk.Api
         /// <param name="customer">Thông tin Customer thêm</param>
         /// <returns></returns>
         // POST api/<CustomerController>
-        [HttpPost]
-        public bool Post([FromBody] Customer customer)
-        {
-            if (customer != null)
-            {
-                // kiểm tra thêm thông tin nếu cần
-                return customerAccess.InsertCustomer(customer);
-            }
-            return false;
-        }
+        //[HttpPost]
+        //public bool Post([FromBody] Customer customer)
+        //{
+        //    if (customer != null)
+        //    {
+        //        // kiểm tra thêm thông tin nếu cần
+        //        return customerAccess.InsertCustomer(customer);
+        //    }
+        //    return false;
+        //}
 
         /// <summary>
         /// Sửa thông tin Customer
@@ -78,10 +91,10 @@ namespace MISA.CukCuk.Api
         /// <param name="customer">Thông tin Customer sửa</param>
         /// <returns></returns>
         // PUT api/<CustomerController>/5
-        public bool Put([FromBody] Customer customer)
-        {
-            return customerAccess.UpdateCustomer(customer);
-        }
+        //public bool Put([FromBody] Customer customer)
+        //{
+        //    return customerAccess.UpdateCustomer(customer);
+        //}
 
         /// <summary>
         /// Xóa Customer
@@ -90,19 +103,19 @@ namespace MISA.CukCuk.Api
         /// <param name="strCustomerID">Chuỗi các ID customer cần xóa</param>
         /// <returns></returns>
         // DELETE api/<CustomerController>/5
-        [HttpDelete("{strCustomerID}")]
-        public bool Delete(string strCustomerID)
-        {
-            string[] arr = strCustomerID.Split(",");
-            bool check = true;
-            foreach (var customerCode in arr)
-            {
-                if (customerAccess.DeleteCustomer(customerCode) == false)
-                {
-                    check = false;
-                }
-            }
-            return check;
-        }
+        //[HttpDelete("{strCustomerID}")]
+        //public bool Delete(string strCustomerID)
+        //{
+        //    string[] arr = strCustomerID.Split(",");
+        //    bool check = true;
+        //    foreach (var customerCode in arr)
+        //    {
+        //        if (customerAccess.DeleteCustomer(customerCode) == false)
+        //        {
+        //            check = false;
+        //        }
+        //    }
+        //    return check;
+        //}
     }
 }

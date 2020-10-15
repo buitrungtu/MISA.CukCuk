@@ -22,5 +22,10 @@
     <None Include="wwwroot\content\images\SMS_Menu.svg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MISA.Bussiness\MISA.Bussiness.csproj" />
+    <ProjectReference Include="..\MISA.Common\MISA.Common.csproj" />
+  </ItemGroup>
+
 
 </Project>
