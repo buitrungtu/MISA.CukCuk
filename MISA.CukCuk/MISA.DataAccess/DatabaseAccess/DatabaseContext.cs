@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MISA.DataAccess.DatabaseAccess
 {
-    public class DatabaseContext<T>: IDisposable, IDatabaseContext<T>
+    public class DatabaseContext<T>: IDisposable, IBaseRepository<T>
     {
         readonly string _connectionString = "server=35.194.166.58;port=3306;user=nvmanh;password=12345678@Abc;database=MISACukCuk_F09_BTTu;Character Set=utf8";
         MySqlConnection _sqlConnection;

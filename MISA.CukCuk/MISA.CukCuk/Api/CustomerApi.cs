@@ -14,17 +14,16 @@ namespace MISA.CukCuk.Api
     [ApiController]
     public class CustomerApi : ControllerBase
     {
-        ICustomerService _customerService;
-        public CustomerApi(ICustomerService customerService)
+        IBaseService<Customer> _customerService;
+        public CustomerApi(IBaseService<Customer> customerService)
         {
             _customerService = customerService;
         }
-        // GET: api/<CustomerController>
 
         /// <summary>
         /// Lấy dữ liệu của Customer (30 bản ghi đầu tiên)
-        /// Author: Bui Trung Tu (12/10/2020)
         /// </summary>
+        /// Author: Bui Trung Tu (15/10/2020)
         /// <returns></returns>
         [HttpGet]
         public IActionResult Get()
@@ -52,70 +51,5 @@ namespace MISA.CukCuk.Api
                 return NoContent();
         }
 
-        /// <summary>
-        /// Lấy dữ liệu của 1 customer
-        /// Author: Bui Trung Tu (12/10/2020)
-        /// </summary>
-        /// <param name="customerID">ID khách hàng trong DB</param>
-        /// <returns></returns>
-        //GET api/<CustomerController>/5
-
-        //[HttpGet("{customerID}")]
-        //public object Get(string customerID)
-        //{
-        //    return customerAccess.GetCustomerByID(customerID);
-        //}
-
-        /// <summary>
-        /// Thêm một Customer
-        /// Author: Bui Trung Tu (12/10/2020)
-        /// </summary>
-        /// <param name="customer">Thông tin Customer thêm</param>
-        /// <returns></returns>
-        // POST api/<CustomerController>
-        //[HttpPost]
-        //public bool Post([FromBody] Customer customer)
-        //{
-        //    if (customer != null)
-        //    {
-        //        // kiểm tra thêm thông tin nếu cần
-        //        return customerAccess.InsertCustomer(customer);
-        //    }
-        //    return false;
-        //}
-
-        /// <summary>
-        /// Sửa thông tin Customer
-        /// Author: Bui Trung Tu (12/10/2020)
-        /// </summary>
-        /// <param name="customer">Thông tin Customer sửa</param>
-        /// <returns></returns>
-        // PUT api/<CustomerController>/5
-        //public bool Put([FromBody] Customer customer)
-        //{
-        //    return customerAccess.UpdateCustomer(customer);
-        //}
-
-        /// <summary>
-        /// Xóa Customer
-        /// Author: Bui Trung Tu (12/10/2020)
-        /// </summary>
-        /// <param name="strCustomerID">Chuỗi các ID customer cần xóa</param>
-        /// <returns></returns>
-        // DELETE api/<CustomerController>/5
-        //[HttpDelete("{strCustomerID}")]
-        //public bool Delete(string strCustomerID)
-        //{
-        //    string[] arr = strCustomerID.Split(",");
-        //    bool check = true;
-        //    foreach (var customerCode in arr)
-        //    {
-        //        if (customerAccess.DeleteCustomer(customerCode) == false)
-        //        {
-        //            check = false;
-        //        }
-        //    }
-        //    return check;
-        //}
     }
 }

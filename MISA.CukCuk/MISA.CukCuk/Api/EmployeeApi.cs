@@ -14,12 +14,17 @@ namespace MISA.CukCuk.Api
     [ApiController]
     public class EmployeeApi : ControllerBase
     {
-        IEmployeeService _employeeService;
-        public EmployeeApi(IEmployeeService employeeService)
+        IBaseService<Employee> _employeeService;
+        public EmployeeApi(IBaseService<Employee> employeeService)
         {
             _employeeService = employeeService;
         }
-        // GET: api/<EmployeeController>
+
+        /// <summary>
+        /// Lấy danh sách nhân viên
+        /// </summary>
+        /// Author: Bui Trung Tu (15/10/2020)
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Get()
         {

@@ -2,47 +2,44 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MISA.Bussiness.Interfaces
+namespace MISA.DataAccess.Interface
 {
-    public interface IBaseService<T>
+    public interface IBaseRepository<T>
     {
+        
         /// <summary>
         /// Lấy dữ liệu
         /// </summary>
-        /// Author: Bui Trung Tu (15/10/2020)
+        /// Author: BTTu (15/10/2020)
         /// <returns></returns>
         IEnumerable<T> Get();
-
         /// <summary>
-        /// Lấy dữ liệu của đối tượng
+        /// Lấy dữ liệu của 1 đối tượng
         /// </summary>
-        /// <param name="objId">ID của T</param>
-        /// Author: Bui Trung Tu (15/10/2020)
+        /// <param name="objID">ID của T</param>
+        /// Author: BTTu (15/10/2020)
         /// <returns></returns>
-        T GetById(Guid pbjId);
-
+        T GetById(Guid objID);
         /// <summary>
-        /// Thêm 1 đối tượng
+        /// Thêm mới 1 đối tượng
         /// </summary>
         /// <param name="obj">T</param>
-        /// Author: Bui Trung Tu (15/10/2020)
+        /// Author: BTTu (15/10/2020)
         /// <returns></returns>
         int Insert(T obj);
-
         /// <summary>
-        /// Sửa dữ liệu
+        /// Sửa dữ liệu 1 đối tượng
         /// </summary>
         /// <param name="obj">T</param>
-        /// Author: Bui Trung Tu (15/10/2020)
+        /// Author: BTTu (15/10/2020)
         /// <returns></returns>
         int Update(T obj);
-
         /// <summary>
-        /// Xóa dữ liệu
+        /// Xóa 1 đối tượng
         /// </summary>
-        /// <param name="objId">ID của T</param>
-        /// Author: Bui Trung Tu (15/10/2020)
+        /// <param name="objID">ID của T</param>
+        /// Author: BTTu (15/10/2020)
         /// <returns></returns>
-        int Delete(Guid objId);
+        int Delete(Guid objID);
     }
 }

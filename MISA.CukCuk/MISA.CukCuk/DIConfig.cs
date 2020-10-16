@@ -15,11 +15,12 @@ namespace MISA.CukCuk
     {
         public static void InjectionConfig(IServiceCollection services)
         {
-            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-            services.AddScoped<IEmployeeService, EmployeeService>();
-            services.AddScoped<ICustomerRepository, CustomerRepository>();
-            services.AddScoped<ICustomerService, CustomerService>();
-            services.AddScoped(typeof(IDatabaseContext<>), typeof(DatabaseContext<>));
+            //config cho service
+            services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
+            //config cho Repository
+            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            //config cho Database
+            services.AddScoped(typeof(IBaseRepository<>), typeof(DatabaseContext<>));
         }
     }
 }

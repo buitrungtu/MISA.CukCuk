@@ -1,5 +1,4 @@
 ﻿using MISA.Bussiness.Interfaces;
-using MISA.CukCuk.Model;
 using MISA.DataAccess.Interface;
 using System;
 using System.Collections.Generic;
@@ -7,11 +6,11 @@ using System.Text;
 
 namespace MISA.Bussiness.Service
 {
-    public class CustomerService : ICustomerService
+    public class BaseService<T> : IBaseService<T>
     {
-        ICustomerRepository _customerRepository;
-       
-        public CustomerService(ICustomerRepository customerRepository)
+        IBaseRepository<T> _customerRepository;
+
+        public BaseService(IBaseRepository<T> customerRepository)
         {
             _customerRepository = customerRepository;
         }
@@ -20,22 +19,22 @@ namespace MISA.Bussiness.Service
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Customer> Get()
+        public IEnumerable<T> Get()
         {
             return _customerRepository.Get();
         }
 
-        public Customer GetById(Guid customerId)
+        public T GetById(Guid customerId)
         {
             throw new NotImplementedException();
         }
 
-        public int Insert(Customer customer)
+        public int Insert(T customer)
         {
             throw new NotImplementedException();
         }
 
-        public int Update(Customer customer)
+        public int Update(T customer)
         {
             throw new NotImplementedException();
         }
