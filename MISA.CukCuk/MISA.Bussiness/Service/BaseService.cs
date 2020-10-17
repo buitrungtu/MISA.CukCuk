@@ -1,4 +1,5 @@
 ﻿using MISA.Bussiness.Interfaces;
+using MISA.Common.Model;
 using MISA.DataAccess.Interface;
 using System;
 using System.Collections.Generic;
@@ -8,35 +9,68 @@ namespace MISA.Bussiness.Service
 {
     public class BaseService<T> : IBaseService<T>
     {
-        IBaseRepository<T> _customerRepository;
+        IBaseRepository<T> _baseRepository;
+        protected List<string> validateErrorResponseMsg = new List<string>();
 
         public BaseService(IBaseRepository<T> customerRepository)
         {
-            _customerRepository = customerRepository;
+            _baseRepository = customerRepository;
         }
-        public int Delete(Guid id)
+        public ServiceResponse Delete(Guid objId)
         {
-            throw new NotImplementedException();
+            var serviceResponse = new ServiceResponse();
+            serviceResponse.Success = true;
+            serviceResponse.Msg.Add("Thành công");
+            serviceResponse.Data = _baseRepository.Delete(objId);
+            return serviceResponse;
         }
 
         public IEnumerable<T> Get()
         {
-            return _customerRepository.Get();
+            return _baseRepository.Get();
         }
 
-        public T GetById(Guid customerId)
+        public T GetById(object objId)
         {
-            throw new NotImplementedException();
+            return _baseRepository.GetById(objId);
         }
 
-        public int Insert(T customer)
+        public ServiceResponse Insert(T obj)
         {
-            throw new NotImplementedException();
+            var serviceResponse = new ServiceResponse();
+            if (Validate(obj) == true)
+            {
+                serviceResponse.Success = true;
+                serviceResponse.Msg.Add("Thành công");
+                serviceResponse.Data = _baseRepository.Insert(obj);
+            }
+            else
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Msg = validateErrorResponseMsg;
+            }
+            return serviceResponse;
         }
 
-        public int Update(T customer)
+        public ServiceResponse Update(T obj)
         {
-            throw new NotImplementedException();
+            var serviceResponse = new ServiceResponse();
+            if (Validate(obj) == true)
+            {
+                serviceResponse.Success = true;
+                serviceResponse.Msg.Add("Thành công");
+                serviceResponse.Data = _baseRepository.Update(obj);
+            }
+            else
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Msg = validateErrorResponseMsg;
+            }
+            return serviceResponse;
+        }
+        protected virtual bool Validate(T entity)
+        {
+            return true;
         }
     }
 }

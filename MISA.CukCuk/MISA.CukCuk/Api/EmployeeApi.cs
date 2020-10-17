@@ -12,61 +12,12 @@ namespace MISA.CukCuk.Api
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmployeeApi : ControllerBase
+    public class EmployeeApi : BaseApi<Employee>
     {
         IBaseService<Employee> _employeeService;
-        public EmployeeApi(IBaseService<Employee> employeeService)
+        public EmployeeApi(IBaseService<Employee> employeeService):base(employeeService)
         {
             _employeeService = employeeService;
-        }
-
-        /// <summary>
-        /// Lấy danh sách nhân viên
-        /// </summary>
-        /// Author: Bui Trung Tu (15/10/2020)
-        /// <returns></returns>
-        [HttpGet]
-        public IActionResult Get()
-        {
-            var employees = _employeeService.Get();
-            if (employees.Count() > 0)
-                return Ok(employees);
-            else
-                return NoContent();
-        }
-
-        // GET api/<EmployeeController>/5
-        [HttpGet("{EmployeeCode}")]
-        public object Get(string EmployeeCode)
-        {
-            // lấy thông tin 1 Employee thông qua ustomerCode
-            return null;
-        }
-
-        // POST api/<EmployeeController>
-        [HttpPost]
-        //POST để thêm
-        public bool Post([FromBody] Employee Employee)
-        {
-
-            return false;
-        }
-
-        // PUT api/<EmployeeController>/5
-        //[HttpPut("{EmployeeCode}")]
-        // PUT để sửa
-        public bool Put([FromBody] Employee Employee)
-        {
-
-            return false;
-        }
-
-        // DELETE api/<EmployeeController>/5
-        [HttpDelete("{strEmployeeCode}")]
-        public bool Delete(string strEmployeeCode)
-        {
-
-            return true;
-        }
+        }        
     }
 }

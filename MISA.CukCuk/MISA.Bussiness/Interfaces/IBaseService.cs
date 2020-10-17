@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MISA.Common.Model;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -19,7 +20,7 @@ namespace MISA.Bussiness.Interfaces
         /// <param name="objId">ID của T</param>
         /// Author: Bui Trung Tu (15/10/2020)
         /// <returns></returns>
-        T GetById(Guid pbjId);
+        T GetById(object pbjId);
 
         /// <summary>
         /// Thêm 1 đối tượng
@@ -27,7 +28,7 @@ namespace MISA.Bussiness.Interfaces
         /// <param name="obj">T</param>
         /// Author: Bui Trung Tu (15/10/2020)
         /// <returns></returns>
-        int Insert(T obj);
+        ServiceResponse Insert(T obj);
 
         /// <summary>
         /// Sửa dữ liệu
@@ -35,7 +36,7 @@ namespace MISA.Bussiness.Interfaces
         /// <param name="obj">T</param>
         /// Author: Bui Trung Tu (15/10/2020)
         /// <returns></returns>
-        int Update(T obj);
+        ServiceResponse Update(T obj);
 
         /// <summary>
         /// Xóa dữ liệu
@@ -43,6 +44,6 @@ namespace MISA.Bussiness.Interfaces
         /// <param name="objId">ID của T</param>
         /// Author: Bui Trung Tu (15/10/2020)
         /// <returns></returns>
-        int Delete(Guid objId);
+        ServiceResponse Delete(Guid objId);
     }
 }

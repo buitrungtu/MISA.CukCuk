@@ -69,9 +69,9 @@ class CustomerJS extends BaseJS {
         }).done(function (res) {
             if (res) { // lưu thành công
                 self.btnCloseOnClick();
-                //self.getData();
-                //self.loadData();
-                $("table#tbListData thead th").load(location.href + "table#tbListData thead th>*");
+                self.getData();
+                self.loadData();
+                commonJS.hideButton();
             }
         }).fail(function () {
             alert("Lỗi khi lưu xuống DB");
@@ -95,6 +95,7 @@ class CustomerJS extends BaseJS {
                 self.getData();
                 self.loadData();
                 self.btnCloseOnClick();
+                commonJS.hideButton();
             } else {
                 alert("Không tìm thấy khách hàng này");
             }

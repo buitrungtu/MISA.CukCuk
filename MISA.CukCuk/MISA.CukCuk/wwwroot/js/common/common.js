@@ -64,6 +64,9 @@ var commonJS = {
         x = x.split("").reverse().join("");
         x = x.replace(/^,/, "");
         return x;
+    },
+    hideButton() {
+        $("#btnDuplicate,#btnEdit,#btnDelete,#btnMerge").addClass("hiden");
     }
    
 }

@@ -12,37 +12,56 @@
 .dialog {
     display: none;
     position: absolute;
-    top: calc(50% - 250px);
+    top: calc(50% - 300px);
     left: calc(50% - 400px);
     width: 800px;
-    height: 550px;
+    height: 575px;
     border: 6px solid #0973b9;
     border-radius: 5px;
 }
 
-    .dialog .dialog-title {
-        height: 25px;
-        background-color: #0973b9;
-        color: #fff;
-        display: flex;
-    }
+.title-area {
+    border-bottom: 1px solid #ccc;
+    padding: 5px 0px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
 
-    .dialog .dialog-body {
-        background-color: #fff;
-        height: calc(100% - 85px);
-        padding: 5px;
-    }
+.dialog .dialog-title {
+    height: 25px;
+    background-color: #0973b9;
+    color: #fff;
+    display: flex;
+}
+
+.dialog .dialog-body {
+    background-color: #fff;
+    height: calc(100% - 85px);
+    padding: 4px 8px;
+}
 
 .dialog-body .col-2 {
     display: grid;
-    grid-template-columns: 50% 50%;
-    margin: 10px 5px;
+    grid-template-columns: 53% 47%;
+    margin: 5px 0px;
+}
+
+.col-image {
+    display: grid;
+    grid-template-columns: 75% 25%;
+    margin: 5px 0px;
+}
+
+.col-4-6 {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    margin: 5px 0px;
 }
 
 .dialog-body .col {
     display: grid;
     grid-template-columns: 100% 0%;
-    margin: 10px 5px;
+    margin: 5px 0px;
 }
 
 .information-field {
@@ -103,6 +122,15 @@ select, input, textarea, button {
 label span {
     padding: 0px 1px;
     color: red;
+}
+
+.dialog .image {
+    position: absolute;
+    width: 186px;
+    height: 219px;
+    top: 67px;
+    border: 1px solid #ccc;
+    right: 8px;
 }
 
 .dialog .dialog-footer {

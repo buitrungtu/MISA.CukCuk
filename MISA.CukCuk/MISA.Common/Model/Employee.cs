@@ -8,14 +8,7 @@ namespace MISA.CukCuk.Model
     public class Employee
     {
         #region "Constructor"
-        /// <summary>
-        /// Hàm khởi tạo
-        /// </summary>
-        public Employee()
-        {
-            EmployeeID = Guid.NewGuid();
-            Note = "";
-        }
+        
         #endregion
         #region "Property"
         /// <summary>
@@ -69,11 +62,13 @@ namespace MISA.CukCuk.Model
         /// <summary>
         /// Vị trí
         /// </summary>
+        public int PositionID { get; set; }
         public string PositionName { get; set; }
 
         /// <summary>
         /// Phòng ban
         /// </summary>
+        public int DepartmentID { get; set; }
         public string DepartmentName { get; set; }
 
         /// <summary>

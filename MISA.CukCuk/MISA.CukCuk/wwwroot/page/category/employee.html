@@ -163,15 +163,15 @@
                         <table id="tbListData">
                             <thead>
                                 <tr>
-                                    <th id="CustomerCode" fieldName="employeeCode"> Mã nhân viên </th>
-                                    <th id="CustomerName" fieldName="employeeName"> Tên nhân viên </th>
-                                    <th id="Gender" fieldName="genderName"> Giới tính </th>
-                                    <th id="Birdday" fieldName="birthday" format="date"> Ngày sinh </th>
-                                    <th id="Email" fieldName="email" title="Địa chỉ Email"> Email </th>
-                                    <th id="Mobile" fieldName="positionName" title="Vị trí"> Vị trí </th>
-                                    <th id="Address" fieldName="departmentName"> Phòng ban </th>
-                                    <th id="DebitMoney" fieldName="salary" format="money"> Mức lương </th>
-                                    <th id="DebitMoney" fieldName="workStatusName"> Tình trạng công việc </th>
+                                    <th id="CustomerCode" fieldName="EmployeeCode"> Mã nhân viên </th>
+                                    <th id="CustomerName" fieldName="EmployeeName"> Tên nhân viên </th>
+                                    <th id="Gender" fieldName="GenderName"> Giới tính </th>
+                                    <th id="Birdday" fieldName="Birthday" format="date"> Ngày sinh </th>
+                                    <th id="Email" fieldName="Email" title="Địa chỉ Email"> Email </th>
+                                    <th id="Mobile" fieldName="PositionName" title="Vị trí"> Vị trí </th>
+                                    <th id="Address" fieldName="DepartmentName"> Phòng ban </th>
+                                    <th id="DebitMoney" fieldName="Salary" format="money"> Mức lương </th>
+                                    <th id="DebitMoney" fieldName="WorkStatusName"> Tình trạng công việc </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -211,93 +211,122 @@
     <div class="dialog">
         <div class="dialog-title">
             <div class="title-text">
-                Nhân viên
+                Thông tin nhân viên
             </div>
             <div class="title-button-close"></div>
         </div>
         <div class="dialog-body">
-            <div class="col-2">
+            <div class="title-area">Thông tin chung</div>
+            <div class="image">
+                <div class="image-content">
+                    <img class="avatar" src=""/>
+                    <div class="btn-image">
+                        <button>...</button>
+                        <button>X</button>
+                    </div>
+                </div>
+                <div class="warning">
+                    <p class="italic">Chỉ được upload tệp</p>
+                    <p class="format-img">.jpg .jpeg .png .gif</p>
+                </div>
+            </div>
+            <div class="col-image">
                 <div class="information-field">
                     <label>Mã nhân viên<span>(*)</span> </label>
-                    <input tabindex="1" type="text" fieldName="employeeCode" id="txtCustomerCode" required />
-                </div>
-                <div class="information-field">
-                    <label class="text-col-2">Tên nhân viên<span>(*)</span> </label>
-                    <input tabindex="2" type="text" fieldName="employeeName" id="txtCustomerName" required />
+                    <input tabindex="1" type="text" fieldName="EmployeeCode" id="txtCustomerCode" required />
                 </div>
             </div>
-            <div class="col-2">
+            <div class="col-image">
                 <div class="information-field">
-                    <label>Vị trí</label>
-                    <input tabindex="3" fieldName="positionName" id="txtMemberCode" />
-                </div>
-                <div class="information-field">
-                    <label class="text-col-2">Giới tính</label>
-                    <select tabindex="4" fieldName="gender">
-                        <option value="Nam">Nam</option>
-                        <option value="Nữ">Nữ</option>
-                        <option value="Khác">Khác</option>
-                    </select>
-                    <!--<div class="radio">
-                        <input type="radio" name="gender" value="Nam">
-                        <label for="Nam">Nam</label><br>
-                        <input type="radio" name="gender" value="Nữ">
-                        <label for="Nữ">Nữ</label><br>
-                        <input type="radio" name="gender" value="Khác">
-                        <label for="Khác">Khác</label>
-                    </div>-->
+                    <label>Tên nhân viên<span>(*)</span> </label>
+                    <input tabindex="1" type="text" fieldName="EmployeeName" id="txtCustomerName" required />
                 </div>
             </div>
-            <div class="col-2">
+            <div class="col-image">
+                <div class="col-2">
+                    <div class="information-field">
+                        <label>Ngày sinh </label>
+                        <input tabindex="8" fieldName="birthday" type="date" id="txtBirdday" format="date" />
+                    </div>
+                    <div class="information-field">
+                        <label class="text-col-2">Giới tính</label>
+                        <select tabindex="4" fieldName="gender">
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                            <option value="Khác">Khác</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-image">
                 <div class="information-field">
-                    <label>Phòng ban </label>
+                    <label>Email<span>(*)</span> </label>
+                    <input tabindex="1" type="text" fieldName="EmployeeName" id="txtCustomerName" required />
+                </div>
+            </div>
+            <div class="col-image">
+                <div class="information-field">
+                    <label>ĐT di động<span>(*)</span> </label>
+                    <input tabindex="1" type="text" fieldName="EmployeeName" id="txtCustomerName" required />
+                </div>
+            </div>
+            <div class="col-image">
+                <div class="col-2">
+                    <div class="information-field">
+                        <label>Số CMT/HC </label>
+                        <input tabindex="8" fieldName="birthday" />
+                    </div>
+                    <div class="information-field">
+                        <label class="text-col-2">Ngày cấp</label>
+                        <input tabindex="8" fieldName="birthday" type="date" />
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="information-field">
+                    <label>Nơi cấp<span>(*)</span> </label>
+                    <input tabindex="1" type="text" fieldName="EmployeeName" id="txtCustomerName" required />
+                </div>
+            </div>
+            <div class="title-area">Thông tin công việc</div>
+            <div class="col">
+                <div class="information-field">
+                    <label>Vị trí<span>(*)</span> </label>
+                    <input tabindex="1" type="text" fieldName="EmployeeName" id="txtCustomerName" required />
+                </div>
+            </div>
+            <div class="col">
+                <div class="information-field">
+                    <label>Phòng ban</label>
                     <select tabindex="5" fieldName="departmentName" id="CustomerType">
                         <option value="Đào tạo">Đào tạo</option>
                         <option value="Sản xuất">Sản xuất</option>
                         <option value="Truyền thông">Truyền thông</option>
                     </select>
                 </div>
+            </div>
+            <div class="col-4-6">
+                <div class="information-field">
+                    <label>Mã số thuế cá nhân </label>
+                    <input tabindex="8" fieldName="birthday" />
+                </div>
+                <div class="information-field">
+                    <label class="text-col-2">Mức lương</label>
+                    <input tabindex="8" fieldName="birthday" type="date" />
+                </div>
+            </div>
+            <div class="col-4-6">
+                <div class="information-field">
+                    <label>Ngày gia nhập </label>
+                    <input tabindex="8" fieldName="birthday" type="date"/>
+                </div>
                 <div class="information-field">
                     <label class="text-col-2">Tình trạng</label>
-                    <select tabindex="6" fieldName="workStatus" id="MemberRank">
-                        <option value="Đang làm việc">Đang làm việc</option>
-                        <option value="Đã nghỉ việc">Đã nghỉ việc</option>
-                        <option value="Tạm nghỉ">Tạm nghỉ</option>
+                    <select tabindex="5" fieldName="departmentName" id="CustomerType">
+                        <option value="Đào tạo">Đang làm việc</option>
+                        <option value="Sản xuất">Sản xuất</option>
+                        <option value="Truyền thông">Truyền thông</option>
                     </select>
-                </div>
-            </div>
-            <div class="col-2">
-                <div class="information-field">
-                    <label>ĐT di động<span>(*)</span> </label>
-                    <input tabindex="7" fieldName="mobile" type="tel" id="txtMobile" class="required" required />
-                </div>
-            </div>
-            <div class="col-2">
-                <div class="information-field">
-                    <label>Ngày sinh </label>
-                    <input tabindex="8" fieldName="birthday" type="date" id="txtBirdday" format="date" />
-                </div>
-            </div>
-            <div class="col-2">
-                <div class="information-field">
-                    <label>Mức lương </label>
-                    <input tabindex="9" fieldName="salary" format="number" id="txtSalary" />
-                </div>
-                <div class="information-field">
-                    <label class="text-col-2">Email </label>
-                    <input tabindex="10" fieldName="email" type="email" id="txtEmail" />
-                </div>
-            </div>
-            <div class="col">
-                <div class="information-field">
-                    <label>Địa chỉ </label>
-                    <input tabindex="11" fieldName="address" id="txtAddress" />
-                </div>
-            </div>
-            <div class="col">
-                <div class="information-field">
-                    <label>Ghi chú </label>
-                    <textarea tabindex="12" fieldName="note" id="txtNote"></textarea>
                 </div>
             </div>
         </div>

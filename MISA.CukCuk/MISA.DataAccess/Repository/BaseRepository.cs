@@ -18,22 +18,22 @@ namespace MISA.DataAccess.Repository
             return _baseRepository.Get();
         }
 
-        public T GetById(Guid objID)
+        public T GetById(object objID)
         {
-            throw new NotImplementedException();
+            return _baseRepository.GetById(objID);
         }
         public int Insert(T obj)
         {
-            throw new NotImplementedException();
+            return _baseRepository.Insert(obj);
         }
 
         public int Update(T obj)
         {
-            throw new NotImplementedException();
+            return _baseRepository.Update(obj);
         }
         public int Delete(Guid objID)
         {
-            throw new NotImplementedException();
+            return _baseRepository.Delete(objID);
         }    
     }
 }

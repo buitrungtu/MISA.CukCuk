@@ -35,11 +35,10 @@
 
 .dialog-footer .btn-right {
     display: flex;
-    margin-right: 5px;
 }
 
 .dialog-footer .btn-left {
-    margin-left: 10px;
+    margin-left: 8px;
 }
 
 .dialog-footer button {
@@ -52,6 +51,7 @@
     border: 1px solid #ccc;
     cursor: pointer;
 }
+
     .dialog-footer button:focus {
         border-color: #1b8bd4;
     }
@@ -62,5 +62,5 @@
     }
 
 button#btnCancel {
-    margin-right: 5px;
+    margin-right: 8px;
 }

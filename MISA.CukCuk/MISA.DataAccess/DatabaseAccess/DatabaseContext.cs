@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace MISA.DataAccess.DatabaseAccess
@@ -31,44 +32,100 @@ namespace MISA.DataAccess.DatabaseAccess
             MySqlDataReader mySqlDataReader = _sqlCommand.ExecuteReader();
             while (mySqlDataReader.Read())
             {
-                var employee = Activator.CreateInstance<T>();
+                var obj = Activator.CreateInstance<T>();
              
                 for (int i = 0; i < mySqlDataReader.FieldCount; i++)
                 {
                     var columnName = mySqlDataReader.GetName(i);
                     var value = mySqlDataReader.GetValue(i);
-                    var propertyInfo = employee.GetType().GetProperty(columnName);
+                    var propertyInfo = obj.GetType().GetProperty(columnName);
                     if (propertyInfo != null && value != DBNull.Value)
-                        propertyInfo.SetValue(employee, value);
+                        propertyInfo.SetValue(obj, value);
                 }
-                employees.Add(employee);
+                employees.Add(obj);
             }
            
             return employees;
         }
+       
+
+        public T GetById(object objId)
+        {
+            var className = typeof(T).Name;
+            _sqlCommand.CommandText = $"Proc_Get{className}ByID";
+            MySqlCommandBuilder.DeriveParameters(_sqlCommand);
+            if (_sqlCommand.Parameters.Count > 0)
+            {
+                _sqlCommand.Parameters[0].Value = objId;
+            }
+            MySqlDataReader mySqlDataReader = _sqlCommand.ExecuteReader();
+            var obj = Activator.CreateInstance<T>();
+            if (mySqlDataReader.Read())
+            {              
+                for (int i = 0; i < mySqlDataReader.FieldCount; i++)
+                {
+                    var columnName = mySqlDataReader.GetName(i);
+                    var value = mySqlDataReader.GetValue(i);
+                    var propertyInfo = obj.GetType().GetProperty(columnName);
+                    if (propertyInfo != null && value != DBNull.Value)
+                        propertyInfo.SetValue(obj, value);
+                }
+            }
+            return obj;
+        }
+
+        public int Insert(T obj)
+        {
+            var objType = typeof(T).Name;
+            _sqlCommand.CommandText = $"Proc_Insert{objType}";
+            MySqlCommandBuilder.DeriveParameters(_sqlCommand);
+            var parameters = _sqlCommand.Parameters;
+            foreach(MySqlParameter param in parameters)
+            {
+                var paramName = param.ParameterName.Replace("@", "");
+                var property = obj.GetType().GetProperty(paramName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+                if (property != null)
+                    param.Value = property.GetValue(obj);
+
+            }
+            var affectRows = _sqlCommand.ExecuteNonQuery();
+            return affectRows;
+        }
+
+        public int Update(T obj)
+        {
+            var objType = typeof(T).Name;
+            _sqlCommand.CommandText = $"Proc_Update{objType}";
+            MySqlCommandBuilder.DeriveParameters(_sqlCommand);
+            var parameters = _sqlCommand.Parameters;
+            foreach (MySqlParameter param in parameters)
+            {
+                var paramName = param.ParameterName.Replace("@", "");
+                var property = obj.GetType().GetProperty(paramName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+                if (property != null)
+                    param.Value = property.GetValue(obj);
+
+            }
+            var affectRows = _sqlCommand.ExecuteNonQuery();
+            return affectRows;
+        }
+
+        public int Delete(Guid objId)
+        {
+            var objType = typeof(T).Name;
+            _sqlCommand.CommandText = $"Proc_Delete{objType}";
+            MySqlCommandBuilder.DeriveParameters(_sqlCommand);
+            if (_sqlCommand.Parameters.Count > 0)
+            {
+                _sqlCommand.Parameters[0].Value = objId;
+            }
+            var affectRows = _sqlCommand.ExecuteNonQuery();
+            return affectRows;
+        }
+
         public void Dispose()
         {
             _sqlConnection.Close();
-        }
-
-        public T GetById(Guid employeeId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Insert(T employee)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Update(T employee)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Delete(Guid id)
-        {
-            throw new NotImplementedException();
         }
     } 
 }
