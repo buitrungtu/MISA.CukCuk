@@ -14,8 +14,8 @@ namespace MISA.CukCuk.Api
     [ApiController]
     public class EmployeeApi : BaseApi<Employee>
     {
-        IBaseService<Employee> _employeeService;
-        public EmployeeApi(IBaseService<Employee> employeeService):base(employeeService)
+        IEmployeeService _employeeService;
+        public EmployeeApi(IEmployeeService employeeService) :base(employeeService)
         {
             _employeeService = employeeService;
         }        

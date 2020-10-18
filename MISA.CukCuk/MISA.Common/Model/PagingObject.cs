@@ -10,5 +10,6 @@ namespace MISA.Common.Model
         public int TotalRecord { get; set; }
         public object Data { get; set; }
         public object AllData { get; set; }
+        public string maxCode { get; set; }
     }
 }

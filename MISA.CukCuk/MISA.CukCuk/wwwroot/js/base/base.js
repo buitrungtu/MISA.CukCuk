@@ -26,6 +26,7 @@ class BaseJS {
         $('.title-button-close').click(this.btnCloseOnClick.bind(this));
         $('.dialog-modal').click(this.btnCloseOnClick.bind(this));
         $('#btnNo').click(this.btnCloseOnClick.bind(this));
+        $("#btnOK").click(this.btnErrorOnClickOK.bind(this));
         //show lựa chọn với tài khoản
         $('.user').click(this.showUserSelection.bind(this));
         //thêm 1 bản ghi
@@ -47,7 +48,7 @@ class BaseJS {
             $('#btnYes').focus();
         })
         // định dạng tiền tệ trực tiếp trên form dialog 
-        $("#txtSalary, #txtDebitMoney").keyup(this.formatMoney);
+        $(".money").keyup(this.formatMoney);
 
 
         // phân trang
@@ -168,21 +169,18 @@ class BaseJS {
                     var format = $(field).attr('format');
                     var value = obj[fieldName], td;
                     if (value == null) value = "";
-                    // UI conventions                    
                     switch (format) {
                         case 'money':
-                            td = $(`<td class="text-right">` + commonJS.formatMoney(value) + `</td>`);
+                            value = commonJS.formatMoney(value);
+                            td = $(`<td title="` + value + ` VNĐ" class="text-right Salary">` + value + `</td>`);
                             break;
                         case 'date':
-                            td = $(`<td class="text-center">` + commonJS.formatDate(value) + `</td>`);
-                            break;
-                        case 'address':                           
-                            td = $(`<td title="` + obj[fieldName] + `">` + value + `</td>`);
+                            td = $(`<td class="text-center Birdday">` + commonJS.formatDate(value) + `</td>`);
                             break;
                         default:
-                            td = $(`<td>` + value + `</td>`);
+                            td = $(`<td title="` + value + `" class="` +fieldName + `">` + value + `</td>`);
                     }
-                    $(tr).data('keyID', obj.customerID);
+                    $(tr).data('keyID', obj.EmployeeID);
                     $(tr).append(td);
                 })
                 //$(tr).data('objID', obj[Object.keys(obj)[0]]); // lấy ra trường đầu tiên của đối tượng obj
@@ -190,7 +188,10 @@ class BaseJS {
                 $('#tbListData tbody').append(tr);
             })
         } catch (e) {
-            alert("Có lỗi xảy ra, hãy thử lại");
+            $(".dialog-modal").show();
+            $("#errorMessage").html("Có lỗi xảy ra, vui lòng thử lại!");
+            $(".dialog-error").show();
+            $("#btnOK").focus();
         }
     }
 
@@ -200,6 +201,7 @@ class BaseJS {
     * */
     btnEditOnClick() {
         try {
+            debugger;           
             if ($("#btnEdit").hasClass("hiden") == false) {
                 var self = this;
                 // xác định đối tượng cần edit
@@ -207,34 +209,47 @@ class BaseJS {
                 if (objSelected.length == 1) {
                     // lấy customerID
                     var objID = objSelected.data('keyID');
+                    console.log(objID);
                     this.getObjData(objID); // lấy dữ liệu của đối tượng được chọn (Thực hiện tại các lớp kế thừa)
-                    console.log(this.Obj)
-                    this.showDialogDetail();
-                    var fields = $(".dialog-body input,.dialog-body select,.dialog-body textarea");
-                    //binding dữ liệu lên form:
-                    $.each(fields, function (index, field) {
-                        var fieldName = $(field).attr('fieldName');
-                        if (fieldName == "birthday") {
-                            $(field).val(commonJS.formatDateForInput(self.Obj[fieldName]));
-                        } else if (fieldName == "debitAmount" || fieldName == "salary") {
-                            $(field).val(commonJS.formatMoney(self.Obj[fieldName]));
-                        }
-                        else {
-                            if (self.Obj[fieldName] == null) {
-                                self.Obj[fieldName] = "";
+                    if (self.Obj != null) {
+                        // reset validate
+                        $('input[required]').removeClass("required-error");
+                        $('input[required]').removeAttr("placeholder");
+                        // hiện form sửa thông tin
+                        this.showDialogDetail();
+                        var fields = $(".dialog-body input,.dialog-body select,.dialog-body textarea");
+                        //binding dữ liệu lên form:
+                        $.each(fields, function (index, field) {
+                            var fieldName = $(field).attr('fieldName');
+                            var format = $(field).attr('format');
+                            if (format == "date") {
+                                $(field).val(commonJS.formatDateForInput(self.Obj[fieldName]));
+                            } else if (format == "money") {
+                                $(field).val(commonJS.formatMoney(self.Obj[fieldName]));
                             }
-                            $(field).val(self.Obj[fieldName]);
-                        }
-                    })
-                    // chuyển trạng thái cho nút Save thành edit 
-                    self.objID = objID;
-                    self.FormType = "Edit";
+                            else {
+                                if (self.Obj[fieldName] == null) {
+                                    self.Obj[fieldName] = "";
+                                }
+                                $(field).val(self.Obj[fieldName]);
+                            }
+                        })
+                        // chuyển trạng thái cho nút Save thành edit 
+                        self.objID = objID;
+                        self.FormType = "Edit";
+                    }
                 } else {
-                    alert("Chỉ có thể sửa từng bản ghi một");
+                    $(".dialog-modal").show();
+                    $("#errorMessage").html("Chỉ có thể sửa 1 nhân viên");
+                    $(".dialog-error").show();
+                    $("#btnOK").focus();
                 }
             }
         } catch (e) {
-            alert("Có lỗi, hãy thử lại");
+            $(".dialog-modal").show();
+            $("#errorMessage").html("Có lỗi xảy ra, vui lòng thử lại!");
+            $(".dialog-error").show();
+            $("#btnOK").focus();
         }
     }
 
@@ -250,11 +265,15 @@ class BaseJS {
             if ($("#btnDelete").hasClass('hiden') == false) {
                 //  Hiện form yêu cầu xác nhận lần 2
                 $('.dialog-modal').show();
+                $("#confirmMessage").html("Bạn có chắc chắn muốn xóa các nhân viên đã chọn không?");
                 $('.dialog-confirm').show();
                 $('.dialog-confirm #btnYes').focus();
             }
         } catch (e) {
-            alert("Có lỗi xảy ra, hãy thử lại");
+            $(".dialog-modal").show();
+            $("#errorMessage").html("Có lỗi xảy ra, vui lòng thử lại!");
+            $(".dialog-error").show();
+            $("#btnOK").focus();
         }
     }
     /**
@@ -270,8 +289,10 @@ class BaseJS {
                 this.deleteToDB(objSelecteds.data('keyID'));
             }
         } catch (e) {
-            alert("Có lỗi xảy ra, hãy thử lại");
-            console.log(e);
+            $(".dialog-modal").show();
+            $("#errorMessage").html("Có lỗi xảy ra, vui lòng thử lại!");
+            $(".dialog-error").show();
+            $("#btnOK").focus();
         }
 
 
@@ -301,21 +322,22 @@ class BaseJS {
     * */
     btnSaveOnClick() {
         try {
-            // validate dữ liệu
-            var inputRequireds = $('input[required]');
-            var isValid = true;
-            $.each(inputRequireds, function (i, item) {
-                var valid = $('input').trigger("blur");
-                if (isValid && valid.hasClass("required-error")) {
-                    isValid = false;
-                }
-            })
-            if (isValid == false) {
-                return;
-            }
+            //// validate dữ liệu
+            //var inputRequireds = $('input[required]');
+            //var isValid = true;
+            //$.each(inputRequireds, function (i, item) {
+            //    var valid = $('input').trigger("blur");
+            //    if (isValid && valid.hasClass("required-error")) {
+            //        isValid = false;
+            //    }
+            //})
+            //if (isValid == false) {
+            //    return;
+            //}
             // check xem là thêm mới hay sửa thông tin
             var self = this;
             var Method = "POST"; // Mặc định là thêm
+            console.log(self.FormType)
             if (self.FormType == "Edit") {
                 Method = "PUT";
             }
@@ -323,19 +345,20 @@ class BaseJS {
             var fields = $(".dialog-body input,.dialog-body select,.dialog-body textarea");
             $.each(fields, function (index, field) {
                 var fieldName = $(field).attr('fieldName');
-                fieldName = fieldName.charAt(0).toUpperCase() + fieldName.slice(1); // viết hoa chữ cái đầu tiên
-                var format = $(field).attr('format');
-                if (format == "number") {
+                if (fieldName == "Salary") {
                     obj[fieldName] = Number($(field).val().split(',').join(''));
                 } else {
                     obj[fieldName] = $(field).val();
                 }
             })
-            console.log(obj);
+            //console.log(obj);
             // Lưu dữ liệu
             this.saveToDB(obj, Method); // Lưu dữ liệu xuống DB (Thực hiện tại các lớp kế thừa)
         } catch (e) {
-            alert("Lưu dữ liệu thất bại");
+            $(".dialog-modal").show();
+            $("#errorMessage").html("Có lỗi xảy ra, vui lòng thử lại!");
+            $(".dialog-error").show();
+            $("#btnOK").focus();
         }
 
     }
@@ -355,7 +378,9 @@ class BaseJS {
                 }
             }
         } catch (e) {
-            alert("Có lỗi, hãy thử lại");
+            $(".dialog-modal").show();
+            $("#errorMessage").html("Có lỗi xảy ra, hãy thử lại");
+            $(".dialog-error").show();
         }
 
     }
@@ -415,6 +440,7 @@ class BaseJS {
         $('.dialog-modal').hide();
         $('.dialog').hide();
         $('.dialog-confirm').hide();
+        $(".dialog-error").hide();
         this.deleteObjs = "";
     }
 
@@ -455,6 +481,9 @@ class BaseJS {
     formatMoney() {
         $(this).val(commonJS.formatMoneyForDialog($(this).val()));
     }
-
+    btnErrorOnClickOK() {
+        $(".dialog-modal").hide();
+        $(".dialog-error").hide();
+    }
     // #endregion
 }

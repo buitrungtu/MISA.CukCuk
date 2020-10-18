@@ -56,15 +56,6 @@
     border-collapse: collapse;
 }
 
-#tbListData td, th {
-    padding: 4px 10px;
-    cursor: pointer;
-    border: 1px solid #dddddd;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 200px;
-    overflow: hidden
-}
     
     table td:first-child, th:first-child {
         border-left: none;
@@ -93,36 +84,34 @@ table .text-center {
 table .text-right {
     text-align: right;
 }
+#tbListData td, th {
+    padding: 4px 10px;
+    cursor: pointer;
+    border: 1px solid #dddddd;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
 /* chia độ rộng của từng cột */
-#CustomerCode {
-    width: 120px;
-}
-
-th#Address {
-    width: 150px;
-}
-
-th#Mobile {
-    width: 150px;
-}
-
-th#DebitMoney {
-    width: 150px;
-}
-
-th#Birdday {
-    width: 150px;
-}
-
-th#Gender {
+.Birdday, .Mobile, .Salary, .PositionName, .DepartmentName, .WorkStatusName {
     width: 100px;
+    max-width: 100px;
+}
+.EmployeeCode,.GenderName{
+    width: 50px;
+    max-width: 50px;
+}
+.EmployeeName {
+    width: 150px;
+    max-width: 150px;
 }
 
-th#CustomerName {
-    min-width: 200px;
+.Email {
+    width: 150px;
+    max-width: 150px;
 }
+
 /* chia độ rộng của từng cột */
-
 table tr:hover :not(th) {
     background-color: #b8e3ff;
     cursor: pointer;
@@ -198,3 +187,7 @@ button.hiden {
     opacity: 0.5;
     cursor: default !important;
 }
+/*text-overflow: ellipsis;
+white-space: nowrap;
+max-width: 200px;
+overflow: hidden;*/

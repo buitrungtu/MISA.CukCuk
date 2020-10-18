@@ -88,6 +88,21 @@ namespace MISA.CukCuk.Model
         public string Address { get; set; }
 
         /// <summary>
+        /// Số chứng minh thư nhân nhân / hộ chiếu
+        /// </summary>
+        public string Identity { get; set; }
+
+        /// <summary>
+        /// Ngày cấp chứng minh thư / hộ chiếu
+        /// </summary>
+        public DateTime IdentityDate { get; set; }
+
+        /// <summary>
+        /// Nơi cấp chứng minh thư / Hộ chiếu
+        /// </summary>
+        public string IdentityPlace { get; set; }
+
+        /// <summary>
         /// Tình trạng công việc
         /// </summary>
         public WorkStatus WorkStatus { get; set; }
@@ -111,12 +126,18 @@ namespace MISA.CukCuk.Model
                 }
             }
         }
+
         /// <summary>
-        /// Ghi chú
+        /// Mã số thuế
         /// </summary>
-        public string Note { get; set; }
-#endregion
-#region "Metod - Function"
-#endregion
+        public string TaxCode { get; set; }
+
+        /// <summary>
+        /// Ngày gia nhập
+        /// </summary>
+        public DateTime JoinDate { get; set; }
+        #endregion
+        #region Metod
+        #endregion
     }
 }

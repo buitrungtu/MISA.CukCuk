@@ -67,6 +67,7 @@ class CustomerJS extends BaseJS {
             dataType: "json",
             async: false
         }).done(function (res) {
+            console.log(res);
             if (res) { // lưu thành công
                 self.btnCloseOnClick();
                 self.getData();

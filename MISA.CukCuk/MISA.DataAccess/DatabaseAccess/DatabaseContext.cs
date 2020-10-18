@@ -26,7 +26,7 @@ namespace MISA.DataAccess.DatabaseAccess
             var employees = new List<T>();
             var className = typeof(T).Name;
             _sqlCommand.CommandText = $"Proc_Get{className}s";
-            _sqlCommand.Parameters.AddWithValue("PageLimit", 10);
+            _sqlCommand.Parameters.AddWithValue("PageLimit", 50);
             _sqlCommand.Parameters.AddWithValue("Count", 0);
 
             MySqlDataReader mySqlDataReader = _sqlCommand.ExecuteReader();
@@ -49,7 +49,7 @@ namespace MISA.DataAccess.DatabaseAccess
         }
        
 
-        public T GetById(object objId)
+        public T GetByID(object objId)
         {
             var className = typeof(T).Name;
             _sqlCommand.CommandText = $"Proc_Get{className}ByID";
@@ -121,6 +121,18 @@ namespace MISA.DataAccess.DatabaseAccess
             }
             var affectRows = _sqlCommand.ExecuteNonQuery();
             return affectRows;
+        }
+        public bool Get(string code)
+        {
+            var objType = typeof(T).Name;
+            _sqlCommand.CommandText = $"Proc_Get{objType}ByCode";
+            MySqlCommandBuilder.DeriveParameters(_sqlCommand);
+            if (_sqlCommand.Parameters.Count > 0)
+            {
+                _sqlCommand.Parameters[0].Value = code;
+            }
+            MySqlDataReader mySqlDataReader = _sqlCommand.ExecuteReader();
+            return mySqlDataReader.Read();
         }
 
         public void Dispose()

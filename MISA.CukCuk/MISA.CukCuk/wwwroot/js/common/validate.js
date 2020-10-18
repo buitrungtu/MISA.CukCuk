@@ -26,6 +26,5 @@ var validData = {
             return false;
         }
     }
-
 } 
 

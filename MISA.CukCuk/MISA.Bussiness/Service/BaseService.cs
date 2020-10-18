@@ -32,7 +32,7 @@ namespace MISA.Bussiness.Service
 
         public T GetById(object objId)
         {
-            return _baseRepository.GetById(objId);
+            return _baseRepository.GetByID(objId);
         }
 
         public ServiceResponse Insert(T obj)
@@ -68,6 +68,13 @@ namespace MISA.Bussiness.Service
             }
             return serviceResponse;
         }
+
+        /// <summary>
+        /// Kiểm tra thông tin trước khi thêm hoặc sửa (Sẽ thực hiện tại các lớp kế thừa)
+        /// </summary>
+        /// <param name="entity">Đối tượng</param>
+        /// Author: BTTu (18/10/2020)
+        /// <returns></returns>
         protected virtual bool Validate(T entity)
         {
             return true;

@@ -7,10 +7,10 @@ namespace MISA.DataAccess.Repository
 {
     public class BaseRepository<T>:IBaseRepository<T>
     {
-        IBaseRepository<T> _baseRepository;
-        public BaseRepository(IBaseRepository<T> databaseContext)
+        protected IBaseRepository<T> _baseRepository;
+        public BaseRepository(IBaseRepository<T> baseRepository)
         {
-            _baseRepository = databaseContext;
+            _baseRepository = baseRepository;
         }
 
         public IEnumerable<T> Get()
@@ -18,9 +18,9 @@ namespace MISA.DataAccess.Repository
             return _baseRepository.Get();
         }
 
-        public T GetById(object objID)
+        public T GetByID(object objID)
         {
-            return _baseRepository.GetById(objID);
+            return _baseRepository.GetByID(objID);
         }
         public int Insert(T obj)
         {

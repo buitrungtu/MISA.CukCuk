@@ -19,7 +19,7 @@ namespace MISA.DataAccess.Interface
         /// <param name="objID">ID của T</param>
         /// Author: BTTu (15/10/2020)
         /// <returns></returns>
-        T GetById(object objID);
+        T GetByID(object objID);
         /// <summary>
         /// Thêm mới 1 đối tượng
         /// </summary>
