@@ -51,13 +51,13 @@
 .dialog-body .col-2 {
     display: grid;
     grid-template-columns: 53% 47%;
-    margin: 5px 0px;
+    /*margin: 5px 0px;*/
 }
 
 .col-image {
     display: grid;
     grid-template-columns: 77% 23%;
-    margin: 5px 0px;
+    margin: 7px 0px;
 }
 
 .image-content {
@@ -102,13 +102,13 @@ p.format-img {
 .col-4-6 {
     display: grid;
     grid-template-columns: 41% 59%;
-    margin: 5px 0px;
+    margin: 7px 0px;
 }
 
 .dialog-body .col {
     display: grid;
     grid-template-columns: 100% 0%;
-    margin: 5px 0px;
+    margin: 7px 0px;
 }
 
 .information-field {
@@ -182,7 +182,7 @@ label span {
 
 
 .dialog .dialog-footer {
-    height: 50px;
+    height: 52px;
     width: 100%;
     background-color: #fff;
     display: flex;
@@ -282,6 +282,10 @@ button.btn-remove {
         background: url('/content/images/question-icon.png') no-repeat;
         background-size: cover;
     }
+
 p#confirmMessage {
     margin-left: 10px;
+}
+.warning {
+    font-family: initial;
 }

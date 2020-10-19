@@ -38,7 +38,7 @@ namespace MISA.Bussiness.Service
         public ServiceResponse Insert(T obj)
         {
             var serviceResponse = new ServiceResponse();
-            if (Validate(obj) == true)
+            if (Validate(obj,"POST") == true)
             {
                 serviceResponse.Success = true;
                 serviceResponse.Msg.Add("Thành công");
@@ -55,7 +55,7 @@ namespace MISA.Bussiness.Service
         public ServiceResponse Update(T obj)
         {
             var serviceResponse = new ServiceResponse();
-            if (Validate(obj) == true)
+            if (Validate(obj,"PUT") == true)
             {
                 serviceResponse.Success = true;
                 serviceResponse.Msg.Add("Thành công");
@@ -75,7 +75,7 @@ namespace MISA.Bussiness.Service
         /// <param name="entity">Đối tượng</param>
         /// Author: BTTu (18/10/2020)
         /// <returns></returns>
-        protected virtual bool Validate(T entity)
+        protected virtual bool Validate(T entity,string Method)
         {
             return true;
         }

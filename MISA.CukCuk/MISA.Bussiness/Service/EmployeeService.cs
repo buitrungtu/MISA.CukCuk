@@ -16,12 +16,19 @@ namespace MISA.Bussiness.Service
             _employeeRepository = employeeRepository;
         }
 
+        
+
         public bool CheckEmployeeByCode(string employeeCode)
         {
             return _employeeRepository.CheckEmployeeByCode(employeeCode);
         }
 
-        protected override bool Validate(Employee entity)
+        public string GetMaxEmployeeCode()
+        {
+            return _employeeRepository.GetMaxEmployeeCode();
+        }
+
+        protected override bool Validate(Employee entity,string Method)
         {
             var isValid = true;
             if(entity.EmployeeCode.Trim() == "" || entity.EmployeeName.Trim() == "" || entity.Email.Trim() == "" || entity.Mobile.Trim() == "")
@@ -41,12 +48,15 @@ namespace MISA.Bussiness.Service
                     isValid = false;
                     validateErrorResponseMsg.Add("Email không đúng định dạng");
                 }
-                //check trùng mã:
-                var isValidCode = CheckEmployeeByCode(entity.EmployeeCode);
-                if (isValidCode) // nếu đã có 1 nhân viên có mã như vậy
+                if(Method == "POST")
                 {
-                    isValid = false;
-                    validateErrorResponseMsg.Add("Mã nhân viên này đã tồn tại");
+                    //check trùng mã:
+                    var isValidCode = CheckEmployeeByCode(entity.EmployeeCode);
+                    if (isValidCode) // nếu đã có 1 nhân viên có mã như vậy
+                    {
+                        isValid = false;
+                        validateErrorResponseMsg.Add("Mã nhân viên này đã tồn tại");
+                    }
                 }
             }
             return isValid;

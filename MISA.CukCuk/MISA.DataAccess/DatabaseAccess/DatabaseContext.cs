@@ -1,4 +1,5 @@
 ﻿using MISA.DataAccess.Interface;
+using MISA.DataAccess.Interfaces;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace MISA.DataAccess.DatabaseAccess
 {
-    public class DatabaseContext<T>: IDisposable, IBaseRepository<T>
+    public class DatabaseContext<T>: IDisposable, IDatabaseContext<T>
     {
         readonly string _connectionString = "server=35.194.166.58;port=3306;user=nvmanh;password=12345678@Abc;database=MISACukCuk_F09_BTTu;Character Set=utf8";
         MySqlConnection _sqlConnection;
@@ -44,7 +45,7 @@ namespace MISA.DataAccess.DatabaseAccess
                 }
                 employees.Add(obj);
             }
-           
+            mySqlDataReader.Close();
             return employees;
         }
        
@@ -71,6 +72,7 @@ namespace MISA.DataAccess.DatabaseAccess
                         propertyInfo.SetValue(obj, value);
                 }
             }
+            mySqlDataReader.Close();
             return obj;
         }
 
@@ -122,7 +124,7 @@ namespace MISA.DataAccess.DatabaseAccess
             var affectRows = _sqlCommand.ExecuteNonQuery();
             return affectRows;
         }
-        public bool Get(string code)
+        public bool GetByCode(string code)
         {
             var objType = typeof(T).Name;
             _sqlCommand.CommandText = $"Proc_Get{objType}ByCode";
@@ -132,12 +134,23 @@ namespace MISA.DataAccess.DatabaseAccess
                 _sqlCommand.Parameters[0].Value = code;
             }
             MySqlDataReader mySqlDataReader = _sqlCommand.ExecuteReader();
-            return mySqlDataReader.Read();
+            if (mySqlDataReader.Read()) {
+                mySqlDataReader.Close();
+                return true;
+            }
+            mySqlDataReader.Close();
+            return false;
         }
-
+        public string GetMaxEmployeeCode()
+        {
+            var objType = typeof(T).Name;
+            _sqlCommand.CommandText = $"Proc_GetMax{objType}Code";
+            return _sqlCommand.ExecuteScalar().ToString();
+        }
         public void Dispose()
         {
             _sqlConnection.Close();
         }
+
     } 
 }

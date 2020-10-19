@@ -22,8 +22,9 @@ namespace MISA.CukCuk
             //config cho Repository
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             //config cho Database
-            services.AddScoped(typeof(IBaseRepository<>), typeof(DatabaseContext<>));
+            services.AddScoped(typeof(IDatabaseContext<>), typeof(DatabaseContext<>));
         }
     }
 }

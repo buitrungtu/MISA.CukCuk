@@ -15,5 +15,12 @@ namespace MISA.DataAccess.Interfaces
         /// Author: BTTu(18/10/2020)
         /// <returns></returns>
         bool CheckEmployeeByCode(string employeeCode);
+
+        /// <summary>
+        /// Lấy ra mã nhân viên lớn nhất trong hệ thống
+        /// </summary>
+        /// Author: BTTu(18/10/2020)
+        /// <returns></returns>
+        string GetMaxEmployeeCode();
     }
 }

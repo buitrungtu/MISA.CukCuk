@@ -9,16 +9,20 @@ namespace MISA.DataAccess.Repository
 {
     public class EmployeeRepository:BaseRepository<Employee>,IEmployeeRepository
     {
-        public EmployeeRepository(IBaseRepository<Employee> employeeRepository) : base(employeeRepository)
+        public EmployeeRepository(IDatabaseContext<Employee> databaseContext) : base(databaseContext)
         {
         }
 
         public bool CheckEmployeeByCode(string employeeCode)
         {
-            var obj = _baseRepository.GetByID(employeeCode);
-            if (obj == null) return false;
-            else
-                return true;
+            return _databaseContext.GetByCode(employeeCode);
         }
+
+        public string GetMaxEmployeeCode()
+        {
+            return _databaseContext.GetMaxEmployeeCode();
+        }
+
+        
     }
 }

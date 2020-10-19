@@ -1,4 +1,5 @@
 ﻿using MISA.DataAccess.Interface;
+using MISA.DataAccess.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,33 +8,33 @@ namespace MISA.DataAccess.Repository
 {
     public class BaseRepository<T>:IBaseRepository<T>
     {
-        protected IBaseRepository<T> _baseRepository;
-        public BaseRepository(IBaseRepository<T> baseRepository)
+        protected IDatabaseContext<T> _databaseContext;
+        public BaseRepository(IDatabaseContext<T> databaseContext)
         {
-            _baseRepository = baseRepository;
+            _databaseContext = databaseContext;
         }
 
         public IEnumerable<T> Get()
         {
-            return _baseRepository.Get();
+            return _databaseContext.Get();
         }
 
         public T GetByID(object objID)
         {
-            return _baseRepository.GetByID(objID);
+            return _databaseContext.GetByID(objID);
         }
         public int Insert(T obj)
         {
-            return _baseRepository.Insert(obj);
+            return _databaseContext.Insert(obj);
         }
 
         public int Update(T obj)
         {
-            return _baseRepository.Update(obj);
+            return _databaseContext.Update(obj);
         }
         public int Delete(Guid objID)
         {
-            return _baseRepository.Delete(objID);
+            return _databaseContext.Delete(objID);
         }    
     }
 }

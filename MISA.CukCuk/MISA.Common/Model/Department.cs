@@ -6,7 +6,7 @@ namespace MISA.Common.Model
 {
     public class Department
     {
-        public int DepartmentID { get; set; }
+        public Guid DepartmentID { get; set; }
         public string DepartmentCode { get; set; }
         public string DepartmentName { get; set; }
 

@@ -322,18 +322,18 @@ class BaseJS {
     * */
     btnSaveOnClick() {
         try {
-            //// validate dữ liệu
-            //var inputRequireds = $('input[required]');
-            //var isValid = true;
-            //$.each(inputRequireds, function (i, item) {
-            //    var valid = $('input').trigger("blur");
-            //    if (isValid && valid.hasClass("required-error")) {
-            //        isValid = false;
-            //    }
-            //})
-            //if (isValid == false) {
-            //    return;
-            //}
+            //validate dữ liệu trước khi thêm hoặc sửa lần nữa
+            var inputRequireds = $('input[required]');
+            var isValid = true;
+            $.each(inputRequireds, function (i, item) {
+                var valid = $('input').trigger("blur");
+                if (isValid && valid.hasClass("required-error")) {
+                    isValid = false;
+                }
+            })
+            if (isValid == false) {
+                return;
+            }
             // check xem là thêm mới hay sửa thông tin
             var self = this;
             var Method = "POST"; // Mặc định là thêm

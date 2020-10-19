@@ -62,13 +62,13 @@ namespace MISA.CukCuk.Model
         /// <summary>
         /// Vị trí
         /// </summary>
-        public int PositionID { get; set; }
+        public Guid PositionID { get; set; }
         public string PositionName { get; set; }
 
         /// <summary>
         /// Phòng ban
         /// </summary>
-        public int DepartmentID { get; set; }
+        public Guid DepartmentID { get; set; }
         public string DepartmentName { get; set; }
 
         /// <summary>
@@ -118,9 +118,9 @@ namespace MISA.CukCuk.Model
                     case WorkStatus.Waiting:
                         return "Đang thử việc";
                     case WorkStatus.Childbirth:
-                        return "Đang nghỉ sinh sản";
+                        return "Nghỉ sinh sản";
                     case WorkStatus.Foreign:
-                        return "Đang công tác nước ngoài";
+                        return "Công tác nước ngoài";
                     default:
                         return "Không xác định";
                 }

@@ -13,6 +13,7 @@ namespace MISA.DataAccess.Interface
         /// Author: BTTu (15/10/2020)
         /// <returns></returns>
         IEnumerable<T> Get();
+
         /// <summary>
         /// Lấy dữ liệu của 1 đối tượng
         /// </summary>
@@ -20,6 +21,7 @@ namespace MISA.DataAccess.Interface
         /// Author: BTTu (15/10/2020)
         /// <returns></returns>
         T GetByID(object objID);
+
         /// <summary>
         /// Thêm mới 1 đối tượng
         /// </summary>
@@ -27,6 +29,7 @@ namespace MISA.DataAccess.Interface
         /// Author: BTTu (15/10/2020)
         /// <returns></returns>
         int Insert(T obj);
+
         /// <summary>
         /// Sửa dữ liệu 1 đối tượng
         /// </summary>
@@ -34,6 +37,7 @@ namespace MISA.DataAccess.Interface
         /// Author: BTTu (15/10/2020)
         /// <returns></returns>
         int Update(T obj);
+
         /// <summary>
         /// Xóa 1 đối tượng
         /// </summary>
