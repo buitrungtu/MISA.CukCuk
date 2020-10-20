@@ -56,6 +56,7 @@ class BaseJS {
         $("#pagePrev").click(this.PagingPrev.bind(this));
         $("#pageFirst").click(this.PagingFirst.bind(this));
         $("#pageLast").click(this.PagingLast.bind(this));
+        $("#txbNumberRecord").change(this.PagingRecordOnChange.bind(this));
     }
     // #endregion
 
@@ -65,27 +66,25 @@ class BaseJS {
      * Author: Bùi Trung Tú (8/10/2020)
      * */
     PagingNext() {
-        
-        var currentPage = $('#txtPageNumber').val();
-        var currentPage = Number(currentPage) + 1;
-        var record = $('#txbNumberRecord').val();
+        var currentPageNumber = $('#txtPageNumber').val();
+        if (currentPageNumber) {
+            $("#txtPageNumber").val(Number(currentPageNumber)+1)
+        }
         debugger;
-        this.Paging(record,currentPage); // thực hiện tại lớp kế thừa 
-        $("#txtPageNumber").val(currentPage + ''); //cập nhật lại số trang
+        this.getData();
+        this.loadData();
     }
     /**
      * Lùi lại 1 trang
      * Author: Bùi Trung Tú (8/10/2020)
      * */
     PagingPrev() {
-        var currentPage = $('#txtPageNumber').val();
-        if (currentPage > 0) {
-            var currentPage = $('#txtPageNumber').val();
-            var currentPage = Number(currentPage) - 1;
-            var record = $('#txbNumberRecord').val();
-            this.Paging(record,currentPage); // thực hiện tại lớp kế thừa 
-            $("#txtPageNumber").val(currentPage + ''); //cập nhật lại số trang
-        }
+        var currentPageNumber = $('#txtPageNumber').val();
+        if (currentPageNumber && currentPageNumber > 0) {
+            $("#txtPageNumber").val(Number(currentPageNumber) - 1)
+        }  
+        this.getData();
+        this.loadData();
     }
     /**
      * Về trang đầu tiên
@@ -105,6 +104,12 @@ class BaseJS {
         this.Paging(record,16); // thực hiện tại lớp kế thừa 
         $('#txtPageNumber').val("16");
     }
+
+    PagingRecordOnChange() {
+        this.getData();
+        this.loadData();
+    }
+
     // #endregion
 
     // #region Hàm Dựng
@@ -282,10 +287,9 @@ class BaseJS {
     DeleteObjs() {
         // xóa 1
         try {
-            debugger;
+            this.btnCloseOnClick();
             var objSelecteds = $('.row-selected');
             if (objSelecteds.length == 1) {
-                debugger;
                 this.deleteToDB(objSelecteds.data('keyID'));
             }
         } catch (e) {
@@ -295,23 +299,25 @@ class BaseJS {
             $("#btnOK").focus();
         }
 
-
-
-
-        //TODO: Gặp vấn đề trong vòng lặp, phần tử con không gọi được thuộc tính data("keyID")
         // xóa nhiều
         //try {
         //    var objSelecteds = $('.row-selected');
         //    var deleteObjs = "";
+        //    debugger;
         //    $.each(objSelecteds, function (i, objSelected) {
-        //        var objID = objSelected.data("keyID");
+        //        debugger;
+        //        var objID = objSelected.keyID;
         //        deleteObjs += "," + objID; // gom tất cả mã cần xóa thành 1 chuỗi
+        //        console.log(objID);
         //    })
-        //    console.log(deleteObjs);
         //    deleteObjs = deleteObjs.substring(1); // xóa ký tự đầu chuỗi (là dấu ',' thừa)
-        //    this.deleteToDB(deleteObjs);// xóa đối tượng (Thực hiện tại các lớp kế thừa)
+        //    console.log(deleteObjs);
+        //    //this.deleteToDB(deleteObjs);// xóa đối tượng (Thực hiện tại các lớp kế thừa)
         //} catch (e) {
-        //    alert("Có lỗi xảy ra, hãy thử lại");
+        //    $(".dialog-modal").show();
+        //    $("#errorMessage").html("Có lỗi xảy ra, vui lòng thử lại!");
+        //    $(".dialog-error").show();
+        //    $("#btnOK").focus();
         //}
     }
 
@@ -410,7 +416,27 @@ class BaseJS {
      * Author: Bui Trung Tu (20/9/2020)
      * */
     btnAddOnClick() {
-        this.showDialogDetail();
+        try {
+            var self = this;
+            //đề xuất mã nhân viên cho người dùng
+            $.ajax({
+                url: "/api/employeeApi/employee/maxCode",
+                method: "GET",
+                contentType: "application/json",
+                dataType: "json",
+                async: false
+            }).done(function (res) {
+                self.showDialogDetail();
+                $("#txtCustomerCode").val(res.responseText);
+            }).fail(function (res2) {
+                self.showDialogDetail();
+                $("#txtCustomerCode").val(res2.responseText);
+            })
+        } catch (e) {
+            $(".dialog-modal").show();
+            $("#errorMessage").html("Có lỗi khi truyền dữ liệu tới server, vui lòng thử lại!");
+            $(".dialog-error").show();
+        }       
     }
     /**
      * Sự kiện thoát

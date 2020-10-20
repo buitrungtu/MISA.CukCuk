@@ -18,6 +18,11 @@ namespace MISA.DataAccess.Repository
             return _databaseContext.GetByCode(employeeCode);
         }
 
+        public IEnumerable<Employee> GetByPaging(int page, int record)
+        {
+            return _databaseContext.GetByPaging(page, record);
+        }
+
         public string GetMaxEmployeeCode()
         {
             return _databaseContext.GetMaxEmployeeCode();

@@ -27,7 +27,7 @@ namespace MISA.DataAccess.DatabaseAccess
             var employees = new List<T>();
             var className = typeof(T).Name;
             _sqlCommand.CommandText = $"Proc_Get{className}s";
-            _sqlCommand.Parameters.AddWithValue("PageLimit", 50);
+            _sqlCommand.Parameters.AddWithValue("PageLimit", 210);
             _sqlCommand.Parameters.AddWithValue("Count", 0);
 
             MySqlDataReader mySqlDataReader = _sqlCommand.ExecuteReader();
@@ -48,7 +48,32 @@ namespace MISA.DataAccess.DatabaseAccess
             mySqlDataReader.Close();
             return employees;
         }
-       
+        public IEnumerable<T> GetByPaging(int page, int record)
+        {
+            var objs = new List<T>();
+            var className = typeof(T).Name;
+            _sqlCommand.CommandText = $"Proc_Get{className}s";
+            _sqlCommand.Parameters.AddWithValue("PageLimit", record);
+            _sqlCommand.Parameters.AddWithValue("Count", page);
+
+            MySqlDataReader mySqlDataReader = _sqlCommand.ExecuteReader();
+            while (mySqlDataReader.Read())
+            {
+                var obj = Activator.CreateInstance<T>();
+
+                for (int i = 0; i < mySqlDataReader.FieldCount; i++)
+                {
+                    var columnName = mySqlDataReader.GetName(i);
+                    var value = mySqlDataReader.GetValue(i);
+                    var propertyInfo = obj.GetType().GetProperty(columnName);
+                    if (propertyInfo != null && value != DBNull.Value)
+                        propertyInfo.SetValue(obj, value);
+                }
+                objs.Add(obj);
+            }
+            mySqlDataReader.Close();
+            return objs;
+        }
 
         public T GetByID(object objId)
         {
@@ -152,5 +177,6 @@ namespace MISA.DataAccess.DatabaseAccess
             _sqlConnection.Close();
         }
 
+       
     } 
 }

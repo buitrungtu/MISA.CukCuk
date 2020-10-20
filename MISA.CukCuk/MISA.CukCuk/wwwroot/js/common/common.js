@@ -46,7 +46,7 @@ var commonJS = {
       */
     formatMoney(money) {
         if (money == null) return 0;
-        return money.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+        return money.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
     },
 
      /**
@@ -55,14 +55,15 @@ var commonJS = {
       * @param {string} money
       */
     formatMoneyForDialog(money) {
+        debugger;
         var x = money;
-        x = x.replace(/,/g, "");
-        x = x.split("").reverse().join("");
-        x = x.replace(/.../g, function (e) {
-            return e + ",";
-        }); // Insert new commas
-        x = x.split("").reverse().join("");
-        x = x.replace(/^,/, "");
+        x = x.replace(/\./g, ""); // xóa hết dấu . cũ đi
+        x = x.split("").reverse().join(""); // đảo chuỗi
+        x = x.replace(/.../g, function (e) { // cứ 3 ký tự thì thêm 1 dấu chấm
+            return e + ".";
+        });
+        x = x.split("").reverse().join("");// đảo lại chuỗi
+        x = x.replace(/^\./, ""); // xóa đi dấu . thừa ở đầu chuỗi nếu có
         return x;
     },
     hideButton() {

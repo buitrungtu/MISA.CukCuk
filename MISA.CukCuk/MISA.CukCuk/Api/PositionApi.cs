@@ -12,12 +12,12 @@ namespace MISA.CukCuk.Api
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DeparmentApi : BaseApi<Department>
+    public class PositionApi : BaseApi<Position>
     {
-        IBaseService<Department> _departmentService;
-        public DeparmentApi(IBaseService<Department> departmentService) : base(departmentService)
+        IBaseService<Position> _positionService;
+        public PositionApi(IBaseService<Position> positionService) : base(positionService)
         {
-            _departmentService = departmentService;
+            _positionService = positionService;
         }
     }
 }

@@ -56,14 +56,14 @@
     border-collapse: collapse;
 }
 
-    
-    table td:first-child, th:first-child {
-        border-left: none;
-    }
 
-    table td:last-child, th:last-child {
-        border-right: none;
-    }
+table td:first-child, th:first-child {
+    border-left: none;
+}
+
+table td:last-child, th:last-child {
+    border-right: none;
+}
 
 table thead {
     background-color: rgb(239,239,239);
@@ -84,6 +84,7 @@ table .text-center {
 table .text-right {
     text-align: right;
 }
+
 #tbListData td, th {
     padding: 4px 10px;
     cursor: pointer;
@@ -97,10 +98,12 @@ table .text-right {
     width: 100px;
     max-width: 100px;
 }
-.EmployeeCode,.GenderName{
+
+.EmployeeCode, .GenderName {
     width: 50px;
     max-width: 50px;
 }
+
 .EmployeeName {
     width: 150px;
     max-width: 150px;
@@ -155,6 +158,7 @@ table tr:hover :not(th) {
     width: 40px;
     height: 20px;
     margin: -3px 10px;
+    border: 1px solid #ccc;
 }
 
 .paging-left .paging-left-center {
@@ -177,17 +181,23 @@ table tr:hover :not(th) {
     margin: 5px;
     line-height: 10px;
 }
+
 input#txbNumberRecord {
     width: 40px;
     margin-left: 15px;
     height: 20px;
+}
+select#txbNumberRecord {
+    width: 50px;
+    height: 25px;
+    margin: 0px 0px 2px 10px;
+    outline: none;
+    border: 1px solid #ccc;
 }
 /*end grid paging*/
 button.hiden {
     opacity: 0.5;
     cursor: default !important;
 }
-/*text-overflow: ellipsis;
-white-space: nowrap;
-max-width: 200px;
-overflow: hidden;*/
+
+

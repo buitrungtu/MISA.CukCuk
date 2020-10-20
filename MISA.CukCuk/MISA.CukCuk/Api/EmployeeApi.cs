@@ -22,22 +22,38 @@ namespace MISA.CukCuk.Api
         }
 
         /// <summary>
-        /// Lấy dữ liệu binding lên dialog
+        /// Lấy dữ liệu có phân trang
+        /// </summary>
+        /// <param name="page">Trang</param>
+        /// <param name="record">Bản ghi</param>
+        /// Author: BTTu (18/10/2020)
+        /// <returns></returns>
+        [HttpGet("{paging}")]
+        public IActionResult Get([FromQuery]int page, [FromQuery] int record)
+        {
+            var data = _employeeService.GetByPaging(record*(page - 1),record);
+            if (data != null)
+                return Ok(data);
+            else
+                return NoContent();
+        }
+
+        /// <summary>
+        /// Lấy mã nhân viên lớn nhất trong DB
         /// </summary>
         /// Author: BTTu(19/10/2020)
         /// <returns></returns>
-        [HttpGet("{GetDataDialog}")]
-        public IActionResult GetDataDialog()
+        [HttpGet("{employee}/{maxCode}")]
+        public IActionResult GetMaxEmployeeCode()
         {
-            string rs = _employeeService.GetMaxEmployeeCode();
             try
             {
-                int maxCode = Int32.Parse(rs.Replace("NV", ""));
-                return Ok(maxCode);
+                string rs = _employeeService.GetMaxEmployeeCode();
+                int maxCode = Int32.Parse(rs.Replace("NV", "")) + 1;
+                return Ok("NV"+maxCode);
             }
             catch (Exception)
             {
-
                 return NoContent();
             }
         }

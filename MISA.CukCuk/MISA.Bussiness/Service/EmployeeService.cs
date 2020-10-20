@@ -23,6 +23,11 @@ namespace MISA.Bussiness.Service
             return _employeeRepository.CheckEmployeeByCode(employeeCode);
         }
 
+        public IEnumerable<Employee> GetByPaging(int page, int record)
+        {
+            return _employeeRepository.GetByPaging(page,record);
+        }
+
         public string GetMaxEmployeeCode()
         {
             return _employeeRepository.GetMaxEmployeeCode();

@@ -26,43 +26,29 @@ namespace MISA.CukCuk.Api
         [HttpGet]
         public IActionResult Get()
         {
-            var rs = _baseService.Get();
-            if (rs != null)
-                return Ok(rs);
+            var data = _baseService.Get();
+            if (data != null)
+                return Ok(data);
             else
                 return NoContent();
         }
-        /// <summary>
-        /// Lấy dữ liệu có phân trang
-        /// </summary>
-        /// <param name="page">Trang</param>
-        /// <param name="record">Bản ghi</param>
-        /// Author: BTTu (18/10/2020)
-        /// <returns></returns>
-        [HttpGet("{paging}")]
-        public IActionResult Get(int page, int record)
-        {
-            var rs = _baseService.Get();
-            if (rs != null)
-                return Ok(rs);
-            else
-                return NoContent();
-        }
+        
         /// <summary>
         /// Lấy dữ liệu của 1 đối tượng
         /// </summary>
         /// <param name="objID">ID của đối tượng</param>
         /// Author: BTTu (17/10/2020)
         /// <returns></returns>
-        [HttpGet("{objID}")]
-        public IActionResult Get([FromRoute] Guid objID)
-        {
-            var obj = _baseService.GetById(objID);
-            if (obj != null)
-                return Ok(obj);
-            else
-                return NoContent();
-        }
+        //[HttpGet("{objID}")]
+        //public IActionResult Get([FromRoute] Guid objID)
+        //{
+        //    //TODO: Sửa db phần lấy thông tin
+        //    var obj = _baseService.GetById(objID);
+        //    if (obj != null)
+        //        return Ok(obj);
+        //    else
+        //        return NoContent();
+        //}
 
         /// <summary>
         /// Thêm 1 đối tượng
@@ -112,7 +98,10 @@ namespace MISA.CukCuk.Api
             if (affectRows > 0)
                 return CreatedAtAction("DELETE", affectRows);
             else
+            {
+                serviceResponse.Msg.Add("Không tìm thấy nhân viên này");
                 return BadRequest(serviceResponse);
+            }   
         }
     }
 }

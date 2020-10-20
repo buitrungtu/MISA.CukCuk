@@ -187,7 +187,7 @@
                             <i id="pagePrev" class="paging-icon icon-prev"></i>
                             <div class="paging-left-center">
                                 <p class="paging-text">Trang</p>
-                                <input id="txtPageNumber" value="0" />
+                                <input id="txtPageNumber" value="1" />
                                 <p class="paging-text">trên 1</p>
                             </div>
                             <i id="pageNext" class="paging-icon icon-next"></i>
@@ -195,7 +195,12 @@
                             <div class="paging-refresh">
                                 <i class="paging-icon icon-refresh"></i>
                             </div>
-                            <input id="txbNumberRecord" type="number" value="30" />
+                            <!--<input id="txbNumberRecord" type="number" value="30" />-->
+                            <select id="txbNumberRecord">
+                                <option value="100">100</option>
+                                <option value="50">50</option>  
+                                <option value="25">25</option>
+                            </select>
                         </div>
                         <div class="paging-right">
                             Hiển thị 1 - 30 trên 100 kết quả.
@@ -252,9 +257,11 @@
                     <div class="information-field">
                         <label class="text-col-2">Giới tính</label>
                         <select tabindex="4" class="index-2" fieldName="Gender">
-                            <option value="0">Nam</option>
-                            <option value="1">Nữ</option>
-                            <option value="2">Khác</option>
+                            <option value="0">Nữ</option>
+                            <option value="1">Nam</option>
+                            <option value="2">Less</option>
+                            <option value="3">Gay</option>
+                            <option value="4">Khác</option>
                         </select>
                     </div>
                 </div>
@@ -294,9 +301,12 @@
                 <div class="information-field">
                     <label>Vị trí</label>
                     <select tabindex="10" fieldName="PositionID">
-                        <option value="0">Trưởng phòng</option>
-                        <option value="1">Giám đốc</option>
-                        <option value="2">Bảo vệ</option>
+                        <!--TODO-->
+                        <option value="cd9e859f-d7a8-f8da-a1da-bfce2e4be213">Nhân viên</option>
+                        <option value="9dce9fcd-eec9-f5ec-c51e-fea1f7abddce">Trưởng phòng</option>
+                        <option value="f73decde-ab2d-fbcf-dabb-bb46deb98a17">Phó phòng</option>
+                        <option value="ed56f411-da2e-eeb4-afb8-dc9cd10ecede">Giám đốc</option>
+                        <option value="effd6b5d-dbcd-fffd-dbba-6d50a0ec8b87">Thủ quỹ</option>
                     </select>
                 </div>
             </div>
@@ -304,9 +314,13 @@
                 <div class="information-field">
                     <label>Phòng ban</label>
                     <select tabindex="11" fieldName="DepartmentID" id="CustomerType">
-                        <option value="0">Đào tạo</option>
-                        <option value="1">Sản xuất</option>
-                        <option value="2">Truyền thông</option>
+                        <option value="23eccb53-cae0-6f8d-dffa-5acabe7af65b">Phòng hành chính</option>
+                        <option value="5786ffb7-eacf-f275-5fda-b277ac5fd5c1">Phòng tiếp thị</option>
+                        <option value="6bd39bba-bfbd-2f6e-3d8f-7cbcecdefcaf">Phòng nhân sự</option>
+                        <option value="7baf8bb8-acc7-0d72-1ea4-fdfdcbc0aadf">Phòng kế toán</option>
+                        <option value="7deb184a-f9e0-dc0e-e803-7a5d8ea40fcd">Phòng kiểm toán</option>
+                        <option value="ba9fe93b-a4f4-dfbc-cddf-6ba6ea4c9533">Phòng kinh doanh</option>
+                        <option value="dad7aca2-fede-fe66-aa7f-8cff6baafdce">Phòng Marketing</option>
                     </select>
                 </div>
             </div>
