@@ -25,9 +25,9 @@ namespace MISA.Bussiness.Service
             return serviceResponse;
         }
 
-        public IEnumerable<T> Get()
+        public IEnumerable<T> Get(int page,int record)
         {
-            return _baseRepository.Get();
+            return _baseRepository.Get(page,record);
         }
 
         public T GetById(object objId)

@@ -11,23 +11,7 @@ class CustomerJS extends BaseJS {
         super();
     }
 
-    Paging(record,currentPage) {
-        var self = this;
-        $.ajax({
-            url: "/api/customerApi/" + record + "/" + currentPage,
-            method: "GET",
-            contentType: "application/json",
-            dataType: "json",
-            async: false
-        }).done(function (data) {
-            self.Data = data;
-            self.loadData();
-        }).fail(function () {
-            alert("Có lỗi khi lấy dữ liệu");
-        })
-    }
-
-
+  
     /**
      * Overide lại hàm getData của base.js
      * Author: Bui Trung Tu (25/9/2020)
@@ -57,26 +41,31 @@ class CustomerJS extends BaseJS {
      * @param {string} Method phương thức lưu (POST hay PUT)
      */
     saveToDB(customer, Method) {
-        var self = this; // form base
-        customer.customerID = self.objID;
-        $.ajax({
-            url: "/api/customerApi",
-            method: Method,
-            data: JSON.stringify(customer),
-            contentType: "application/json",
-            dataType: "json",
-            async: false
-        }).done(function (res) {
-            console.log(res);
-            if (res) { // lưu thành công
-                self.btnCloseOnClick();
-                self.getData();
-                self.loadData();
-                commonJS.hideButton();
-            }
-        }).fail(function () {
-            alert("Lỗi khi lưu xuống DB");
-        })
+        try {
+            var self = this; // form base
+            customer.customerID = self.objID;
+            $.ajax({
+                url: "/api/customerApi",
+                method: Method,
+                data: JSON.stringify(customer),
+                contentType: "application/json",
+                dataType: "json",
+                async: false
+            }).done(function (res) {
+                console.log(res);
+                if (res) { // lưu thành công
+                    self.btnCloseOnClick();
+                    self.getData();
+                    self.loadData();
+                    commonJS.hideButton();
+                }
+            }).fail(function () {
+                alert("Lỗi khi lưu xuống DB");
+            })
+        } catch(e){
+
+        }
+        
     }
 
     /**
@@ -85,24 +74,28 @@ class CustomerJS extends BaseJS {
      * @param {string} customerCodes danh sách mã của các đối tượng cần xóa
      */
     deleteToDB(customerCodes) {
-        debugger;
-        var self = this;
-        $.ajax({
-            url: "/api/customerApi/" + customerCodes,
-            method: "DELETE",
-            async: false
-        }).done(function (res) {
-            if (res == true) {
-                self.getData();
-                self.loadData();
-                self.btnCloseOnClick();
-                commonJS.hideButton();
-            } else {
-                alert("Không tìm thấy khách hàng này");
-            }
-        }).fail(function () {
-            alert("Xóa thất bại");
-        })
+        try {
+            var self = this;
+            $.ajax({
+                url: "/api/customerApi/" + customerCodes,
+                method: "DELETE",
+                async: false
+            }).done(function (res) {
+                if (res == true) {
+                    self.getData();
+                    self.loadData();
+                    self.btnCloseOnClick();
+                    commonJS.hideButton();
+                } else {
+                    alert("Không tìm thấy khách hàng này");
+                }
+            }).fail(function () {
+                alert("Xóa thất bại");
+            })
+        } catch (e) {
+
+        }
+        
     }
 
     /**
@@ -111,23 +104,27 @@ class CustomerJS extends BaseJS {
     * @param {string} objCode mã của đối tượng
     */
     getObjData(customerID) {
-        var self = this;
-        debugger;
-        // lấy dữ liệu từ CSDL của đối tượng customer thông qua mã
-        $.ajax({
-            url: "/api/customerApi/" + customerID,
-            method: "GET",
-            contentType: "application/json",
-            dataType: "json",
-            async: false
-        }).done(function (customer) {
-            console.log(customer);
-            if (customer) {
-                self.Obj = customer; // truyền lại dữ liệu của đối tượng sang cho base.js xử lý tiếp
-            }
-        }).fail(function () {
-            alert("Lỗi khi lấy dữ liệu");
-        })
+        try {
+            var self = this;
+            // lấy dữ liệu từ CSDL của đối tượng customer thông qua mã
+            $.ajax({
+                url: "/api/customerApi/" + customerID,
+                method: "GET",
+                contentType: "application/json",
+                dataType: "json",
+                async: false
+            }).done(function (customer) {
+                console.log(customer);
+                if (customer) {
+                    self.Obj = customer; // truyền lại dữ liệu của đối tượng sang cho base.js xử lý tiếp
+                }
+            }).fail(function () {
+                alert("Lỗi khi lấy dữ liệu");
+            })
+        } catch (e) {
+
+        }
+        
     }
 }
 

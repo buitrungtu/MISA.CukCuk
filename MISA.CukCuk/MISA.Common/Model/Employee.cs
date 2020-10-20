@@ -136,6 +136,11 @@ namespace MISA.CukCuk.Model
         /// Ngày gia nhập
         /// </summary>
         public DateTime JoinDate { get; set; }
+
+        /// <summary>
+        /// Link ảnh đại diện
+        /// </summary>
+        public string LinkAvatar { get; set; }
         #endregion
         #region Metod
         #endregion

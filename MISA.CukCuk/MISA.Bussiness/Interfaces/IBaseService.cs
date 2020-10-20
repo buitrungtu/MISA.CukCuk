@@ -12,7 +12,7 @@ namespace MISA.Bussiness.Interfaces
         /// </summary>
         /// Author: Bui Trung Tu (15/10/2020)
         /// <returns></returns>
-        IEnumerable<T> Get();
+        IEnumerable<T> Get(int page,int record);
 
         /// <summary>
         /// Lấy dữ liệu của đối tượng

@@ -14,9 +14,9 @@ namespace MISA.DataAccess.Repository
             _databaseContext = databaseContext;
         }
 
-        public IEnumerable<T> Get()
+        public IEnumerable<T> Get(int page, int record)
         {
-            return _databaseContext.Get();
+            return _databaseContext.Get(page,record);
         }
 
         public T GetByID(object objID)

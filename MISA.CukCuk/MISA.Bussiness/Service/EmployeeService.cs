@@ -16,16 +16,9 @@ namespace MISA.Bussiness.Service
             _employeeRepository = employeeRepository;
         }
 
-        
-
         public bool CheckEmployeeByCode(string employeeCode)
         {
             return _employeeRepository.CheckEmployeeByCode(employeeCode);
-        }
-
-        public IEnumerable<Employee> GetByPaging(int page, int record)
-        {
-            return _employeeRepository.GetByPaging(page,record);
         }
 
         public string GetMaxEmployeeCode()

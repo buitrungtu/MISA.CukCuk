@@ -188,14 +188,13 @@
                             <div class="paging-left-center">
                                 <p class="paging-text">Trang</p>
                                 <input id="txtPageNumber" value="1" />
-                                <p class="paging-text">trên 1</p>
+                                <p id="totalPage" class="paging-text"></p>
                             </div>
                             <i id="pageNext" class="paging-icon icon-next"></i>
                             <i id="pageLast" class="paging-icon icon-last"></i>
                             <div class="paging-refresh">
                                 <i class="paging-icon icon-refresh"></i>
                             </div>
-                            <!--<input id="txbNumberRecord" type="number" value="30" />-->
                             <select id="txbNumberRecord">
                                 <option value="100">100</option>
                                 <option value="50">50</option>  
@@ -203,7 +202,7 @@
                             </select>
                         </div>
                         <div class="paging-right">
-                            Hiển thị 1 - 30 trên 100 kết quả.
+                            Hiển thị 1 - 30 trên <span id="totalRecord">100</span> kết quả.
                         </div>
                     </div>
                 </div>
@@ -227,8 +226,10 @@
                 <div class="image-content">
                     <img class="avatar" src="/content/Images/avatardefault.png" />
                     <div class="btn-image">
-                        <button class="btn-add">...</button>
-                        <button class="btn-remove">X</button>
+                        <input type="file" id="avatarUpload" style="display:none" accept="image/*" />
+                        <button id="btnUpload">...</button>
+                        <button id="btn-remove">X</button>
+
                     </div>
                 </div>
                 <div class="warning">
@@ -239,7 +240,7 @@
             <div class="col-image">
                 <div class="information-field">
                     <label>Mã nhân viên <span>(*)</span> </label>
-                    <input tabindex="1" type="text" fieldName="EmployeeCode" id="txtCustomerCode" required />
+                    <input tabindex="1" type="text" fieldName="EmployeeCode" id="txtCustomerCode" value="NV2003" required />
                 </div>
             </div>
             <div class="col-image">
@@ -252,15 +253,15 @@
                 <div class="col-2">
                     <div class="information-field">
                         <label>Ngày sinh </label>
-                        <input tabindex="3" format="date" class="date" fieldName="Birthday" type="date" id="txtBirdday"  />
+                        <input tabindex="3" format="date" class="date" fieldName="Birthday" type="date" id="txtBirdday" />
                     </div>
                     <div class="information-field">
                         <label class="text-col-2">Giới tính</label>
                         <select tabindex="4" class="index-2" fieldName="Gender">
                             <option value="0">Nữ</option>
                             <option value="1">Nam</option>
-                            <option value="2">Less</option>
-                            <option value="3">Gay</option>
+                            <option value="2">Gay</option>
+                            <option value="3">Less</option>
                             <option value="4">Khác</option>
                         </select>
                     </div>
@@ -269,7 +270,7 @@
             <div class="col-image">
                 <div class="information-field">
                     <label>Email <span>(*)</span> </label>
-                    <input tabindex="5" type="text" fieldName="Email"  required />
+                    <input tabindex="5" type="text" fieldName="Email" required />
                 </div>
             </div>
             <div class="col-image">
@@ -293,7 +294,7 @@
             <div class="col">
                 <div class="information-field">
                     <label>Nơi cấp </label>
-                    <input tabindex="9" type="text" fieldName="IdentityPlace"  />
+                    <input tabindex="9" type="text" fieldName="IdentityPlace" />
                 </div>
             </div>
             <div class="title-area">Thông tin công việc</div>
@@ -331,7 +332,8 @@
                 </div>
                 <div class="information-field">
                     <label class="text-col-2">Mức lương</label>
-                    <input tabindex="13" format="money" fieldName="Salary" class="index-2 money"/>
+                    <input tabindex="13" format="money" fieldName="Salary" class="index-2 money" />
+                    <p class="italic type-money">(VNĐ)</p>
                 </div>
             </div>
             <div class="col-4-6">
@@ -343,8 +345,10 @@
                     <label class="text-col-2">Tình trạng</label>
                     <select tabindex="15" fieldName="WorkStatus" class="index-2">
                         <option value="0">Đang làm việc</option>
-                        <option value="1">Sản xuất</option>
-                        <option value="2">Truyền thông</option>
+                        <option value="1">Đã nghỉ việc</option>
+                        <option value="2">Đang thử việc</option>
+                        <option value="3">Nghỉ sinh sản</option>
+                        <option value="4">Công tác nước ngoài</option>
                     </select>
                 </div>
             </div>
@@ -397,7 +401,7 @@
             <div class="dialog-btn">
                 <button tabindex="1" id="btnOK">
                     Đồng ý
-                </button>               
+                </button>
             </div>
         </div>
     </div>

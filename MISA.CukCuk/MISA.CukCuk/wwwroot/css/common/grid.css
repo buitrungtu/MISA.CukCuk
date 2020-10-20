@@ -50,6 +50,9 @@
         width: 5px;
         background-color: rgb(239,239,239);
     }
+    .grid .grid-content::-webkit-scrollbar-thumb {
+        background-color: #d6d4d4;
+    }
 
 .grid-content table {
     width: 100%;
@@ -71,7 +74,7 @@ table thead {
 
 thead th {
     position: sticky;
-    top: -1px;
+    top: 0px;
     background-color: #efefef;
     border-top: none;
     height: 20px;

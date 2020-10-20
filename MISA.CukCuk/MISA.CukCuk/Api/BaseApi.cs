@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MISA.Bussiness.Interfaces;
+using MISA.Common.Model;
 using MISA.CukCuk.Model;
 using System;
 using System.Collections.Generic;
@@ -19,36 +20,42 @@ namespace MISA.CukCuk.Api
         }
 
         /// <summary>
-        /// Lấy dữ liệu
+        /// Lấy dữ liệu có phân trang
         /// </summary>
-        /// Author: BTTu (17/10/2020)
+        /// <param name="page">Trang</param>
+        /// <param name="record">Bản ghi</param>
+        /// Author: BTTu (18/10/2020)
         /// <returns></returns>
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get([FromQuery] int page, [FromQuery] int record)
         {
-            var data = _baseService.Get();
-            if (data != null)
-                return Ok(data);
+            var pagingObject = new PagingObject();
+            pagingObject.TotalRecord = 1000;
+            pagingObject.TotalPage = Convert.ToInt32(Math.Ceiling((decimal)pagingObject.TotalRecord / (decimal)record));
+            pagingObject.Data = _baseService.Get(record * (page - 1), record);
+            if (pagingObject.Data != null)
+                return Ok(pagingObject);
             else
                 return NoContent();
         }
-        
+
+
         /// <summary>
         /// Lấy dữ liệu của 1 đối tượng
         /// </summary>
         /// <param name="objID">ID của đối tượng</param>
         /// Author: BTTu (17/10/2020)
         /// <returns></returns>
-        //[HttpGet("{objID}")]
-        //public IActionResult Get([FromRoute] Guid objID)
-        //{
-        //    //TODO: Sửa db phần lấy thông tin
-        //    var obj = _baseService.GetById(objID);
-        //    if (obj != null)
-        //        return Ok(obj);
-        //    else
-        //        return NoContent();
-        //}
+        [HttpGet("{objID}")]
+        public IActionResult Get([FromRoute] Guid objID)
+        {
+            //TODO: Sửa db phần lấy thông tin
+            var obj = _baseService.GetById(objID);
+            if (obj != null)
+                return Ok(obj);
+            else
+                return NoContent();
+        }
 
         /// <summary>
         /// Thêm 1 đối tượng

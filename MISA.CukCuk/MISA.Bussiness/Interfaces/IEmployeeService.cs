@@ -10,6 +10,5 @@ namespace MISA.Bussiness.Interfaces
         bool CheckEmployeeByCode(string employeeCode);
         string GetMaxEmployeeCode();
 
-        IEnumerable<Employee> GetByPaging(int page, int record);
     }
 }

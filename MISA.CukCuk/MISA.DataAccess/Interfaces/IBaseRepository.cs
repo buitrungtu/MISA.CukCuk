@@ -6,13 +6,16 @@ namespace MISA.DataAccess.Interface
 {
     public interface IBaseRepository<T>
     {
-        
+
+       
         /// <summary>
-        /// Lấy dữ liệu
+        /// Lấy dữ liệu và phân trang
         /// </summary>
+        /// <param name="page">trang</param>
+        /// <param name="record">số bản ghi trong 1 trang</param>
         /// Author: BTTu (15/10/2020)
         /// <returns></returns>
-        IEnumerable<T> Get();
+        IEnumerable<T> Get(int page, int record);
 
         /// <summary>
         /// Lấy dữ liệu của 1 đối tượng

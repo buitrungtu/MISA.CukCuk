@@ -1,4 +1,5 @@
-﻿$(document).ready(function () {
+﻿
+$(document).ready(function () {
     var customer = new CustomerJS();
 })
 
@@ -21,14 +22,21 @@ class CustomerJS extends BaseJS {
         var record = $("#txbNumberRecord").val();
         //call api 
         $.ajax({
-            url: "/api/employeeApi/paging?page=" + page + "&record=" + record,
+            url: "/api/employeeApi?page=" + page + "&record=" + record,
             method: "GET",
             contentType: "application/json",
             dataType: "json",
             async: false
-        }).done(function (data) {
-            self.Data = data; // truyền lại dữ liệu sang cho base.js để hiển thị
-        }).fail(function () { 
+        }).done(function (res) {
+            self.Data = res.Data;
+            // cập nhật lại tổng số trang
+            $("#totalPage").text("trên " + res.TotalPage);
+            $("#pageLast").data('totalPage', res.TotalPage);
+            // Hiển thị tổng số bản ghi
+            $("#totalRecord").text(res.TotalRecord);
+            
+        }).fail(function (res) {
+            debugger;
             //Hiện dialog báo lỗi
             $(".dialog-modal").show();
             $("#errorMessage").html("Có lỗi khi truyền dữ liệu tới server, vui lòng thử lại!");
@@ -76,6 +84,7 @@ class CustomerJS extends BaseJS {
      */
     saveToDB(employee, Method) {
         var self = this;
+        employee.EmployeeID = self.objID;
         //call api
         $.ajax({
             url: "/api/EmployeeApi",
@@ -88,13 +97,20 @@ class CustomerJS extends BaseJS {
             if (res > 0) {
                 // Lưu thành công, hiện lại dữ liệu
                 self.btnCloseOnClick();
-                self.getData();
                 self.loadData();
+                self.objID = "";
             }
         }).fail(function (res) {
+            debugger;
             //hiện dialog thông báo lỗi
+            //self.btnCloseOnClick();
             $(".dialog-modal").show();
-            $("#errorMessage").html(res.responseJSON.Msg);
+            var error = "";
+            $.each(res.responseJSON.Msg, function (i, msg) {
+                error += ", " + msg;
+            })
+            error=error.substring(1);
+            $("#errorMessage").html(error);
             $(".dialog-error").show();
         })
     }
@@ -113,7 +129,6 @@ class CustomerJS extends BaseJS {
         }).done(function (res) {
             if (res == true) {
                 // xóa thành công
-                self.getData();
                 self.loadData();
                 self.btnCloseOnClick();
             }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -30,7 +31,7 @@ namespace MISA.CukCuk
                 .AddNewtonsoftJson(options =>
                 {
                     options.SerializerSettings.ContractResolver = new DefaultContractResolver();
-                }); ;
+                });
             DIConfig.InjectionConfig(services);
         }
 
@@ -41,6 +42,7 @@ namespace MISA.CukCuk
             {
                 app.UseDeveloperExceptionPage();
             }
+            
 
             app.UseHttpsRedirection();
 
@@ -54,6 +56,7 @@ namespace MISA.CukCuk
             {
                 endpoints.MapControllers();
             });
+
         }
     }
 }

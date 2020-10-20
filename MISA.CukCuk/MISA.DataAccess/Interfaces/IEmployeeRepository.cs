@@ -9,8 +9,6 @@ namespace MISA.DataAccess.Interfaces
     public interface IEmployeeRepository:IBaseRepository<Employee>
     {
 
-        IEnumerable<Employee> GetByPaging(int page, int record);
-
         /// <summary>
         /// Kiểm tra trùng mã hay không
         /// </summary>

@@ -2,15 +2,17 @@
  * Class quản lý các function chung cua các trang
  * Author: Bui Trung Tu (25/9/2020)
  * */
+
 class BaseJS {
     // khởi tạo
     constructor() {
         try {
             this.FormType = null;
-            this.objID = null;
-            this.getData();
+            this.objID = null;           
             this.initEvents();
             this.loadData();
+            this.SaveAndAdd = false;
+            this.objID = "";
         } catch (e) { }
     }
     // #region Gán sự kiện
@@ -24,7 +26,6 @@ class BaseJS {
         //thoát form dialog
         $('#btnCancel').click(this.btnCloseOnClick.bind(this));
         $('.title-button-close').click(this.btnCloseOnClick.bind(this));
-        $('.dialog-modal').click(this.btnCloseOnClick.bind(this));
         $('#btnNo').click(this.btnCloseOnClick.bind(this));
         $("#btnOK").click(this.btnErrorOnClickOK.bind(this));
         //show lựa chọn với tài khoản
@@ -35,6 +36,7 @@ class BaseJS {
         $('#btnEdit').click(this.btnEditOnClick.bind(this));
         // Lưu thêm or sửa
         $('#btnSave').click(this.btnSaveOnClick.bind(this));
+        $('#btnSaveAndAdd').click(this.btnSaveAndAddOnClick.bind(this));
         // Xóa bản ghi
         $('.dialog-confirm #btnYes').click(this.DeleteObjs.bind(this));
         $('#btnDelete').click(this.btnDeleteOnClick.bind(this));
@@ -49,14 +51,27 @@ class BaseJS {
         })
         // định dạng tiền tệ trực tiếp trên form dialog 
         $(".money").keyup(this.formatMoney);
-
-
+        $(document).keyup(this.KeyOnPress.bind(this));
         // phân trang
         $("#pageNext").click(this.PagingNext.bind(this));
         $("#pagePrev").click(this.PagingPrev.bind(this));
         $("#pageFirst").click(this.PagingFirst.bind(this));
         $("#pageLast").click(this.PagingLast.bind(this));
         $("#txbNumberRecord").change(this.PagingRecordOnChange.bind(this));
+        $('#btnUpload').click(function () {
+            $('#avatarUpload').trigger('click');
+            $('#avatarUpload').change(function () {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('.avatar').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(this.files[0]);
+            })
+        });
+        $('#btn-remove').click(function () {
+            $('.avatar').attr('src', "/content/Images/avatardefault.png");
+        })
+        
     }
     // #endregion
 
@@ -68,10 +83,8 @@ class BaseJS {
     PagingNext() {
         var currentPageNumber = $('#txtPageNumber').val();
         if (currentPageNumber) {
-            $("#txtPageNumber").val(Number(currentPageNumber)+1)
+            $("#txtPageNumber").val(Number(currentPageNumber) + 1);
         }
-        debugger;
-        this.getData();
         this.loadData();
     }
     /**
@@ -81,9 +94,8 @@ class BaseJS {
     PagingPrev() {
         var currentPageNumber = $('#txtPageNumber').val();
         if (currentPageNumber && currentPageNumber > 0) {
-            $("#txtPageNumber").val(Number(currentPageNumber) - 1)
+            $("#txtPageNumber").val(Number(currentPageNumber) - 1);
         }  
-        this.getData();
         this.loadData();
     }
     /**
@@ -91,22 +103,20 @@ class BaseJS {
      * Author: Bùi Trung Tú (8/10/2020)
      * */
     PagingFirst() {
-        var record = $('#txbNumberRecord').val();
-        this.Paging(record,0); // thực hiện tại lớp kế thừa 
-        $('#txtPageNumber').val("0");
+        $("#txtPageNumber").val(1);
+        this.loadData();
     }
     /**
      * Tới trang cuối cùng
      * Author: Bùi Trung Tú (8/10/2020)
      * */
     PagingLast() {
-        var record = $('#txbNumberRecord').val();
-        this.Paging(record,16); // thực hiện tại lớp kế thừa 
-        $('#txtPageNumber').val("16");
+        var pageLast = $("#pageLast").data('totalPage');
+        $("#txtPageNumber").val(pageLast);
+        this.loadData();
     }
 
     PagingRecordOnChange() {
-        this.getData();
         this.loadData();
     }
 
@@ -150,9 +160,7 @@ class BaseJS {
     deleteToDB(objCode) {
         // Các lớp kế thừa sẽ override lại hàm này
     }
-    Paging(record,currentPage) {
 
-    }
     // #endregion
 
     // #region Phương thức chính
@@ -164,6 +172,9 @@ class BaseJS {
     //TODO: Test todo
     loadData() {
         try {
+            //Lấy dữ liệu từ các lớp kế thừa
+            this.getData();
+            // xóa dữ liệu cũ
             $('#tbListData tbody').empty();
             // đọc thông tin các cột dữ liệu:
             var fields = $('table#tbListData thead th');
@@ -206,7 +217,6 @@ class BaseJS {
     * */
     btnEditOnClick() {
         try {
-            debugger;           
             if ($("#btnEdit").hasClass("hiden") == false) {
                 var self = this;
                 // xác định đối tượng cần edit
@@ -214,7 +224,6 @@ class BaseJS {
                 if (objSelected.length == 1) {
                     // lấy customerID
                     var objID = objSelected.data('keyID');
-                    console.log(objID);
                     this.getObjData(objID); // lấy dữ liệu của đối tượng được chọn (Thực hiện tại các lớp kế thừa)
                     if (self.Obj != null) {
                         // reset validate
@@ -239,7 +248,8 @@ class BaseJS {
                                 $(field).val(self.Obj[fieldName]);
                             }
                         })
-                        // chuyển trạng thái cho nút Save thành edit 
+                        // chuyển trạng thái cho nút Save thành edit  
+                        console.log(objID);
                         self.objID = objID;
                         self.FormType = "Edit";
                     }
@@ -258,6 +268,50 @@ class BaseJS {
         }
     }
 
+    btnSaveOnClick() {
+        try {
+            //validate dữ liệu trước khi thêm hoặc sửa lần nữa
+            var inputRequireds = $('input[required]');
+            var isValid = true;
+            $.each(inputRequireds, function (i, item) {
+                var valid = $('input').trigger("blur");
+                if (isValid && valid.hasClass("required-error")) {
+                    isValid = false;
+                }
+            })
+            if (isValid == false) {
+                return;
+            }
+            // check xem là thêm mới hay sửa thông tin
+            var self = this;
+            var Method = "POST"; // Mặc định là thêm
+            if (self.FormType == "Edit") {
+                Method = "PUT";
+            }
+            var obj = {};
+            var fields = $(".dialog-body input,.dialog-body select,.dialog-body textarea");
+            $.each(fields, function (index, field) {
+                var fieldName = $(field).attr('fieldName');
+                if (fieldName == "Salary") {
+                    obj[fieldName] = Number($(field).val().split('.').join(''));
+                } else {
+                    obj[fieldName] = $(field).val();
+                }
+            })
+            // Lưu dữ liệu
+            
+            this.saveToDB(obj, Method); // Lưu dữ liệu xuống DB (Thực hiện tại các lớp kế thừa)
+            if (self.SaveAndAdd == true) {
+                self.btnAddOnClick();
+            }
+        } catch (e) {
+            $(".dialog-modal").show();
+            $("#errorMessage").html("Có lỗi xảy ra, vui lòng thử lại!");
+            $(".dialog-error").show();
+            $("#btnOK").focus();
+        }
+
+    }
 
 
     /**
@@ -322,52 +376,16 @@ class BaseJS {
     }
 
 
+    btnSaveAndAddOnClick() {
+        this.SaveAndAdd = true;
+    }
     /**
     * Lưu dữ liệu
     * Author: Bui Trung Tu (24/9/2020)
     * */
-    btnSaveOnClick() {
-        try {
-            //validate dữ liệu trước khi thêm hoặc sửa lần nữa
-            var inputRequireds = $('input[required]');
-            var isValid = true;
-            $.each(inputRequireds, function (i, item) {
-                var valid = $('input').trigger("blur");
-                if (isValid && valid.hasClass("required-error")) {
-                    isValid = false;
-                }
-            })
-            if (isValid == false) {
-                return;
-            }
-            // check xem là thêm mới hay sửa thông tin
-            var self = this;
-            var Method = "POST"; // Mặc định là thêm
-            console.log(self.FormType)
-            if (self.FormType == "Edit") {
-                Method = "PUT";
-            }
-            var obj = {};
-            var fields = $(".dialog-body input,.dialog-body select,.dialog-body textarea");
-            $.each(fields, function (index, field) {
-                var fieldName = $(field).attr('fieldName');
-                if (fieldName == "Salary") {
-                    obj[fieldName] = Number($(field).val().split(',').join(''));
-                } else {
-                    obj[fieldName] = $(field).val();
-                }
-            })
-            //console.log(obj);
-            // Lưu dữ liệu
-            this.saveToDB(obj, Method); // Lưu dữ liệu xuống DB (Thực hiện tại các lớp kế thừa)
-        } catch (e) {
-            $(".dialog-modal").show();
-            $("#errorMessage").html("Có lỗi xảy ra, vui lòng thử lại!");
-            $(".dialog-error").show();
-            $("#btnOK").focus();
-        }
 
-    }
+
+    //TODO: Nhân bản
     /**
      * Nhân đôi đối tượng
      * Author: Bui Trung Tu(29/9/2020)
@@ -377,10 +395,14 @@ class BaseJS {
             if ($('#btnDuplicate').hasClass('hiden') == false) {
                 // xác định đối tượng cần edit
                 var objSelected = $('.row-selected');
-                if (objSelected.length > 0) {
-                    var objCode = objSelected.children()[0].textContent;
-                    this.getObjData(objCode);
+                if (objSelected.length == 1) {
+                    var objID = objSelected.data('keyID');;
+                    this.getObjData(objID); // lấy dữ liệu của nhân viên cần nhân bản
                     this.saveToDB(this.Obj, "POST");
+                } else {
+                    $(".dialog-modal").show();
+                    $("#errorMessage").html("1 thời điểm chỉ được nhân bản 1 nhân viên");
+                    $(".dialog-error").show();
                 }
             }
         } catch (e) {
@@ -400,7 +422,6 @@ class BaseJS {
     * Author: Bùi Trung Tú
     * */
     btnReloadOnClick() {
-        this.getData();
         this.loadData();
     }
 
@@ -420,7 +441,7 @@ class BaseJS {
             var self = this;
             //đề xuất mã nhân viên cho người dùng
             $.ajax({
-                url: "/api/employeeApi/employee/maxCode",
+                url: "/api/employeeApi/GetCode/maxCode",
                 method: "GET",
                 contentType: "application/json",
                 dataType: "json",
@@ -428,9 +449,9 @@ class BaseJS {
             }).done(function (res) {
                 self.showDialogDetail();
                 $("#txtCustomerCode").val(res.responseText);
-            }).fail(function (res2) {
+            }).fail(function (res) {
                 self.showDialogDetail();
-                $("#txtCustomerCode").val(res2.responseText);
+                $("#txtCustomerCode").val(res.responseText);
             })
         } catch (e) {
             $(".dialog-modal").show();
@@ -450,8 +471,8 @@ class BaseJS {
      * Author: Bui Trung Tu (20/9/2020)
      * */
     showDialogDetail() {
-        $('#txtCustomerCode,#txtCustomerName,#txtMobile').removeClass("required-error");
-        $('#txtCustomerCode,#txtCustomerName,#txtMobile').removeAttr("placeholder");
+        $('input[required]').removeClass("required-error");
+        $('input[required]').removeAttr("placeholder");
         $('.dialog input,textarea').val(null);
         $('.dialog select').val(1);
         $('.dialog-modal').show();
@@ -467,7 +488,6 @@ class BaseJS {
         $('.dialog').hide();
         $('.dialog-confirm').hide();
         $(".dialog-error").hide();
-        this.deleteObjs = "";
     }
 
     /**
@@ -510,6 +530,25 @@ class BaseJS {
     btnErrorOnClickOK() {
         $(".dialog-modal").hide();
         $(".dialog-error").hide();
+    }
+    KeyOnPress() {
+        try {
+            var self = this;
+            //phím tắt cho tắt dialog
+            if (event.key == "Escape") {
+                self.hideDialogDetail();
+            }
+            // phím tắt cho cất
+            if (event == "Control" && event.key == "s") {
+                self.btnSaveOnClick();
+            }
+            // phím tắt cho cất và thêm
+            if (event == "Control" && event.key == "Shift" && event.key == "s") {
+
+            }
+        } catch{
+
+        }
     }
     // #endregion
 }
