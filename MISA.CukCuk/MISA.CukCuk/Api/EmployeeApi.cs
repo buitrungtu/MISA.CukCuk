@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MISA.Bussiness.Interfaces;
 using MISA.Common.Model;
@@ -22,24 +24,28 @@ namespace MISA.CukCuk.Api
         }
 
         /// <summary>
-        /// Lấy dữ liệu binding lên dialog
+        /// Thêm 1 đối tượng
         /// </summary>
-        /// Author: BTTu(19/10/2020)
+        /// <param name="obj">đối tượng</param>
+        /// Author: BTTu (17/10/2020)
         /// <returns></returns>
-        [HttpGet("{GetDataDialog}")]
-        public IActionResult GetDataDialog()
+        [HttpPost("{fileUpLoad}")]
+        public IActionResult PostImage([FromBody] IFormFile file)
         {
-            string rs = _employeeService.GetMaxEmployeeCode();
             try
             {
-                int maxCode = Int32.Parse(rs.Replace("NV", ""));
-                return Ok(maxCode);
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/content/upload", file.FileName);
+                using(Stream stream = new FileStream(path, FileMode.Create))
+                {
+                    file.CopyTo(stream);
+                }
+                return StatusCode(StatusCodes.Status201Created);
             }
-            catch (Exception)
+            catch(Exception)
             {
-
-                return NoContent();
+                return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
+        
     }
 }

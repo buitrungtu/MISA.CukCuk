@@ -86,8 +86,6 @@ class CustomerJS extends BaseJS {
                 self.loadData();
             }
         }).fail(function (res) {
-            debugger;
-            //console.log()
             self.btnCloseOnClick();
             $(".dialog-modal").show();
             $("#errorMessage").html(res.responseJSON.Msg);

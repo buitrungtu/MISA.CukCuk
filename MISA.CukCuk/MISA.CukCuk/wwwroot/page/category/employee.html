@@ -222,8 +222,10 @@
                 <div class="image-content">
                     <img class="avatar" src="/content/Images/avatardefault.png" />
                     <div class="btn-image">
-                        <button class="btn-add">...</button>
-                        <button class="btn-remove">X</button>
+                        <input type="file" id="avatarUpload" style="display:none" accept="image/*" />
+                        <button id="btnUpload">...</button>
+                        <button id="btn-remove">X</button>
+
                     </div>
                 </div>
                 <div class="warning">
@@ -234,7 +236,7 @@
             <div class="col-image">
                 <div class="information-field">
                     <label>Mã nhân viên <span>(*)</span> </label>
-                    <input tabindex="1" type="text" fieldName="EmployeeCode" id="txtCustomerCode" required />
+                    <input tabindex="1" type="text" fieldName="EmployeeCode" id="txtCustomerCode" value="NV2003" required />
                 </div>
             </div>
             <div class="col-image">
@@ -247,14 +249,16 @@
                 <div class="col-2">
                     <div class="information-field">
                         <label>Ngày sinh </label>
-                        <input tabindex="3" format="date" class="date" fieldName="Birthday" type="date" id="txtBirdday"  />
+                        <input tabindex="3" format="date" class="date" fieldName="Birthday" type="date" id="txtBirdday" />
                     </div>
                     <div class="information-field">
                         <label class="text-col-2">Giới tính</label>
                         <select tabindex="4" class="index-2" fieldName="Gender">
-                            <option value="0">Nam</option>
-                            <option value="1">Nữ</option>
-                            <option value="2">Khác</option>
+                            <option value="0">Nữ</option>
+                            <option value="1">Nam</option>
+                            <option value="2">Less</option>
+                            <option value="3">Gay</option>
+                            <option value="4">Khác</option>
                         </select>
                     </div>
                 </div>
@@ -262,7 +266,7 @@
             <div class="col-image">
                 <div class="information-field">
                     <label>Email <span>(*)</span> </label>
-                    <input tabindex="5" type="text" fieldName="Email"  required />
+                    <input tabindex="5" type="text" fieldName="Email" required />
                 </div>
             </div>
             <div class="col-image">
@@ -286,7 +290,7 @@
             <div class="col">
                 <div class="information-field">
                     <label>Nơi cấp </label>
-                    <input tabindex="9" type="text" fieldName="IdentityPlace"  />
+                    <input tabindex="9" type="text" fieldName="IdentityPlace" />
                 </div>
             </div>
             <div class="title-area">Thông tin công việc</div>
@@ -317,7 +321,8 @@
                 </div>
                 <div class="information-field">
                     <label class="text-col-2">Mức lương</label>
-                    <input tabindex="13" format="money" fieldName="Salary" class="index-2 money"/>
+                    <input tabindex="13" format="money" fieldName="Salary" class="index-2 money" />
+                    <p class="italic type-money">(VNĐ)</p>
                 </div>
             </div>
             <div class="col-4-6">
@@ -383,7 +388,7 @@
             <div class="dialog-btn">
                 <button tabindex="1" id="btnOK">
                     Đồng ý
-                </button>               
+                </button>
             </div>
         </div>
     </div>

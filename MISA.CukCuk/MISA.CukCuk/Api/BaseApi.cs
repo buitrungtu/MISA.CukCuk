@@ -39,15 +39,15 @@ namespace MISA.CukCuk.Api
         /// <param name="record">Bản ghi</param>
         /// Author: BTTu (18/10/2020)
         /// <returns></returns>
-        [HttpGet("{paging}")]
-        public IActionResult Get(int page, int record)
-        {
-            var rs = _baseService.Get();
-            if (rs != null)
-                return Ok(rs);
-            else
-                return NoContent();
-        }
+        //[HttpGet("{paging}")]
+        //public IActionResult Get(int page, int record)
+        //{
+        //    var rs = _baseService.Get();
+        //    if (rs != null)
+        //        return Ok(rs);
+        //    else
+        //        return NoContent();
+        //}
         /// <summary>
         /// Lấy dữ liệu của 1 đối tượng
         /// </summary>
