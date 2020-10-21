@@ -37,15 +37,15 @@ namespace MISA.CukCuk.Model
                 switch(Gender)
                 {
                     case Gender.Female:
-                        return "Nữ";
+                        return MISA.Common.Properties.ResourcesVN.Enum_Gender_Female;
                     case Gender.Male:
-                        return "Nam";
+                        return MISA.Common.Properties.ResourcesVN.Enum_Gender_Male;
                     case Gender.Gay:
-                        return "Gay";
+                        return MISA.Common.Properties.ResourcesVN.Enum_Gender_Gay;
                     case Gender.Less:
-                        return "Less";
+                        return MISA.Common.Properties.ResourcesVN.Enum_Gender_Less;
                     default:
-                        return "Không xác định";
+                        return MISA.Common.Properties.ResourcesVN.Enum_Gender_Other;
                 }
             }            
         }
@@ -107,15 +107,15 @@ namespace MISA.CukCuk.Model
             {
                 switch(WorkStatus){
                     case WorkStatus.Working:
-                        return "Đang làm việc";
+                        return MISA.Common.Properties.ResourcesVN.Enum_WorkStatus_Working;
                     case WorkStatus.Stopped:
-                        return "Đã nghỉ việc";
+                        return MISA.Common.Properties.ResourcesVN.Enum_WorkStatus_Stopped;
                     case WorkStatus.Waiting:
-                        return "Đang thử việc";
+                        return MISA.Common.Properties.ResourcesVN.Enum_WorkStatus_Waiting;
                     case WorkStatus.Childbirth:
-                        return "Nghỉ sinh sản";
+                        return MISA.Common.Properties.ResourcesVN.Enum_WorkStatus_Childbirth;
                     case WorkStatus.Foreign:
-                        return "Công tác nước ngoài";
+                        return MISA.Common.Properties.ResourcesVN.Enum_WorkStatus_Foreign;
                     default:
                         return "Không xác định";
                 }

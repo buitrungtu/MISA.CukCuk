@@ -17,7 +17,7 @@ namespace MISA.CukCuk.Api
         IBaseService<Customer> _customerService;
         public CustomerApi(IBaseService<Customer> customerService) : base(customerService)
         {
-            
+            _customerService = customerService;
         }
 
     }

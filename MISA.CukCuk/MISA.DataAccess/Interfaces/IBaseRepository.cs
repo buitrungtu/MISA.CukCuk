@@ -10,6 +10,7 @@ namespace MISA.DataAccess.Interface
         /// <summary>
         /// Lấy dữ liệu
         /// </summary>
+        /// Author: BTTu (15/10/2020)
         /// <returns></returns>
         IEnumerable<T> GetData();
 

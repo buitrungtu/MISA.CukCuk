@@ -65,7 +65,7 @@
     position: relative;
 }
 
-img.avatar {
+img#avatar {
     height: 100%;
     width: 100%;
 }

@@ -9,14 +9,17 @@ namespace MISA.Bussiness.Service
 {
     public class BaseService<T> : IBaseService<T>
     {
+        #region property
         IBaseRepository<T> _baseRepository;
-
         protected List<string> validateErrorResponseMsg = new List<string>();
-
+        #endregion
+        #region Constructor
         public BaseService(IBaseRepository<T> customerRepository)
         {
             _baseRepository = customerRepository;
         }
+        #endregion
+        #region Metod
         public ServiceResponse Delete(Guid objId)
         {
             var serviceResponse = new ServiceResponse();
@@ -85,7 +88,7 @@ namespace MISA.Bussiness.Service
         {
             return true;
         }
+        #endregion
 
-        
     }
 }

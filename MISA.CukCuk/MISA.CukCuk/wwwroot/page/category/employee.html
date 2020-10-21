@@ -202,7 +202,7 @@
                             </select>
                         </div>
                         <div class="paging-right">
-                            Hiển thị 1 - 30 trên <span id="totalRecord">100</span> kết quả.
+                            Hiển thị <span id="minRecord">1</span> - <span id="maxRecord">100</span> trên <span id="totalRecord">100</span> kết quả.
                         </div>
                     </div>
                 </div>
@@ -224,12 +224,11 @@
             <div class="title-area">Thông tin chung</div>
             <div class="image">
                 <div class="image-content">
-                    <img class="avatar" src="/content/Images/avatardefault.png" />
+                    <img id="avatar" src="/content/Images/avatardefault.png" />
                     <div class="btn-image">
                         <input type="file" id="avatarUpload" style="display:none" accept="image/*" />
                         <button id="btnUpload">...</button>
                         <button id="btn-remove">X</button>
-
                     </div>
                 </div>
                 <div class="warning">
@@ -240,7 +239,7 @@
             <div class="col-image">
                 <div class="information-field">
                     <label>Mã nhân viên <span>(*)</span> </label>
-                    <input tabindex="1" type="text" fieldName="EmployeeCode" id="txtCustomerCode" value="NV2003" required />
+                    <input tabindex="1"  type="text" fieldName="EmployeeCode" id="txtCustomerCode" value="NV2003" required />
                 </div>
             </div>
             <div class="col-image">

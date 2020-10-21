@@ -1,8 +1,9 @@
-﻿/* Class này sẽ được add vào trường tr khi người dùng chọn 1 đối tượng trên grid*/
+﻿
+/* Class này sẽ được add vào từ code JS*/
 .row-selected {
     background-color: #007ece66;
 }
-/*Class này được add khi người dùng bỏ qua trường bắt buộc */
+
 .required-error, .required-error:focus {
     border: 1px solid #ff0000 !important;
 }

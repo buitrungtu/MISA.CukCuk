@@ -10,12 +10,16 @@ namespace MISA.Bussiness.Service
 {
     public class EmployeeService : BaseService<Employee>,IEmployeeService
     {
+        #region Property
         IEmployeeRepository _employeeRepository;
+        #endregion
+        #region Constructor
         public EmployeeService(IEmployeeRepository employeeRepository) : base(employeeRepository)
         {
             _employeeRepository = employeeRepository;
         }
-
+        #endregion
+        #region Method
         public bool CheckEmployeeByCode(string employeeCode)
         {
             return _employeeRepository.CheckEmployeeByCode(employeeCode);
@@ -59,5 +63,6 @@ namespace MISA.Bussiness.Service
             }
             return isValid;
         }
+        #endregion
     }
 }

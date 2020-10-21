@@ -8,11 +8,16 @@ namespace MISA.DataAccess.Repository
 {
     public class BaseRepository<T>:IBaseRepository<T>
     {
+        #region Property
         protected IDatabaseContext<T> _databaseContext;
+        #endregion
+        #region Constructor
         public BaseRepository(IDatabaseContext<T> databaseContext)
         {
             _databaseContext = databaseContext;
         }
+        #endregion
+        #region Method
         public IEnumerable<T> GetData()
         {
             return _databaseContext.GetData();
@@ -40,6 +45,6 @@ namespace MISA.DataAccess.Repository
             return _databaseContext.Delete(objID);
         }
 
-        
+        #endregion
     }
 }

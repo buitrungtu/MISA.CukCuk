@@ -13,12 +13,17 @@ namespace MISA.CukCuk.Api
     [ApiController]
     public class BaseApi<T> : ControllerBase
     {
+        #region Property
         IBaseService<T> _baseService;
+        #endregion
+        #region Constructor
         public BaseApi(IBaseService<T> baseService)
         {
             _baseService = baseService;
         }
-
+        #endregion
+        #region Method
+        #region GET
         /// <summary>
         /// Lấy dữ liệu có phân trang
         /// </summary>
@@ -63,6 +68,8 @@ namespace MISA.CukCuk.Api
             if (data != null) return Ok(data);
             else return NoContent();
         }
+        #endregion
+        #region POST
         /// <summary>
         /// Thêm 1 đối tượng
         /// </summary>
@@ -79,7 +86,8 @@ namespace MISA.CukCuk.Api
             else
                 return BadRequest(serviceResponse);
         }
-
+        #endregion
+        #region PUT
         /// <summary>
         /// Sửa thông tin 
         /// </summary>
@@ -96,7 +104,8 @@ namespace MISA.CukCuk.Api
             else
                 return BadRequest(serviceResponse);
         }
-
+        #endregion
+        #region DELETE
         /// <summary>
         /// Xóa 1 đối tượng
         /// </summary>
@@ -116,5 +125,7 @@ namespace MISA.CukCuk.Api
                 return BadRequest(serviceResponse);
             }   
         }
+        #endregion
+        #endregion
     }
 }

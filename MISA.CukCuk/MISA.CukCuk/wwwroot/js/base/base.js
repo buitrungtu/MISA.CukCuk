@@ -5,6 +5,7 @@
 
 class BaseJS {
     // khởi tạo
+    // #region Constructor
     constructor() {
         try {
             this.FormType = null; // check xem là sửa hay thêm mới
@@ -14,6 +15,8 @@ class BaseJS {
             this.SaveAndAdd = false; //check xem là cất xong thêm hay không
         } catch (e) { }
     }
+     // #endregion
+
     // #region Gán sự kiện
     /**
     * Gán sự kiện cho các thành phần
@@ -66,13 +69,13 @@ class BaseJS {
                 $('#avatarUpload').change(function () {
                     var reader = new FileReader();
                     reader.onload = function (e) {
-                        $('.avatar').attr('src', e.target.result);
+                        $('#avatar').attr('src', e.target.result);
                     }
                     reader.readAsDataURL(this.files[0]);
                 })
             });
             $('#btn-remove').click(function () {
-                $('.avatar').attr('src', "/content/Images/avatardefault.png");
+                $('#avatar').attr('src', "/content/Images/avatardefault.png");
             })
         } catch{
             $(".dialog-modal.error").show();
@@ -271,9 +274,11 @@ class BaseJS {
                                 $(field).val(self.Obj[fieldName]);
                             }
                         })
+                        $("#txtCustomerCode").attr('disabled','disabled');//không cho sửa mã
                         // chuyển trạng thái cho nút Save thành edit  
                         self.objID = objID;
                         self.FormType = "Edit";
+                        
                     }
                 } else {
                     $(".dialog-modal.error").show();
@@ -475,7 +480,6 @@ class BaseJS {
 
     // #region Phương thức phụ
 
-
     /**
     * Load lại dữ liệu
     * Author: Bùi Trung Tú
@@ -497,6 +501,7 @@ class BaseJS {
      * */
     btnAddOnClick() {
         try {
+            $("#txtCustomerCode").removeAttr('disabled');
             //đề xuất mã nhân viên cho người dùng
             this.showDialogDetail();
             this.getMaxCode();
