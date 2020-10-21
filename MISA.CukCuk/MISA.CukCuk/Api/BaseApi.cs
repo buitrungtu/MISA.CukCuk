@@ -30,9 +30,9 @@ namespace MISA.CukCuk.Api
         public IActionResult Get([FromQuery] int page, [FromQuery] int record)
         {
             var pagingObject = new PagingObject();
-            pagingObject.TotalRecord = 1000;
+            pagingObject.TotalRecord = _baseService.GetData().Count();
             pagingObject.TotalPage = Convert.ToInt32(Math.Ceiling((decimal)pagingObject.TotalRecord / (decimal)record));
-            pagingObject.Data = _baseService.Get(record * (page - 1), record);
+            pagingObject.Data = _baseService.GetDataByPage(record * (page - 1), record);
             if (pagingObject.Data != null)
                 return Ok(pagingObject);
             else
@@ -56,7 +56,13 @@ namespace MISA.CukCuk.Api
             else
                 return NoContent();
         }
-
+        [HttpGet("GetData")]
+        public IActionResult Get()
+        {
+            var data = _baseService.GetData();
+            if (data != null) return Ok(data);
+            else return NoContent();
+        }
         /// <summary>
         /// Thêm 1 đối tượng
         /// </summary>

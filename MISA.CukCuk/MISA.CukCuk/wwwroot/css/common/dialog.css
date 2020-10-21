@@ -51,7 +51,6 @@
 .dialog-body .col-2 {
     display: grid;
     grid-template-columns: 53% 47%;
-    /*margin: 5px 0px;*/
 }
 
 .col-image {
@@ -202,6 +201,7 @@ label span {
     height: 130px;
     border: 6px solid #0973b9;
     border-radius: 5px;
+    z-index:3;
 }
 
 .dialog-title {
@@ -256,9 +256,7 @@ button#btnNo {
 
 .money {
     text-align: right;
-    padding: 0px 8px 0px 0px;
     padding-right: 50px !important;
-    /* display: inline-block; */
     width: calc(100% - 135px) !important;
 }
 
@@ -299,4 +297,11 @@ p.italic.type-money {
     right: 15px;
     bottom: 92px;
     font-family: initial;
+}
+.dialog-modal.confirm{
+    z-index: 2;
+}
+
+.dialog-modal.error {
+    z-index: 2;
 }

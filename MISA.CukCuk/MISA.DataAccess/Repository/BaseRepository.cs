@@ -13,10 +13,13 @@ namespace MISA.DataAccess.Repository
         {
             _databaseContext = databaseContext;
         }
-
-        public IEnumerable<T> Get(int page, int record)
+        public IEnumerable<T> GetData()
         {
-            return _databaseContext.Get(page,record);
+            return _databaseContext.GetData();
+        }
+        public IEnumerable<T> GetDataByPage(int page, int record)
+        {
+            return _databaseContext.GetDataByPage(page,record);
         }
 
         public T GetByID(object objID)
@@ -35,6 +38,8 @@ namespace MISA.DataAccess.Repository
         public int Delete(Guid objID)
         {
             return _databaseContext.Delete(objID);
-        }    
+        }
+
+        
     }
 }

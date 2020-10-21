@@ -50,6 +50,7 @@
         width: 5px;
         background-color: rgb(239,239,239);
     }
+
     .grid .grid-content::-webkit-scrollbar-thumb {
         background-color: #d6d4d4;
     }
@@ -154,8 +155,13 @@ table tr:hover :not(th) {
     background-position: center;
     display: block;
     cursor: pointer;
-    margin-right: 10px;
+    margin: 0px 10px 1px 0px;
 }
+
+    .paging-left .paging-icon:hover {
+        background-color: #d4d3d3;
+        border-radius: 50%;
+    }
 
 .paging-left #txtPageNumber, #txbNumber {
     width: 40px;
@@ -190,6 +196,7 @@ input#txbNumberRecord {
     margin-left: 15px;
     height: 20px;
 }
+
 select#txbNumberRecord {
     width: 50px;
     height: 25px;
@@ -200,7 +207,5 @@ select#txbNumberRecord {
 /*end grid paging*/
 button.hiden {
     opacity: 0.5;
-    cursor: default !important;
+    cursor: default;
 }
-
-

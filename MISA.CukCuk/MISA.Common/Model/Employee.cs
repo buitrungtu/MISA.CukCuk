@@ -57,18 +57,18 @@ namespace MISA.CukCuk.Model
         /// <summary>
         /// Ngày sinh
         /// </summary>
-        public DateTime Birthday { get; set; }
+        public DateTime? Birthday { get; set; }
 
         /// <summary>
         /// Vị trí
         /// </summary>
-        public Guid PositionID { get; set; }
+        public Guid? PositionID { get; set; }
         public string PositionName { get; set; }
 
         /// <summary>
         /// Phòng ban
         /// </summary>
-        public Guid DepartmentID { get; set; }
+        public Guid? DepartmentID { get; set; }
         public string DepartmentName { get; set; }
 
         /// <summary>
@@ -79,13 +79,8 @@ namespace MISA.CukCuk.Model
         /// <summary>
         /// Số tiền lương
         /// </summary>
-        public double Salary { get; set; }
+        public double? Salary { get; set; }
 
-
-        /// <summary>
-        /// Địa chỉ
-        /// </summary>
-        public string Address { get; set; }
 
         /// <summary>
         /// Số chứng minh thư nhân nhân / hộ chiếu
@@ -95,7 +90,7 @@ namespace MISA.CukCuk.Model
         /// <summary>
         /// Ngày cấp chứng minh thư / hộ chiếu
         /// </summary>
-        public DateTime IdentityDate { get; set; }
+        public DateTime? IdentityDate { get; set; }
 
         /// <summary>
         /// Nơi cấp chứng minh thư / Hộ chiếu
@@ -135,12 +130,12 @@ namespace MISA.CukCuk.Model
         /// <summary>
         /// Ngày gia nhập
         /// </summary>
-        public DateTime JoinDate { get; set; }
+        public DateTime? JoinDate { get; set; }
 
         /// <summary>
         /// Link ảnh đại diện
         /// </summary>
-        public string LinkAvatar { get; set; }
+        public string Avatar { get; set; }
         #endregion
         #region Metod
         #endregion

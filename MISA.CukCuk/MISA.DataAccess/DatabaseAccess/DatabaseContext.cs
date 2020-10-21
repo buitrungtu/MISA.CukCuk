@@ -22,11 +22,11 @@ namespace MISA.DataAccess.DatabaseAccess
             _sqlCommand = _sqlConnection.CreateCommand();
             _sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
         }
-        public IEnumerable<T> Get(int page, int record)
+        public IEnumerable<T> GetDataByPage(int page, int record)
         {
             var objs = new List<T>();
             var className = typeof(T).Name;
-            _sqlCommand.CommandText = $"Proc_Get{className}s";
+            _sqlCommand.CommandText = $"Proc_Get{className}sByPage";
             _sqlCommand.Parameters.AddWithValue("PageLimit", record);
             _sqlCommand.Parameters.AddWithValue("Count", page);
 
@@ -48,7 +48,30 @@ namespace MISA.DataAccess.DatabaseAccess
             mySqlDataReader.Close();
             return objs;
         }
-        
+        public IEnumerable<T> GetData()
+        {
+            var objs = new List<T>();
+            var className = typeof(T).Name;
+            _sqlCommand.CommandText = $"Proc_Get{className}s";
+            MySqlDataReader mySqlDataReader = _sqlCommand.ExecuteReader();
+            while (mySqlDataReader.Read())
+            {
+                var obj = Activator.CreateInstance<T>();
+
+                for (int i = 0; i < mySqlDataReader.FieldCount; i++)
+                {
+                    var columnName = mySqlDataReader.GetName(i);
+                    var value = mySqlDataReader.GetValue(i);
+                    var propertyInfo = obj.GetType().GetProperty(columnName);
+                    if (propertyInfo != null && value != DBNull.Value)
+                        propertyInfo.SetValue(obj, value);
+                }
+                objs.Add(obj);
+            }
+            mySqlDataReader.Close();
+            return objs;
+        }
+
         public T GetByID(object objId)
         {
             var className = typeof(T).Name;
@@ -151,6 +174,6 @@ namespace MISA.DataAccess.DatabaseAccess
             _sqlConnection.Close();
         }
 
-       
+        
     } 
 }

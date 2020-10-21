@@ -34,11 +34,12 @@ class CustomerJS extends BaseJS {
             $("#pageLast").data('totalPage', res.TotalPage);
             // Hiển thị tổng số bản ghi
             $("#totalRecord").text(res.TotalRecord);
+
             
         }).fail(function (res) {
             debugger;
             //Hiện dialog báo lỗi
-            $(".dialog-modal").show();
+            $(".dialog-modal.error").show();
             $("#errorMessage").html("Có lỗi khi truyền dữ liệu tới server, vui lòng thử lại!");
             $(".dialog-error").show();
         })  
@@ -51,7 +52,6 @@ class CustomerJS extends BaseJS {
      */
     getObjData(objID) {
         var self = this;
-
         //call api
         $.ajax({
             url: "/api/employeeApi/" + objID,
@@ -60,18 +60,17 @@ class CustomerJS extends BaseJS {
             dataType: "json",
             async: false
         }).done(function (employee) {
-            console.log(employee);
             if (employee.EmployeeID) {
                 self.Obj = employee; // truyền lại dữ liệu của đối tượng sang cho base.js xử lý tiếp
             } else {
                 // hiện thông báo
-                $(".dialog-modal").show();
+                $(".dialog-modal.error").show();
                 $("#errorMessage").html("Không tìm thấy nhân viên, vui lòng thử lại!");
                 $(".dialog-error").show();
             }
         }).fail(function () {
             // hiện dialog báo lỗi
-            $(".dialog-modal").show();
+            $(".dialog-modal.error").show();
             $("#errorMessage").html("Có lỗi khi truyền dữ liệu tới server, vui lòng thử lại!");
             $(".dialog-error").show();
         })
@@ -98,13 +97,11 @@ class CustomerJS extends BaseJS {
                 // Lưu thành công, hiện lại dữ liệu
                 self.btnCloseOnClick();
                 self.loadData();
-                self.objID = "";
+                self.objID = null;
             }
         }).fail(function (res) {
-            debugger;
             //hiện dialog thông báo lỗi
-            //self.btnCloseOnClick();
-            $(".dialog-modal").show();
+            $(".dialog-modal.error").show();
             var error = "";
             $.each(res.responseJSON.Msg, function (i, msg) {
                 error += ", " + msg;
@@ -135,12 +132,12 @@ class CustomerJS extends BaseJS {
         }).fail(function (res) {
             if (res.responseJSON.Msg) {
                 // thông báo kết quả nếu không thể xóa
-                $(".dialog-modal").show();
+                $(".dialog-modal.error").show();
                 $("#errorMessage").html(res.responseJSON.Msg[1]);
                 $(".dialog-error").show();
             } else {
                 //thông báo lỗi
-                $(".dialog-modal").show();
+                $(".dialog-modal.error").show();
                 $("#errorMessage").html("Có lỗi khi truyền dữ liệu tới server, vui lòng thử lại!");
                 $(".dialog-error").show();
             }      

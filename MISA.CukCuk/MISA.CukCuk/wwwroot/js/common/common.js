@@ -8,18 +8,20 @@ var commonJS = {
      * Author: Bui Trung Tu (23/9/2020)
      * @param {string|number|Date} date
      */
-     formatDate(date) {
-        var date = new Date(date);
-        var month = date.getMonth() + 1;
-        if (month < 10) {
-            month = "0" + month;
-        }
-        var day = date.getDate();
-        if (day < 10) {
-            day = "0" + day;
-        }
-        var year = date.getFullYear();
-        return day + "/" + month + "/" + year;
+    formatDate(date) {
+        try {
+            var date = new Date(date);
+            var month = date.getMonth() + 1;
+            if (month < 10) {
+                month = "0" + month;
+            }
+            var day = date.getDate();
+            if (day < 10) {
+                day = "0" + day;
+            }
+            var year = date.getFullYear();
+            return day + "/" + month + "/" + year;
+        } catch{}
     },
     /**
      * Định dạng ngày tháng cho input date html
@@ -27,17 +29,21 @@ var commonJS = {
      * @param {string|number|Date} date
      */
     formatDateForInput(date) {
-        var date = new Date(date);
-        var month = date.getMonth() + 1;
-        if (month < 10) {
-            month = "0" + month;
+        try {
+            var date = new Date(date);
+            var month = date.getMonth() + 1;
+            if (month < 10) {
+                month = "0" + month;
+            }
+            var day = date.getDate();
+            if (day < 10) {
+                day = "0" + day;
+            }
+            var year = date.getFullYear();
+            return year + "-" + month + "-" + day;
+        } catch{
         }
-        var day = date.getDate();
-        if (day < 10) {
-            day = "0" + day;
-        }
-        var year = date.getFullYear();
-        return year + "-" + month + "-" + day;
+        
     },
      /**
       * Định dạng tiền tệ
@@ -45,8 +51,12 @@ var commonJS = {
       * @param {number} money
       */
     formatMoney(money) {
-        if (money == null) return 0;
-        return money.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
+        try {
+            if (money == null) return 0;
+            return money.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
+        } catch{
+        }
+        
     },
 
      /**
@@ -55,16 +65,19 @@ var commonJS = {
       * @param {string} money
       */
     formatMoneyForDialog(money) {
-        debugger;
-        var x = money;
-        x = x.replace(/\./g, ""); // xóa hết dấu . cũ đi
-        x = x.split("").reverse().join(""); // đảo chuỗi
-        x = x.replace(/.../g, function (e) { // cứ 3 ký tự thì thêm 1 dấu chấm
-            return e + ".";
-        });
-        x = x.split("").reverse().join("");// đảo lại chuỗi
-        x = x.replace(/^\./, ""); // xóa đi dấu . thừa ở đầu chuỗi nếu có
-        return x;
+        try {
+            debugger;
+            var x = money;
+            x = x.replace(/\./g, ""); // xóa hết dấu . cũ đi
+            x = x.split("").reverse().join(""); // đảo chuỗi
+            x = x.replace(/.../g, function (e) { // cứ 3 ký tự thì thêm 1 dấu chấm
+                return e + ".";
+            });
+            x = x.split("").reverse().join("");// đảo lại chuỗi
+            x = x.replace(/^\./, ""); // xóa đi dấu . thừa ở đầu chuỗi nếu có
+            return x;
+        } catch{
+        }
     },
     hideButton() {
         $("#btnDuplicate,#btnEdit,#btnDelete,#btnMerge").addClass("hiden");

@@ -7,13 +7,20 @@ namespace MISA.DataAccess.Interfaces
     public interface IDatabaseContext<T>
     {
         /// <summary>
+        /// Lấy danh sách nhân viên
+        /// </summary>
+        /// Author:BTTu (19/10/2020)
+        /// <returns></returns>
+        IEnumerable<T> GetData();
+        /// <summary>
         /// Lấy dữ liệu theo trang và giới hạn bản ghi
         /// </summary>
         /// <param name="page">trang</param>
         /// <param name="record">bản ghi trong 1 trang</param>
         /// Author:BTTu (19/10/2020)
         /// <returns></returns>
-        IEnumerable<T> Get(int page, int record);
+        IEnumerable<T> GetDataByPage(int page, int record);
+
         /// <summary>
         /// Lấy dữ liệu thông qua id
         /// </summary>

@@ -10,6 +10,7 @@ namespace MISA.Bussiness.Service
     public class BaseService<T> : IBaseService<T>
     {
         IBaseRepository<T> _baseRepository;
+
         protected List<string> validateErrorResponseMsg = new List<string>();
 
         public BaseService(IBaseRepository<T> customerRepository)
@@ -25,9 +26,14 @@ namespace MISA.Bussiness.Service
             return serviceResponse;
         }
 
-        public IEnumerable<T> Get(int page,int record)
+        public IEnumerable<T> GetData()
         {
-            return _baseRepository.Get(page,record);
+            return _baseRepository.GetData();
+        }
+
+        public IEnumerable<T> GetDataByPage(int page,int record)
+        {
+            return _baseRepository.GetDataByPage(page,record);
         }
 
         public T GetById(object objId)
@@ -38,7 +44,7 @@ namespace MISA.Bussiness.Service
         public ServiceResponse Insert(T obj)
         {
             var serviceResponse = new ServiceResponse();
-            if (Validate(obj,"POST") == true)
+            if (Validate(obj,"POST") == true) //check thông tin
             {
                 serviceResponse.Success = true;
                 serviceResponse.Msg.Add("Thành công");
@@ -79,5 +85,7 @@ namespace MISA.Bussiness.Service
         {
             return true;
         }
+
+        
     }
 }
