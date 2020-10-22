@@ -43,23 +43,23 @@ namespace MISA.CukCuk.Api
             }
         }
 
-        [HttpPost("{fileUpLoad}")]
-        public IActionResult PostImage([FromBody] IFormFile file)
-        {
-            try
-            {
-                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/content/upload", file.FileName);
-                using (Stream stream = new FileStream(path, FileMode.Create))
-                {
-                    file.CopyTo(stream);
-                }
-                return StatusCode(StatusCodes.Status201Created);
-            }
-            catch (Exception)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError);
-            }
-        }
+        //[HttpPost("{fileUpLoad}")]
+        //public IActionResult PostImage([FromBody] IFormFile file)
+        //{
+        //    try
+        //    {
+        //        string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/content/upload", file.FileName);
+        //        using (Stream stream = new FileStream(path, FileMode.Create))
+        //        {
+        //            file.CopyTo(stream);
+        //        }
+        //        return StatusCode(StatusCodes.Status201Created);
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return StatusCode(StatusCodes.Status500InternalServerError);
+        //    }
+        //}
 
     }
 }

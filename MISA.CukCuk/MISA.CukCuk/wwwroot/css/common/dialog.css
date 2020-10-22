@@ -201,7 +201,7 @@ label span {
     height: 130px;
     border: 6px solid #0973b9;
     border-radius: 5px;
-    z-index:3;
+    z-index: 3;
 }
 
 .dialog-title {
@@ -249,7 +249,6 @@ button#btnNo {
 }
 /*css cho các trường đặc biệt*/
 .date {
-    font-size: 15px;
     font-family: MISA Fronts;
     text-align: center;
 }
@@ -298,7 +297,8 @@ p.italic.type-money {
     bottom: 92px;
     font-family: initial;
 }
-.dialog-modal.confirm{
+
+.dialog-modal.confirm {
     z-index: 2;
 }
 

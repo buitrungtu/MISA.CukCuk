@@ -243,6 +243,7 @@ class BaseJS {
     * */
     btnEditOnClick() {
         try {
+            
             if ($("#btnEdit").hasClass("hiden") == false) {
                 var self = this;
                 // xác định đối tượng cần edit
@@ -268,9 +269,6 @@ class BaseJS {
                                 $(field).val(commonJS.formatMoney(self.Obj[fieldName]));
                             }
                             else {
-                                if (self.Obj[fieldName] == null) {
-                                    self.Obj[fieldName] = "";
-                                }
                                 $(field).val(self.Obj[fieldName]);
                             }
                         })
@@ -312,11 +310,7 @@ class BaseJS {
             //check email
             var email = $("#email").val();
             const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            if (reg.test(String(email).toLowerCase())) {
-                $("#email").removeClass('required-error');
-                $("#email").removeAttr('placeholder');
-                return true;
-            } else {
+            if (reg.test(String(email).toLowerCase()) == false) {
                 $("#email").addClass('required-error');
                 $("#email").attr('title', 'Email không đúng định dạng');
                 return false;
@@ -505,44 +499,7 @@ class BaseJS {
             //đề xuất mã nhân viên cho người dùng
             this.showDialogDetail();
             this.getMaxCode();
-            //call api lấy danh sách phòng ban
-            $.ajax({
-                url: "/api/departmentApi/getdata",
-                method: "GET",
-                contentType: "application/json",
-                dataType: "json",
-                async: false
-            }).done(function (res) {
-                $.each(res, function (i, opt) {
-                    var option = $(`<option value="` + opt.DepartmentID + `">` + opt.DepartmentName + `</option>`);
-                    $("#department").append(option);
-                })
-                $("#department").val(res[0].DepartmentID); //set giá trị mặc định 
-            }).fail(function () {
-                $(".dialog-modal").show();
-                $("#errorMessage").html("Có lỗi khi truyền dữ liệu tới server, vui lòng thử lại!");
-                $(".dialog-error").show();
-            })
-            //call api lấy danh sách vị trí
-            $.ajax({
-                url: "/api/positionApi/getdata",
-                method: "GET",
-                contentType: "application/json",
-                dataType: "json",
-                async: false
-            }).done(function (res) {
-                $.each(res, function (i, opt) {
-                    var option = $(`<option value="` + opt.PositionID + `">` + opt.PositionName + `</option>`);
-                    $("#position").append(option);
-                })
-                $("#position").val(res[0].PositionID); // set giá trị mặc định
-            }).fail(function () {
-                $(".dialog-modal").show();
-                $("#errorMessage").html("Có lỗi khi truyền dữ liệu tới server, vui lòng thử lại!");
-                $(".dialog-error").show();
-            })
-            $("#gender").val(1); // set giá trị mặc định
-            $("#workStatus").val(0);
+            
         } catch (e) {
             $(".dialog-modal").show();
             $("#errorMessage").html("Có lỗi khi truyền dữ liệu tới server, vui lòng thử lại!");
@@ -568,6 +525,44 @@ class BaseJS {
         $('.dialog-modal.info').show();
         $('.dialog').show();
         $('#txtCustomerCode').focus();
+        //call api lấy danh sách phòng ban
+        $.ajax({
+            url: "/api/departmentApi/getdata",
+            method: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            async: false
+        }).done(function (res) {
+            $("#department").empty();
+            $.each(res, function (i, opt) {
+                var option = $(`<option value="` + opt.DepartmentID + `">` + opt.DepartmentName + `</option>`);
+                $("#department").append(option);
+            })
+        }).fail(function () {
+            $(".dialog-modal").show();
+            $("#errorMessage").html("Có lỗi khi truyền dữ liệu tới server, vui lòng thử lại!");
+            $(".dialog-error").show();
+        })
+        //call api lấy danh sách vị trí
+        $.ajax({
+            url: "/api/positionApi/getdata",
+            method: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            async: false
+        }).done(function (res) {
+            $("#position").empty();
+            $.each(res, function (i, opt) {
+                var option = $(`<option value="` + opt.PositionID + `">` + opt.PositionName + `</option>`);
+                $("#position").append(option);
+            })
+        }).fail(function () {
+            $(".dialog-modal").show();
+            $("#errorMessage").html("Có lỗi khi truyền dữ liệu tới server, vui lòng thử lại!");
+            $(".dialog-error").show();
+        })
+        $("#gender").val(1); // set giá trị mặc định
+        $("#workStatus").val(0);
     }
     /**
      * Ẩn form dialog
